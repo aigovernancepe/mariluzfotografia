@@ -19,7 +19,7 @@ export const NAP = {
   country: 'CH',
   phoneE164: '+41762227304',
   phoneDisplay: '076 222 27 04',
-  email: 'mariluzhafliger@gmail.com', // TODO: auf kontakt@mariluzfotografia.ch umstellen
+  email: 'info@mariluzfotografia.ch',
   areaServed: 'Deutschschweiz',
 } as const;
 
