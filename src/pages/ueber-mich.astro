@@ -5,7 +5,7 @@ import Hero from '../components/Hero.astro';
 import Capsule from '../components/Capsule.astro';
 import { SITE } from '../consts';
 import { person } from '../lib/schema';
-import portrait from '../assets/about/mariluz.png';
+import portrait from '../assets/about/mariluz-kamera.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/ueber-mich/` },
@@ -28,13 +28,13 @@ const alternates = [
     ctaLabel="Kennenlernen"
   />
 
-  <div class="mx-auto max-w-xs px-5">
+  <div class="mx-auto max-w-2xl px-5">
     <Image
       src={portrait}
-      alt="Mariluz — Fotografin und Videografin mit über 20 Jahren Erfahrung"
-      widths={[320, 528]}
-      sizes="(max-width: 640px) 70vw, 320px"
-      class="mx-auto aspect-square rounded-full object-cover shadow-lg ring-2 ring-[var(--color-clay)]/40"
+      alt="Mariluz mit ihrer Kamera — Fotografin und Videografin mit über 20 Jahren Erfahrung"
+      widths={[600, 900, 1200]}
+      sizes="(max-width: 768px) 90vw, 672px"
+      class="w-full rounded-2xl object-cover shadow-lg ring-1 ring-[var(--color-sand)]"
       loading="eager"
     />
   </div>
