@@ -4,7 +4,7 @@
 // Web3Forms Access-Key (öffentlich, darf im HTML stehen). Kostenlos holen auf
 // web3forms.com mit info@mariluzfotografia.ch → Key hier eintragen, dann mailt
 // das Formular an info@. Solange Platzhalter: Formular sendet noch nicht.
-export const WEB3FORMS_KEY = 'PASTE-YOUR-WEB3FORMS-ACCESS-KEY';
+export const WEB3FORMS_KEY = '84fbc32d-13ce-4921-a892-e2ef5d9cf2b2';
 
 export const SITE = {
   name: 'Mariluz Fotografía',
