@@ -2,11 +2,18 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Capsule from '../components/Capsule.astro';
+import { SITE } from '../consts';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/portfolio/` },
+  { lang: 'es', href: `${SITE.url}/es/galeria/` },
+];
 ---
 <BaseLayout
   title="Portfolio — Foto & Video | Mariluz Fotografía"
   description="Eine Auswahl aus Hochzeiten, Quinceañeras, Familien- und Eventaufnahmen von Mariluz Fotografía in der Deutschschweiz."
   path="/portfolio/"
+  alternates={alternates}
 >
   <Hero eyebrow="Portfolio" title="Eine Auswahl meiner Arbeiten"
     lead="Bilder sagen mehr als Worte. Hier eine Auswahl aus echten Feiern — bald mit mehr Aufnahmen aus der Deutschschweiz."

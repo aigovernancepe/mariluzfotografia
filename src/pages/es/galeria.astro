@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Capsule from '../../components/Capsule.astro';
+import { SITE } from '../../consts';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/portfolio/` },
+  { lang: 'es', href: `${SITE.url}/es/galeria/` },
+];
+---
+<BaseLayout lang="es"
+  title="Galería — Foto y Video | Mariluz Fotografía"
+  description="Una selección de bodas, quinceañeras, bautizos y sesiones familiares de Mariluz Fotografía en Suiza."
+  path="/es/galeria/" alternates={alternates}
+>
+  <Hero eyebrow="Galería" title="Una selección de mi trabajo"
+    lead="Las imágenes dicen más que las palabras. Aquí una selección de celebraciones reales — pronto con más trabajos desde Suiza."
+    ctaHref="/es/contacto/" ctaLabel="Solicitar fecha" />
+  <Capsule question="¿Qué muestra esta galería?"
+    answer="Una selección cuidada de bodas, quinceañeras, bautizos y sesiones familiares. La galería crece con cada celebración — las imágenes se publican solo con el consentimiento de las personas retratadas." >
+    <!-- TODO: grid de galería con imágenes optimizadas (Astro <Image>), filtrado por tipo; respetar consentimiento de imagen -->
+  </Capsule>
+</BaseLayout>
