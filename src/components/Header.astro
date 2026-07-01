@@ -1,15 +1,19 @@
 ---
 import { SITE, NAV_DE, NAV_ES } from '../consts';
 
-interface Props { lang?: 'de' | 'es'; }
-const { lang = 'de' } = Astro.props;
+interface Props {
+  lang?: 'de' | 'es';
+  /** Ziel des Sprachwechsels — hreflang-Partner dieser Seite (von BaseLayout). */
+  switchHref?: string;
+}
+const { lang = 'de', switchHref } = Astro.props;
 
 const nav = lang === 'es' ? NAV_ES : NAV_DE;
 const home = lang === 'es' ? '/es/' : '/';
-// Sprachwechsel führt auf die Startseite der anderen Sprache.
+// Label nach Zielsprache; Href = konkreter Seiten-Partner (Fallback: andere Startseite).
 const switchLang = lang === 'es'
-  ? { href: '/', short: 'DE', full: 'Deutsch' }
-  : { href: '/es/', short: 'ES', full: 'Español' };
+  ? { href: switchHref ?? '/', short: 'DE', full: 'Deutsch' }
+  : { href: switchHref ?? '/es/', short: 'ES', full: 'Español' };
 ---
 
 <header class="sticky top-0 z-50 border-b border-[var(--color-sand)] bg-[var(--color-ivory)]/95 backdrop-blur">

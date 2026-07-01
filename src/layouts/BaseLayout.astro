@@ -37,6 +37,12 @@ const ogImage = new URL(image, SITE.url).href;
 // hreflang: übergebene Alternates + immer x-default auf die DE-Variante (oder self).
 const xDefault = alternates.find((a) => a.lang === 'de-CH')?.href ?? canonical;
 
+// Sprachwechsel-Ziel: hreflang-Partner der jeweils anderen Sprache dieser Seite.
+// Fallback = Startseite der anderen Sprache (z. B. bei ES-only-Seiten ohne DE-Pendant).
+const otherLangCode = lang === 'es' ? 'de-CH' : 'es';
+const otherHome = lang === 'es' ? '/' : '/es/';
+const switchHref = alternates.find((a) => a.lang === otherLangCode)?.href ?? otherHome;
+
 const schemaArray = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 ---
 
@@ -78,7 +84,7 @@ const schemaArray = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
     ))}
   </head>
   <body>
-    <Header lang={lang} />
+    <Header lang={lang} switchHref={switchHref} />
     <main>
       <slot />
     </main>
