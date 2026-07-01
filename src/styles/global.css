@@ -2,16 +2,19 @@
 
 /*
   Mariluz Fotografía — Design-Tokens.
-  ⚠ Platzhalter-Palette (Brand-Assets Logo/Farben noch offen [INTAKE]).
-  Warm, elegant, bikulturell. Bei Brand-Entscheid nur diese Werte tauschen.
+  Abgeleitet aus ihren echten Brand-Assets (2026-07-01): Logo = goldener
+  Lorbeerkranz, Porträt = Navy-Blazer vor festlich-buntem Hintergrund.
+  → Navy + Gold + warmes Ivory. (Token-Namen `clay*` halten aus Kompat-Gründen
+  jetzt die Gold-Werte.)
 */
 @theme {
-  --color-ink: #1c1a17;        /* fast-schwarz, warm */
+  --color-ink: #1f2640;        /* tiefes Navy — echoes Mariluz' Blazer */
   --color-ivory: #faf7f2;      /* warmes Off-White (Seiten-Hintergrund) */
-  --color-sand: #ece5da;       /* sanfter Sektions-Kontrast */
-  --color-clay: #b08968;       /* warmer Akzent (Terracotta/Gold-Ton) */
-  --color-clay-dark: #8a6a4f;
-  --color-muted: #6b645b;      /* Fliesstext gedämpft */
+  --color-sand: #efe9dd;       /* sanfter Sektions-Kontrast */
+  --color-clay: #c2a24e;       /* gedämpftes Gold (Lorbeer-Logo) — Akzent */
+  --color-clay-dark: #a5863a;  /* dunkleres Gold (Hover) */
+  --color-gold-light: #f0d885; /* helles Lorbeer-Gold (dekorativ) */
+  --color-muted: #5f6373;      /* navy-grau, Fliesstext gedämpft */
 
   --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;

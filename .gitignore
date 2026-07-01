@@ -21,6 +21,9 @@ pnpm-debug.log*
 # astro
 .astro/
 
+# Roh-Bilder zur Kuratierung (nicht committen — erst nach Auswahl einsortieren)
+src/assets/_unsortiert/
+
 # macOS
 .DS_Store
 
