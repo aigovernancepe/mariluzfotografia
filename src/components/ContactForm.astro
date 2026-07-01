@@ -1,0 +1,75 @@
+---
+// Anfrageformular → Web3Forms → mailt an info@mariluzfotografia.ch.
+// Statisch, kein JS nötig: normaler POST mit hidden access_key + redirect.
+import { SITE, WEB3FORMS_KEY } from '../consts';
+
+interface Props { lang?: 'de' | 'es'; }
+const { lang = 'de' } = Astro.props;
+
+const t = lang === 'es'
+  ? {
+      name: 'Nombre', email: 'Correo electrónico', phone: 'Teléfono (opcional)',
+      occasion: 'Ocasión', date: 'Fecha del evento (opcional)', message: 'Mensaje',
+      submit: 'Enviar solicitud', required: 'obligatorio',
+      choose: 'Elegir…', subject: 'Nueva solicitud – Mariluz Fotografía',
+      redirect: `${SITE.url}/es/gracias/`,
+      occasions: ['Boda', 'Quinceañera', 'Bautizo', 'Sesión familiar', 'Embarazo', 'Evento', 'Video', 'Otro'],
+      msgPlaceholder: 'Cuéntame sobre tu celebración — lugar, número de invitados, si deseas foto, video o ambos…',
+    }
+  : {
+      name: 'Name', email: 'E-Mail', phone: 'Telefon (optional)',
+      occasion: 'Anlass', date: 'Datum des Anlasses (optional)', message: 'Nachricht',
+      submit: 'Anfrage senden', required: 'Pflichtfeld',
+      choose: 'Auswählen…', subject: 'Neue Anfrage – Mariluz Fotografía',
+      redirect: `${SITE.url}/danke/`,
+      occasions: ['Hochzeit', 'Taufe', 'Familienshooting', 'Schwangerschaft', 'Event', 'Video', 'Anderes'],
+      msgPlaceholder: 'Erzählen Sie mir von Ihrer Feier — Ort, Anzahl Gäste, ob Foto, Video oder beides…',
+    };
+
+const field = 'mt-1 w-full rounded-lg border border-[var(--color-sand)] bg-white/70 px-4 py-2.5 text-[var(--color-ink)] outline-none focus:border-[var(--color-clay)] focus:ring-2 focus:ring-[var(--color-clay)]/30';
+const label = 'block text-sm font-medium text-[var(--color-ink)]';
+---
+
+<form action="https://api.web3forms.com/submit" method="POST" class="mx-auto max-w-xl px-5">
+  <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+  <input type="hidden" name="subject" value={t.subject} />
+  <input type="hidden" name="from_name" value="Mariluz Fotografía Website" />
+  <input type="hidden" name="redirect" value={t.redirect} />
+  <!-- Honeypot gegen Bots -->
+  <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div>
+      <label class={label} for="name">{t.name} <span class="text-[var(--color-clay)]">*</span></label>
+      <input class={field} id="name" name="name" type="text" required autocomplete="name" />
+    </div>
+    <div>
+      <label class={label} for="email">{t.email} <span class="text-[var(--color-clay)]">*</span></label>
+      <input class={field} id="email" name="email" type="email" required autocomplete="email" />
+    </div>
+    <div>
+      <label class={label} for="phone">{t.phone}</label>
+      <input class={field} id="phone" name="phone" type="tel" autocomplete="tel" />
+    </div>
+    <div>
+      <label class={label} for="date">{t.date}</label>
+      <input class={field} id="date" name="date" type="date" />
+    </div>
+    <div class="sm:col-span-2">
+      <label class={label} for="occasion">{t.occasion}</label>
+      <select class={field} id="occasion" name="occasion">
+        <option value="" disabled selected>{t.choose}</option>
+        {t.occasions.map((o) => <option value={o}>{o}</option>)}
+      </select>
+    </div>
+    <div class="sm:col-span-2">
+      <label class={label} for="message">{t.message} <span class="text-[var(--color-clay)]">*</span></label>
+      <textarea class={field} id="message" name="message" rows="5" required placeholder={t.msgPlaceholder}></textarea>
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    class="mt-6 w-full rounded-full bg-[var(--color-clay)] px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--color-clay-dark)] sm:w-auto"
+  >{t.submit}</button>
+</form>

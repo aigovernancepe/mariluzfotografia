@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Capsule from '../components/Capsule.astro';
+import ContactForm from '../components/ContactForm.astro';
 import { SITE, NAP } from '../consts';
 
 const alternates = [
@@ -33,6 +34,7 @@ const alternates = [
       <p><strong>E-Mail:</strong> <a href={`mailto:${NAP.email}`} class="text-[var(--color-clay)]">{NAP.email}</a></p>
       <p><strong>Region:</strong> {NAP.city} ({NAP.region}) — Anfahrt in die ganze Deutschschweiz</p>
     </div>
-    <!-- TODO: echtes Anfrageformular (Cloudflare Pages Forms / Formspree) + kontakt@mariluzfotografia.ch -->
   </Capsule>
+
+  <ContactForm lang="de" />
 </BaseLayout>

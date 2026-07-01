@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import Capsule from '../../components/Capsule.astro';
+import ContactForm from '../../components/ContactForm.astro';
 import { SITE, NAP } from '../../consts';
 
 const alternates = [
@@ -24,6 +25,7 @@ const alternates = [
       <p><strong>Correo:</strong> <a href={`mailto:${NAP.email}`} class="text-[var(--color-clay)]">{NAP.email}</a></p>
       <p><strong>Región:</strong> {NAP.city} ({NAP.region}) — cobertura en toda la Suiza de habla alemana</p>
     </div>
-    <!-- TODO: formulario real -->
   </Capsule>
+
+  <ContactForm lang="es" />
 </BaseLayout>

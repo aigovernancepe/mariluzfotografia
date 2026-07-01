@@ -1,6 +1,11 @@
 // Zentrale Site-Konstanten. NAP = kanonische Wahrheit (muss Schema + GBP + Zitate matchen).
 // Firma noch nicht gegründet → vorerst natürliche Person; Business-Name/UID nach Gründung.
 
+// Web3Forms Access-Key (öffentlich, darf im HTML stehen). Kostenlos holen auf
+// web3forms.com mit info@mariluzfotografia.ch → Key hier eintragen, dann mailt
+// das Formular an info@. Solange Platzhalter: Formular sendet noch nicht.
+export const WEB3FORMS_KEY = 'PASTE-YOUR-WEB3FORMS-ACCESS-KEY';
+
 export const SITE = {
   name: 'Mariluz Fotografía',
   domain: 'mariluzfotografia.ch',
