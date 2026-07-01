@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
 import Hero from '../components/Hero.astro';
 import Capsule from '../components/Capsule.astro';
 import { SITE } from '../consts';
 import { person } from '../lib/schema';
+import portrait from '../assets/about/mariluz.png';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/ueber-mich/` },
@@ -25,6 +27,17 @@ const alternates = [
     ctaHref="/kontakt/"
     ctaLabel="Kennenlernen"
   />
+
+  <div class="mx-auto max-w-sm px-5">
+    <Image
+      src={portrait}
+      alt="Mariluz — Fotografin und Videografin mit über 20 Jahren Erfahrung"
+      widths={[320, 528]}
+      sizes="(max-width: 640px) 80vw, 384px"
+      class="mx-auto rounded-2xl shadow-lg ring-1 ring-[var(--color-sand)]"
+      loading="eager"
+    />
+  </div>
 
   <Capsule
     question="Wer bin ich?"
