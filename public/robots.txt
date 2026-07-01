@@ -1,0 +1,19 @@
+# Mariluz Fotografía — robots.txt
+# Alle regulären Crawler willkommen.
+User-agent: *
+Allow: /
+
+# AI-Crawler explizit erlaubt (AISO Crawlability-Dimension)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://mariluzfotografia.ch/sitemap-index.xml

@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Capsule from '../components/Capsule.astro';
+import { SITE } from '../consts';
+import { service } from '../lib/schema';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/familienfotografie/` },
+  { lang: 'es', href: `${SITE.url}/es/fotografo-familiar/` },
+];
+---
+<BaseLayout
+  title="Familienfotografie — Foto & Video | Mariluz Fotografía"
+  description="Natürliche Familien- und Kinderfotos in der Deutschschweiz. Entspannte Shootings, echte Momente — Foto und Video aus einer Hand."
+  path="/familienfotografie/"
+  alternates={alternates}
+  schema={service({ name: 'Familienfotografie', description: 'Familien- und Kinderfotografie in der Deutschschweiz.', serviceType: 'Familienfotografie' })}
+>
+  <Hero eyebrow="Familie & Kinder" title="Familienfotografie, die sich echt anfühlt"
+    lead="Kein steifes Posieren — entspannte Bilder Ihrer Familie, so wie sie ist. In der ganzen Deutschschweiz, drinnen wie draussen."
+    ctaHref="/kontakt/" ctaLabel="Shooting anfragen" />
+  <Capsule question="Wie läuft ein Familienshooting ab?"
+    answer="Wir treffen uns an einem Ort, an dem sich Ihre Familie wohlfühlt — zuhause, in der Natur oder am Lieblingsplatz. Ich lasse Raum für echte Momente statt gestellter Posen, gerade bei Kindern. So entstehen Bilder, die in ein paar Jahren noch nach Ihnen aussehen." />
+  <!-- TODO: Ablauf-Detail, Beispiele, Dauer, Foto+Video-Option -->
+</BaseLayout>

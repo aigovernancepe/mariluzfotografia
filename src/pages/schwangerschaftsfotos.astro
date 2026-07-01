@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Capsule from '../components/Capsule.astro';
+import { service } from '../lib/schema';
+---
+<BaseLayout
+  title="Schwangerschaftsfotos — Babybauch-Shooting | Mariluz Fotografía"
+  description="Schwangerschaftsfotos in der Deutschschweiz. Feinfühlige Babybauch-Shootings, die die Vorfreude festhalten — Foto und Video."
+  path="/schwangerschaftsfotos/"
+  schema={service({ name: 'Schwangerschaftsfotografie', description: 'Babybauch- und Schwangerschaftsfotos in der Deutschschweiz.', serviceType: 'Schwangerschaftsfotografie' })}
+>
+  <Hero eyebrow="Schwangerschaft" title="Schwangerschaftsfotos voller Vorfreude"
+    lead="Diese besondere Zeit vergeht schnell. Ich halte sie feinfühlig und in Ruhe fest — für Erinnerungen, die bleiben."
+    ctaHref="/kontakt/" ctaLabel="Termin anfragen" />
+  <Capsule question="Wann ist der richtige Zeitpunkt für Schwangerschaftsfotos?"
+    answer="Meist zwischen der 28. und 34. Schwangerschaftswoche — der Bauch ist schön rund, und Sie fühlen sich noch beweglich. Wir planen den Termin entspannt, mit genug Zeit für Pausen. Ob Partner, Geschwister oder allein: Wir gestalten das Shooting so, wie es zu Ihnen passt." />
+  <!-- TODO: Details, Outfits, Ort, Foto+Video-Option -->
+</BaseLayout>

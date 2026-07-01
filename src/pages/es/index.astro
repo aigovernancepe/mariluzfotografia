@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Capsule from '../../components/Capsule.astro';
+import { SITE } from '../../consts';
+import { localBusiness, person } from '../../lib/schema';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/` },
+  { lang: 'es', href: `${SITE.url}/es/` },
+];
+
+const servicios = [
+  { label: 'Quinceañera', href: '/es/fotografo-quinceanera/', desc: 'Tus XV años, como los soñaste.' },
+  { label: 'Bodas', href: '/es/fotografo-bodas/', desc: 'Foto y video de tu gran día.' },
+  { label: 'Bautizo', href: '/es/fotografo-bautizo/', desc: 'El primer gran momento.' },
+  { label: 'Familiar', href: '/es/fotografo-familiar/', desc: 'Recuerdos que quedan.' },
+  { label: 'Sobre mí', href: '/es/sobre-mi/', desc: 'Más de 20 años de experiencia.' },
+  { label: 'Contacto', href: '/es/contacto/', desc: 'Hablemos de tu evento.' },
+];
+---
+
+<BaseLayout
+  lang="es"
+  title="Mariluz Fotografía — Foto y video en Suiza"
+  description="Fotógrafa latina en Suiza para quinceañeras, bodas, bautizos y eventos. Foto y video con más de 20 años de experiencia. En todo el territorio de habla alemana."
+  path="/es/"
+  alternates={alternates}
+  schema={[localBusiness(), person()]}
+>
+  <Hero
+    eyebrow="Foto & Video · Suiza"
+    title="Tus momentos más especiales, para siempre"
+    lead="Fotógrafa y videógrafa con más de 20 años de experiencia. Quinceañeras, bodas, bautizos y eventos — con la calidez latina y la mirada de siempre, ahora en Suiza."
+    ctaHref="/es/contacto/"
+    ctaLabel="Solicitar fecha"
+  />
+
+  <Capsule
+    question="¿Qué ofrece Mariluz Fotografía?"
+    answer="Foto y video para tus celebraciones en toda la Suiza de habla alemana — quinceañeras, bodas, bautizos, familia y eventos. Todo con una sola profesional, con más de 20 años de experiencia. Viajo a tu evento: no necesitas venir a un estudio."
+  >
+    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {servicios.map((s) => (
+        <a href={s.href} class="rounded-xl border border-[var(--color-sand)] bg-white/60 p-5 transition-colors hover:border-[var(--color-clay)]">
+          <p class="font-serif text-lg">{s.label}</p>
+          <p class="mt-1 text-sm text-[var(--color-muted)]">{s.desc}</p>
+        </a>
+      ))}
+    </div>
+  </Capsule>
+
+  <Capsule
+    question="¿Por qué elegir una fotógrafa latina en Suiza?"
+    answer="Porque entiendo tus tradiciones desde dentro. Una quinceañera, un bautizo o una boda latina tienen momentos y símbolos que hay que saber capturar. Con más de 20 años fotografiando estas celebraciones, sé cuándo llega cada instante — y lo guardo para siempre."
+  >
+    <a href="/es/fotografo-quinceanera/" class="text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]">Ver fotografía de quinceañera →</a>
+  </Capsule>
+</BaseLayout>

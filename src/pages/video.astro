@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Capsule from '../components/Capsule.astro';
+import { service } from '../lib/schema';
+---
+<BaseLayout
+  title="Video & Videografie — Hochzeitsvideo & Eventvideo | Mariluz Fotografía"
+  description="Videografie für Hochzeiten und Events in der Deutschschweiz. Foto und Video aus einer Hand — ein Stil, eine Ansprechpartnerin."
+  path="/video/"
+  schema={service({ name: 'Videografie', description: 'Hochzeits- und Eventvideo in der Deutschschweiz.', serviceType: 'Videografie' })}
+>
+  <Hero eyebrow="Video" title="Bewegte Erinnerungen — Foto & Video aus einer Hand"
+    lead="Ein Standbild hält den Blick fest, ein Film das Gefühl. Ich biete beides an — im gleichen Stil, ohne dass Sie zwei Teams koordinieren."
+    ctaHref="/kontakt/" ctaLabel="Video anfragen" />
+  <Capsule question="Warum Foto und Video bei einer Person?"
+    answer="Weil alles zusammenpasst — Bildsprache, Farben, Stimmung. Sie haben eine Ansprechpartnerin statt zweier Dienstleister, die sich am grossen Tag abstimmen müssen. Das Ergebnis: Fotos für die Wand und ein Film zum Wiedererleben, die dieselbe Handschrift tragen." />
+  <!-- TODO: Video-Beispiele/Reel, Pakete -->
+</BaseLayout>

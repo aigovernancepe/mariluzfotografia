@@ -1,0 +1,33 @@
+---
+import { SITE, NAP } from '../consts';
+
+interface Props { lang?: 'de' | 'es'; }
+const { lang = 'de' } = Astro.props;
+
+const t = lang === 'es'
+  ? { area: 'Fotografía y video en toda la Suiza de habla alemana', legal: 'Aviso legal', privacy: 'Privacidad', contact: 'Contacto' }
+  : { area: 'Foto & Video in der ganzen Deutschschweiz', legal: 'Impressum', privacy: 'Datenschutz', contact: 'Kontakt' };
+const year = 2026;
+---
+
+<footer class="mt-24 border-t border-[var(--color-sand)] bg-[var(--color-sand)]/40">
+  <div class="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-3">
+    <div>
+      <p class="font-serif text-lg">Mariluz <span class="text-[var(--color-clay)]">Fotografía</span></p>
+      <p class="mt-2 text-sm text-[var(--color-muted)]">{t.area}</p>
+    </div>
+    <div class="text-sm text-[var(--color-muted)]">
+      <p>{NAP.city}, {NAP.region}</p>
+      <p><a href={`tel:${NAP.phoneE164}`} class="hover:text-[var(--color-ink)]">{NAP.phoneDisplay}</a></p>
+      <p><a href={`mailto:${NAP.email}`} class="hover:text-[var(--color-ink)]">{NAP.email}</a></p>
+    </div>
+    <div class="text-sm text-[var(--color-muted)]">
+      <a href={lang === 'es' ? '/es/contacto/' : '/kontakt/'} class="block hover:text-[var(--color-ink)]">{t.contact}</a>
+      <a href="/impressum/" class="block hover:text-[var(--color-ink)]">{t.legal}</a>
+      <a href="/datenschutz/" class="block hover:text-[var(--color-ink)]">{t.privacy}</a>
+    </div>
+  </div>
+  <div class="border-t border-[var(--color-sand)] px-5 py-4 text-center text-xs text-[var(--color-muted)]">
+    © {year} {SITE.name} · {SITE.domain}
+  </div>
+</footer>

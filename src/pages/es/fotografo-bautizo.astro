@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Capsule from '../../components/Capsule.astro';
+import { service } from '../../lib/schema';
+---
+<BaseLayout lang="es"
+  title="Fotógrafo de bautizo en Suiza — Foto y Video | Mariluz Fotografía"
+  description="Fotografía y video de bautizo en Suiza. Fotógrafa latina con más de 20 años de experiencia en celebraciones familiares."
+  path="/es/fotografo-bautizo/"
+  schema={service({ name: 'Fotografía de bautizo', description: 'Fotografía y video de bautizos en Suiza.', serviceType: 'Fotografía de bautizo', areaServed: 'Suiza' })}
+>
+  <Hero eyebrow="Bautizo" title="Fotógrafo de bautizo en Suiza"
+    lead="El primer gran momento de tu pequeño, guardado para siempre — con foto y video, y el respeto por cada tradición."
+    ctaHref="/es/contacto/" ctaLabel="Solicitar fecha" />
+  <Capsule question="¿Qué capturo en un bautizo?"
+    answer="Desde la ceremonia hasta la celebración en familia: los gestos, las miradas y los detalles que hacen único el día. Me muevo con discreción para no interrumpir el momento, y te entrego imágenes cálidas — y, si lo deseas, también video." />
+  <!-- TODO: detalle, paquetes -->
+</BaseLayout>

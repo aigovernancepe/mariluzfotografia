@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Capsule from '../../components/Capsule.astro';
+import { SITE } from '../../consts';
+import { service } from '../../lib/schema';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/hochzeitsfotograf/` },
+  { lang: 'es', href: `${SITE.url}/es/fotografo-bodas/` },
+];
+---
+<BaseLayout lang="es"
+  title="Fotógrafo de bodas en Suiza — Foto y Video | Mariluz Fotografía"
+  description="Fotografía y video de bodas en Suiza con calidez latina. Más de 20 años de experiencia, en toda la Suiza de habla alemana."
+  path="/es/fotografo-bodas/" alternates={alternates}
+  schema={service({ name: 'Fotografía y video de bodas', description: 'Fotografía y video de bodas en Suiza.', serviceType: 'Fotografía de bodas', areaServed: 'Suiza' })}
+>
+  <Hero eyebrow="Bodas · Foto & Video" title="Fotógrafo de bodas en Suiza"
+    lead="Tu boda merece a alguien que capte cada emoción — con foto y video, de principio a fin, en toda la Suiza de habla alemana."
+    ctaHref="/es/contacto/" ctaLabel="Consultar disponibilidad" />
+  <Capsule question="¿Cómo acompaño una boda?"
+    answer="Estoy presente durante todo el día sin interrumpir — para las miradas silenciosas y los grandes momentos. Foto y video con una sola profesional, para que tu día quede como imagen y como película. Con más de 20 años de experiencia, sé anticipar cada instante." />
+  <!-- TODO: detalle, paquetes, ejemplos -->
+</BaseLayout>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Capsule from '../components/Capsule.astro';
+import { SITE, NAV_DE } from '../consts';
+import { localBusiness, person } from '../lib/schema';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/` },
+  { lang: 'es', href: `${SITE.url}/es/` },
+];
+
+const services = [
+  { label: 'Hochzeit', href: '/hochzeitsfotograf/', desc: 'Foto & Video für Ihren schönsten Tag.' },
+  { label: 'Familie & Kinder', href: '/familienfotografie/', desc: 'Natürliche Bilder, die bleiben.' },
+  { label: 'Schwangerschaft', href: '/schwangerschaftsfotos/', desc: 'Die Vorfreude festgehalten.' },
+  { label: 'Events & Feste', href: '/eventfotografie/', desc: 'Jeder Anlass, echt eingefangen.' },
+  { label: 'Video', href: '/video/', desc: 'Bewegte Erinnerungen — Foto & Video aus einer Hand.' },
+  { label: 'Über mich', href: '/ueber-mich/', desc: 'Über 20 Jahre Erfahrung.' },
+];
+---
+
+<BaseLayout
+  title="Mariluz Fotografía — Foto & Video in der Deutschschweiz"
+  description="Hochzeit, Familie, Schwangerschaft, Events — Foto und Video aus einer Hand. Über 20 Jahre Erfahrung, in der ganzen Deutschschweiz."
+  path="/"
+  alternates={alternates}
+  schema={[localBusiness(), person()]}
+>
+  <Hero
+    eyebrow="Foto & Video · Deutschschweiz"
+    title="Ihre schönsten Momente, für immer festgehalten"
+    lead="Hochzeiten, Familien, Feiern — mit über 20 Jahren Erfahrung fange ich echte Emotionen ein. In Foto und Video, in der ganzen Deutschschweiz."
+    ctaHref="/kontakt/"
+    ctaLabel="Termin anfragen"
+  />
+
+  <Capsule
+    question="Was bietet Mariluz Fotografía?"
+    answer="Foto und Video für private Feiern in der ganzen Deutschschweiz — Hochzeit, Taufe, Familie, Schwangerschaft und Events. Beides aus einer Hand, mit über 20 Jahren Erfahrung. Kein Studio-Zwang: ich komme an Ihren Ort, in Ihre Geschichte."
+  >
+    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {services.map((s) => (
+        <a href={s.href} class="rounded-xl border border-[var(--color-sand)] bg-white/60 p-5 transition-colors hover:border-[var(--color-clay)]">
+          <p class="font-serif text-lg">{s.label}</p>
+          <p class="mt-1 text-sm text-[var(--color-muted)]">{s.desc}</p>
+        </a>
+      ))}
+    </div>
+  </Capsule>
+
+  <Capsule
+    question="Warum eine Fotografin mit 20 Jahren Erfahrung?"
+    answer="Erfahrung heisst Ruhe. Ich kenne den Ablauf einer Feier, sehe den richtigen Moment kommen und halte ihn fest, ohne zu stören. Zwei Jahrzehnte hinter der Kamera — von Lima bis in die Deutschschweiz — bedeuten Bilder, auf die Sie sich verlassen können."
+  >
+    <a href="/ueber-mich/" class="text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]">Mehr über mich →</a>
+  </Capsule>
+</BaseLayout>

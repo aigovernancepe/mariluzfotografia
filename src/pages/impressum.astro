@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Capsule from '../components/Capsule.astro';
+import { SITE, NAP } from '../consts';
+---
+
+<BaseLayout
+  title="Impressum — Mariluz Fotografía"
+  description="Impressum von Mariluz Fotografía, mariluzfotografia.ch."
+  path="/impressum/"
+>
+  <div class="mx-auto max-w-3xl px-5 pt-16">
+    <h1 class="text-4xl">Impressum</h1>
+  </div>
+  <Capsule
+    question="Angaben gemäss UWG"
+    answer="Verantwortlich für den Inhalt dieser Website ist Mariluz Fotografía. Die vollständigen rechtlichen Angaben werden nach Festlegung der Rechtsform ergänzt."
+  >
+    <div class="mt-4 space-y-1 text-[var(--color-ink)]">
+      <p>{NAP.legalName}</p>
+      <p>{NAP.street}, {NAP.postalCode} {NAP.city}</p>
+      <p>{NAP.phoneDisplay} · {NAP.email}</p>
+      <!-- TODO: Rechtsform / UID / MWST nach Gründungsentscheid ergänzen -->
+    </div>
+  </Capsule>
+</BaseLayout>

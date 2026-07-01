@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Capsule from '../components/Capsule.astro';
+import { service } from '../lib/schema';
+---
+<BaseLayout
+  title="Eventfotograf — Feste & Anlässe | Mariluz Fotografía"
+  description="Eventfotografie für Feste, Feiern und Anlässe in der Deutschschweiz. Foto und Video, die die Stimmung Ihres Events einfangen."
+  path="/eventfotografie/"
+  schema={service({ name: 'Eventfotografie', description: 'Foto und Video für Feste und Anlässe in der Deutschschweiz.', serviceType: 'Eventfotografie' })}
+>
+  <Hero eyebrow="Events & Feste" title="Eventfotografie mit Gespür für den Moment"
+    lead="Ob Geburtstag, Jubiläum oder Familienfest — ich halte die Stimmung Ihres Anlasses fest, in Foto und Video."
+    ctaHref="/kontakt/" ctaLabel="Event anfragen" />
+  <Capsule question="Welche Events begleite ich?"
+    answer="Private Feiern jeder Art — Geburtstage, Jubiläen, Taufen, Familienfeste und kulturelle Anlässe. Ich bewege mich unauffällig durch den Abend und fange echte Reaktionen ein statt gestellter Gruppenbilder. Auf Wunsch Foto und Video aus einer Hand." />
+  <!-- TODO: Anlass-Typen, Firmenevents (sekundär) verlinken sobald gebaut -->
+</BaseLayout>

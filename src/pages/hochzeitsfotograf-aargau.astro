@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Capsule from '../components/Capsule.astro';
+import { SITE } from '../consts';
+import { localBusiness, service } from '../lib/schema';
+---
+
+<BaseLayout
+  title="Hochzeitsfotograf Aargau — Foto & Video | Mariluz Fotografía"
+  description="Hochzeitsfotografin im Aargau, zuhause in Menziken. Emotionale Foto- und Videobegleitung für Ihre Hochzeit — kurze Wege, persönliche Betreuung."
+  path="/hochzeitsfotograf-aargau/"
+  schema={[
+    localBusiness('Aargau'),
+    service({
+      name: 'Hochzeitsfotografie Aargau',
+      description: 'Foto- und Videobegleitung für Hochzeiten im Kanton Aargau.',
+      serviceType: 'Hochzeitsfotografie',
+      areaServed: 'Aargau',
+    }),
+  ]}
+>
+  <Hero
+    eyebrow="Aargau · Hochzeit"
+    title="Hochzeitsfotografin im Aargau"
+    lead="Der Aargau ist meine Heimat — mein Atelier steht in Menziken. Kurze Wege, ein persönliches Vorgespräch und Bilder, die Ihre Feier so zeigen, wie sie war."
+    ctaHref="/kontakt/"
+    ctaLabel="Verfügbarkeit im Aargau anfragen"
+  />
+
+  <Capsule
+    question="Was bedeutet es, dass ich im Aargau zuhause bin?"
+    answer="Als Fotografin aus Menziken bin ich im Aargau schnell vor Ort — für das Kennenlernen ebenso wie am Hochzeitstag. Sie bekommen eine feste Ansprechpartnerin aus der Region, keine anonyme Agentur, und die Ruhe zu wissen, dass jemand aus der Nähe Ihren Tag begleitet."
+  >
+    <!-- TODO: Aargauer Locations/Regionen aus echten Shoots nennen (E-E-A-T) -->
+  </Capsule>
+
+  <Capsule
+    question="Foto und Video für Ihre Hochzeit im Aargau?"
+    answer="Beides aus einer Hand. Ich halte Ihre Feier im Aargau als Foto und als Video fest — abgestimmt im Stil, ohne dass Sie zwei Dienstleister koordinieren müssen. So bleibt Ihr Tag als Bild für die Wand und als Film zum Wiedererleben erhalten."
+  >
+    <a href="/video/" class="text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]">Mehr zu Video →</a>
+  </Capsule>
+
+  <Capsule
+    question="Wie läuft die Anfrage im Aargau ab?"
+    answer="Melden Sie sich mit Datum und Ort Ihrer Hochzeit. Da ich in Menziken zuhause bin, lässt sich ein persönliches Vorgespräch im Aargau meist unkompliziert einrichten. Danach erhalten Sie ein individuelles Angebot für Foto, Video oder beides."
+  >
+    <a href="/kontakt/" class="inline-block rounded-full bg-[var(--color-clay)] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--color-clay-dark)]">Anfrage senden</a>
+  </Capsule>
+</BaseLayout>

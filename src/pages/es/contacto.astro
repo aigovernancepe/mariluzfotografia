@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Capsule from '../../components/Capsule.astro';
+import { SITE, NAP } from '../../consts';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/kontakt/` },
+  { lang: 'es', href: `${SITE.url}/es/contacto/` },
+];
+---
+<BaseLayout lang="es"
+  title="Contacto — Mariluz Fotografía"
+  description="Solicita tu fecha para foto y video. Mariluz Fotografía — en toda la Suiza de habla alemana, con base en Menziken (Argovia)."
+  path="/es/contacto/" alternates={alternates}
+>
+  <Hero eyebrow="Contacto" title="Hablemos de tu evento"
+    lead="Cuéntame la fecha, el lugar y si quieres foto, video o ambos. Te respondo pronto con una propuesta a tu medida."
+    ctaHref={`mailto:${NAP.email}`} ctaLabel="Escribir un correo" />
+  <Capsule question="¿Cómo contactarme?"
+    answer="Lo más rápido es por correo o teléfono. Indícame la fecha y el lugar de tu celebración y el servicio que deseas, y recibirás una respuesta ágil. Las fechas más solicitadas se reservan pronto, así que escríbeme con tiempo." >
+    <div class="mt-4 space-y-1 text-[var(--color-ink)]">
+      <p><strong>Teléfono:</strong> <a href={`tel:${NAP.phoneE164}`} class="text-[var(--color-clay)]">{NAP.phoneDisplay}</a></p>
+      <p><strong>Correo:</strong> <a href={`mailto:${NAP.email}`} class="text-[var(--color-clay)]">{NAP.email}</a></p>
+      <p><strong>Región:</strong> {NAP.city} ({NAP.region}) — cobertura en toda la Suiza de habla alemana</p>
+    </div>
+    <!-- TODO: formulario real -->
+  </Capsule>
+</BaseLayout>

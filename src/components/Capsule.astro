@@ -1,0 +1,18 @@
+---
+// Capsule-Block (§5.2): H2 als Frage → 40-60-Wort-Antwortblock → Detail-Slot.
+// Pflicht-Struktur für alle Service-Seiten.
+interface Props {
+  /** Die Frage (wird als H2 gerendert). */
+  question: string;
+  /** Direkte Antwort, 40-60 Wörter. */
+  answer: string;
+}
+const { question, answer } = Astro.props;
+---
+<section class="mx-auto max-w-3xl px-5 py-8">
+  <h2 class="text-2xl sm:text-3xl">{question}</h2>
+  <p class="prose-lead mt-4">{answer}</p>
+  <div class="mt-4 text-[var(--color-ink)]/90">
+    <slot />
+  </div>
+</section>

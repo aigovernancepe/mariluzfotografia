@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Capsule from '../../components/Capsule.astro';
+import { SITE } from '../../consts';
+import { service } from '../../lib/schema';
+
+// USP-Hero: Quinceañera ist ES-only (kein DE-Pendant) → self-referencing hreflang.
+---
+
+<BaseLayout
+  lang="es"
+  title="Fotógrafo de Quinceañera en Suiza — Foto y Video | Mariluz Fotografía"
+  description="Fotografía y video de quinceañera (XV años) en Suiza. Fotógrafa latina con más de 20 años de experiencia en celebraciones de XV años. Solicita tu fecha."
+  path="/es/fotografo-quinceanera/"
+  schema={service({
+    name: 'Fotografía y video de quinceañera',
+    description: 'Fotografía y video para fiestas de XV años en Suiza.',
+    serviceType: 'Fotografía de quinceañera',
+    areaServed: 'Suiza',
+  })}
+>
+  <Hero
+    eyebrow="Quinceañera · XV Años"
+    title="Fotógrafo de quinceañera en Suiza"
+    lead="Tus XV años son únicos — y merecen a alguien que entienda cada tradición. Foto y video de tu quinceañera, con más de 20 años de experiencia y calidez latina, en toda la Suiza de habla alemana."
+    ctaHref="/es/contacto/"
+    ctaLabel="Solicitar fecha para XV años"
+  />
+
+  <Capsule
+    question="¿Por qué una fotógrafa especializada en quinceañeras?"
+    answer="Una quinceañera no es una sesión cualquiera: el vals, el cambio de zapatilla, la entrada, la emoción de la familia. Hay que conocer estos momentos para no perderlos. Con dos décadas fotografiando XV años, sé anticiparlos y capturarlos — en foto y en video."
+  />
+
+  <Capsule
+    question="¿Qué incluye la foto y video de XV años?"
+    answer="Puedes elegir solo fotos, solo video, o ambos con una sola profesional. Cubro la sesión y la fiesta según lo que necesites, con un estilo coherente entre imagen y video. Así te queda el recuerdo para enmarcar y el film para revivir tu noche."
+  >
+    <a href="/es/contacto/" class="text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]">Hablemos de tu quinceañera →</a>
+  </Capsule>
+
+  <Capsule
+    question="¿Cuánto cuesta un fotógrafo de quinceañera en Suiza?"
+    answer="Depende de si eliges foto, video o ambos, y de la duración de la cobertura. Por eso preparo un presupuesto personalizado en lugar de un precio fijo. Cuéntame la fecha y los detalles de tu fiesta, y te envío una propuesta a tu medida sin compromiso."
+  >
+    <!-- TODO: paquetes/precios concretos tras research de precios + input de Mariluz -->
+    <a href="/es/contacto/" class="inline-block rounded-full bg-[var(--color-clay)] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--color-clay-dark)]">Solicitar presupuesto</a>
+  </Capsule>
+</BaseLayout>

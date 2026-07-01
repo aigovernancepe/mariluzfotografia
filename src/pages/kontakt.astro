@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Capsule from '../components/Capsule.astro';
+import { SITE, NAP } from '../consts';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/kontakt/` },
+  { lang: 'es', href: `${SITE.url}/es/contacto/` },
+];
+---
+
+<BaseLayout
+  title="Kontakt — Mariluz Fotografía"
+  description="Fragen Sie Ihren Termin für Foto und Video an. Mariluz Fotografía — in der ganzen Deutschschweiz, zuhause in Menziken (Aargau)."
+  path="/kontakt/"
+  alternates={alternates}
+>
+  <Hero
+    eyebrow="Kontakt"
+    title="Sprechen wir über Ihren Anlass"
+    lead="Erzählen Sie mir von Ihrer Feier — Datum, Ort und ob Sie Foto, Video oder beides möchten. Ich melde mich zeitnah mit einem individuellen Angebot."
+    ctaHref={`mailto:${NAP.email}`}
+    ctaLabel="E-Mail schreiben"
+  />
+
+  <Capsule
+    question="So erreichen Sie mich"
+    answer="Am schnellsten per E-Mail oder Telefon. Nennen Sie mir Datum und Ort Ihrer Feier sowie die gewünschte Leistung — dann bekommen Sie rasch eine Rückmeldung. Beliebte Hochzeits- und Feiertermine sind früh vergeben, fragen Sie also rechtzeitig an."
+  >
+    <div class="mt-4 space-y-1 text-[var(--color-ink)]">
+      <p><strong>Telefon:</strong> <a href={`tel:${NAP.phoneE164}`} class="text-[var(--color-clay)]">{NAP.phoneDisplay}</a></p>
+      <p><strong>E-Mail:</strong> <a href={`mailto:${NAP.email}`} class="text-[var(--color-clay)]">{NAP.email}</a></p>
+      <p><strong>Region:</strong> {NAP.city} ({NAP.region}) — Anfahrt in die ganze Deutschschweiz</p>
+    </div>
+    <!-- TODO: echtes Anfrageformular (Cloudflare Pages Forms / Formspree) + kontakt@mariluzfotografia.ch -->
+  </Capsule>
+</BaseLayout>

@@ -1,0 +1,21 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead: string;
+  ctaHref: string;
+  ctaLabel: string;
+}
+const { eyebrow, title, lead, ctaHref, ctaLabel } = Astro.props;
+---
+<section class="mx-auto max-w-4xl px-5 pt-16 pb-10 text-center sm:pt-24">
+  {eyebrow && (
+    <p class="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-clay)]">{eyebrow}</p>
+  )}
+  <h1 class="text-4xl sm:text-5xl md:text-6xl">{title}</h1>
+  <p class="prose-lead mx-auto mt-6 max-w-2xl">{lead}</p>
+  <a
+    href={ctaHref}
+    class="mt-8 inline-block rounded-full bg-[var(--color-clay)] px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--color-clay-dark)]"
+  >{ctaLabel}</a>
+</section>

@@ -1,0 +1,25 @@
+{
+  "name": "mariluzfotografia",
+  "version": "1.0.0",
+  "description": "Website für Mariluz Fotografía — mariluzfotografia.ch (Foto & Video, CH-DE + ES)",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aigovernancepe/mariluzfotografia.git"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@astrojs/sitemap": "3.7.1",
+    "@tailwindcss/vite": "4.2.2",
+    "astro": "6.0.8",
+    "sharp": "0.34.1",
+    "tailwindcss": "4.2.2"
+  }
+}

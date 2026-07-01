@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Capsule from '../components/Capsule.astro';
+import { SITE } from '../consts';
+import { person } from '../lib/schema';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/ueber-mich/` },
+  { lang: 'es', href: `${SITE.url}/es/sobre-mi/` },
+];
+---
+
+<BaseLayout
+  title="Über mich — Mariluz | Mariluz Fotografía"
+  description="Mariluz — Fotografin und Videografin mit über 20 Jahren Erfahrung, von Lima in die Deutschschweiz. Foto und Video für Ihre schönsten Momente."
+  path="/ueber-mich/"
+  alternates={alternates}
+  schema={person()}
+>
+  <Hero
+    eyebrow="Über mich"
+    title="Über 20 Jahre hinter der Kamera"
+    lead="Ich bin Mariluz — Fotografin und Videografin. Was in Lima begann, führe ich heute in der Deutschschweiz weiter: echte Momente, ehrlich festgehalten."
+    ctaHref="/kontakt/"
+    ctaLabel="Kennenlernen"
+  />
+
+  <Capsule
+    question="Wer bin ich?"
+    answer="Ich fotografiere und filme seit über 20 Jahren Feiern und Familien. Ursprünglich in Lima als Mariluz Producciones bekannt, lebe und arbeite ich heute in Menziken im Aargau. Diese zwei Welten — die lateinamerikanische Herzlichkeit und das Schweizer Zuhause — prägen meinen Blick."
+  >
+    <!-- TODO: persönliche Geschichte + echtes Portrait; Foto-Release-Workflow (revDSG) klären -->
+  </Capsule>
+
+  <Capsule
+    question="Was dürfen Sie von mir erwarten?"
+    answer="Ruhe am grossen Tag, ein Auge für den echten Moment und Bilder, die sich wie Ihre Feier anfühlen. Foto und Video aus einer Hand, ohne Studio-Zwang. Ich begleite Sie unaufdringlich — damit Sie feiern und ich festhalte."
+  />
+</BaseLayout>

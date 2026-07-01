@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Capsule from '../components/Capsule.astro';
+import { SITE } from '../consts';
+import { localBusiness, service } from '../lib/schema';
+---
+
+<BaseLayout
+  title="Hochzeitsfotograf Basel — Foto & Video | Mariluz Fotografía"
+  description="Hochzeitsfotografin in Basel für emotionale Foto- und Videoreportagen. Erfahrung aus vielen Feiern in der Region Basel — jetzt Verfügbarkeit anfragen."
+  path="/hochzeitsfotograf-basel/"
+  schema={[
+    localBusiness('Basel'),
+    service({
+      name: 'Hochzeitsfotografie Basel',
+      description: 'Foto- und Videobegleitung für Hochzeiten in Basel und Umgebung.',
+      serviceType: 'Hochzeitsfotografie',
+      areaServed: 'Basel',
+    }),
+  ]}
+>
+  <Hero
+    eyebrow="Basel · Hochzeit"
+    title="Hochzeitsfotografin in Basel"
+    lead="Einen grossen Teil meiner Feiern begleite ich in und um Basel. Ich kenne die Region, ihre Orte und ihre Menschen — und halte Ihren Tag in Foto und Video authentisch fest."
+    ctaHref="/kontakt/"
+    ctaLabel="Verfügbarkeit in Basel anfragen"
+  />
+
+  <Capsule
+    question="Warum eine Hochzeitsfotografin, die Basel kennt?"
+    answer="Wer die Region kennt, muss am Hochzeitstag nicht suchen. Ich weiss, wo in Basel das Licht am schönsten fällt und wie eine Feier hier abläuft. Diese Vertrautheit gibt Ruhe — für Sie und für Bilder, die den Charakter Ihres Tages tragen."
+  >
+    <!-- TODO: konkrete Basler Locations/Venues aus echten Shoots nennen (E-E-A-T) -->
+  </Capsule>
+
+  <Capsule
+    question="Foto und Video in Basel — beides aus einer Hand?"
+    answer="Ja. Sie brauchen kein zweites Team zu koordinieren: Ich halte Ihre Hochzeit in Basel als Foto und als Video fest. Ein Ansprechpartner, ein Stil, ein stimmiges Ergebnis — die Standbilder für die Wand, der Film für das Wiedererleben."
+  >
+    <a href="/video/" class="text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]">Mehr zu Video →</a>
+  </Capsule>
+
+  <Capsule
+    question="Wie fragen Sie einen Termin in Basel an?"
+    answer="Schreiben oder rufen Sie mir mit Datum und Ort Ihrer Feier. Ich melde mich zeitnah, wir klären Umfang und ob Foto, Video oder beides gewünscht ist, und Sie erhalten ein individuelles Angebot. Beliebte Hochzeitsdaten sind früh vergeben — fragen Sie rechtzeitig an."
+  >
+    <a href="/kontakt/" class="inline-block rounded-full bg-[var(--color-clay)] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--color-clay-dark)]">Anfrage senden</a>
+  </Capsule>
+</BaseLayout>

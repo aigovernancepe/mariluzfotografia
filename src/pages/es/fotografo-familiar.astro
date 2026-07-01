@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Capsule from '../../components/Capsule.astro';
+import { SITE } from '../../consts';
+import { service } from '../../lib/schema';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/familienfotografie/` },
+  { lang: 'es', href: `${SITE.url}/es/fotografo-familiar/` },
+];
+---
+<BaseLayout lang="es"
+  title="Fotógrafo familiar en Suiza — Foto y Video | Mariluz Fotografía"
+  description="Fotografía familiar en Suiza — sesiones naturales y cálidas para toda la familia. Foto y video con más de 20 años de experiencia."
+  path="/es/fotografo-familiar/" alternates={alternates}
+  schema={service({ name: 'Fotografía familiar', description: 'Sesiones de fotografía familiar en Suiza.', serviceType: 'Fotografía familiar', areaServed: 'Suiza' })}
+>
+  <Hero eyebrow="Familiar" title="Fotógrafo familiar en Suiza"
+    lead="Recuerdos que quedan — sesiones naturales para toda la familia, sin poses rígidas, en el lugar donde os sintáis a gusto."
+    ctaHref="/es/contacto/" ctaLabel="Reservar sesión" />
+  <Capsule question="¿Cómo es una sesión familiar?"
+    answer="Nos encontramos donde tu familia se sienta cómoda — en casa, en la naturaleza o en vuestro lugar favorito. Dejo espacio para momentos reales en vez de poses, sobre todo con los niños. Así quedan imágenes que dentro de unos años seguirán pareciéndose a vosotros." />
+  <!-- TODO: detalle, ejemplos -->
+</BaseLayout>

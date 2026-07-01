@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Capsule from '../components/Capsule.astro';
+---
+<BaseLayout
+  title="Portfolio — Foto & Video | Mariluz Fotografía"
+  description="Eine Auswahl aus Hochzeiten, Quinceañeras, Familien- und Eventaufnahmen von Mariluz Fotografía in der Deutschschweiz."
+  path="/portfolio/"
+>
+  <Hero eyebrow="Portfolio" title="Eine Auswahl meiner Arbeiten"
+    lead="Bilder sagen mehr als Worte. Hier eine Auswahl aus echten Feiern — bald mit mehr Aufnahmen aus der Deutschschweiz."
+    ctaHref="/kontakt/" ctaLabel="Termin anfragen" />
+  <Capsule question="Was zeigt dieses Portfolio?"
+    answer="Eine kuratierte Auswahl aus Hochzeiten, Quinceañeras, Familien- und Eventaufnahmen. Die Galerie wächst mit jeder Feier — Bilder werden nur nach Einwilligung der Abgebildeten veröffentlicht." >
+    <!-- TODO: Galerie-Grid mit optimierten Bildern (Astro <Image>), gefiltert nach Anlass; Foto-Release beachten -->
+  </Capsule>
+</BaseLayout>

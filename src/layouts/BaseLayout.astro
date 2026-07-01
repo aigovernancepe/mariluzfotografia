@@ -1,0 +1,87 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../consts';
+
+interface Alternate { lang: string; href: string; }
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: 'de' | 'es';
+  /** Kanonischer Pfad dieser Seite, z. B. "/hochzeitsfotograf-basel/" */
+  path: string;
+  /** hreflang-Geschwister. Wenn leer → self-referencing. */
+  alternates?: Alternate[];
+  /** JSON-LD Objekt oder Array. */
+  schema?: object | object[];
+  /** OG-Bildpfad (absolut ab Root), optional. */
+  image?: string;
+}
+
+const {
+  title,
+  description,
+  lang = 'de',
+  path,
+  alternates = [],
+  schema,
+  image = '/og-default.jpg',
+} = Astro.props;
+
+const htmlLang = lang === 'es' ? 'es' : 'de-CH';
+const canonical = new URL(path, SITE.url).href;
+const ogImage = new URL(image, SITE.url).href;
+
+// hreflang: übergebene Alternates + immer x-default auf die DE-Variante (oder self).
+const xDefault = alternates.find((a) => a.lang === 'de-CH')?.href ?? canonical;
+
+const schemaArray = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    {alternates.map((a) => (
+      <link rel="alternate" hreflang={a.lang} href={a.href} />
+    ))}
+    {alternates.length > 0 && (
+      <link rel="alternate" hreflang="x-default" href={xDefault} />
+    )}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'de_CH'} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+    />
+
+    {schemaArray.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+  </head>
+  <body>
+    <Header lang={lang} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

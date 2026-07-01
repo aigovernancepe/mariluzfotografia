@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Capsule from '../../components/Capsule.astro';
+import { SITE } from '../../consts';
+import { person } from '../../lib/schema';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/ueber-mich/` },
+  { lang: 'es', href: `${SITE.url}/es/sobre-mi/` },
+];
+---
+<BaseLayout lang="es"
+  title="Sobre mí — Mariluz | Mariluz Fotografía"
+  description="Mariluz — fotógrafa y videógrafa con más de 20 años de experiencia, de Lima a Suiza. Foto y video para tus momentos más especiales."
+  path="/es/sobre-mi/" alternates={alternates}
+  schema={person()}
+>
+  <Hero eyebrow="Sobre mí" title="Más de 20 años detrás de la cámara"
+    lead="Soy Mariluz — fotógrafa y videógrafa. Lo que empezó en Lima, hoy lo continúo en Suiza: momentos reales, guardados con cariño."
+    ctaHref="/es/contacto/" ctaLabel="Conóceme" />
+  <Capsule question="¿Quién soy?"
+    answer="Fotografío y filmo celebraciones y familias desde hace más de 20 años. En Lima era conocida como «Mariluz Producciones»; hoy vivo y trabajo en Menziken, en el cantón de Argovia. Esas dos raíces — la calidez latina y mi hogar suizo — marcan mi mirada." >
+    <!-- TODO: historia personal + retrato real -->
+  </Capsule>
+</BaseLayout>
