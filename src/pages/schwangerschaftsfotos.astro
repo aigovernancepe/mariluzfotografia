@@ -2,12 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Capsule from '../components/Capsule.astro';
+import { SITE } from '../consts';
 import { service } from '../lib/schema';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/schwangerschaftsfotos/` },
+  { lang: 'es', href: `${SITE.url}/es/fotografo-embarazo/` },
+];
 ---
 <BaseLayout
   title="Schwangerschaftsfotos — Babybauch-Shooting | Mariluz Fotografía"
   description="Schwangerschaftsfotos in der Deutschschweiz. Feinfühlige Babybauch-Shootings, die die Vorfreude festhalten — Foto und Video."
   path="/schwangerschaftsfotos/"
+  alternates={alternates}
   schema={service({ name: 'Schwangerschaftsfotografie', description: 'Babybauch- und Schwangerschaftsfotos in der Deutschschweiz.', serviceType: 'Schwangerschaftsfotografie' })}
 >
   <Hero eyebrow="Schwangerschaft" title="Schwangerschaftsfotos voller Vorfreude"

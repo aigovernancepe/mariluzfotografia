@@ -2,12 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Capsule from '../components/Capsule.astro';
+import { SITE } from '../consts';
 import { service } from '../lib/schema';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/video/` },
+  { lang: 'es', href: `${SITE.url}/es/video/` },
+];
 ---
 <BaseLayout
   title="Video & Videografie — Hochzeitsvideo & Eventvideo | Mariluz Fotografía"
   description="Videografie für Hochzeiten und Events in der Deutschschweiz. Foto und Video aus einer Hand — ein Stil, eine Ansprechpartnerin."
   path="/video/"
+  alternates={alternates}
   schema={service({ name: 'Videografie', description: 'Hochzeits- und Eventvideo in der Deutschschweiz.', serviceType: 'Videografie' })}
 >
   <Hero eyebrow="Video" title="Bewegte Erinnerungen — Foto & Video aus einer Hand"

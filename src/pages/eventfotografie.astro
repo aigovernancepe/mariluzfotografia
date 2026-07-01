@@ -2,12 +2,19 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Capsule from '../components/Capsule.astro';
+import { SITE } from '../consts';
 import { service } from '../lib/schema';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/eventfotografie/` },
+  { lang: 'es', href: `${SITE.url}/es/fotografo-eventos/` },
+];
 ---
 <BaseLayout
   title="Eventfotograf — Feste & Anlässe | Mariluz Fotografía"
   description="Eventfotografie für Feste, Feiern und Anlässe in der Deutschschweiz. Foto und Video, die die Stimmung Ihres Events einfangen."
   path="/eventfotografie/"
+  alternates={alternates}
   schema={service({ name: 'Eventfotografie', description: 'Foto und Video für Feste und Anlässe in der Deutschschweiz.', serviceType: 'Eventfotografie' })}
 >
   <Hero eyebrow="Events & Feste" title="Eventfotografie mit Gespür für den Moment"

@@ -45,6 +45,9 @@ export const NAV_ES = [
   { label: 'Bodas', href: '/es/fotografo-bodas/' },
   { label: 'Bautizo', href: '/es/fotografo-bautizo/' },
   { label: 'Familiar', href: '/es/fotografo-familiar/' },
+  { label: 'Embarazo', href: '/es/fotografo-embarazo/' },
+  { label: 'Eventos', href: '/es/fotografo-eventos/' },
+  { label: 'Video', href: '/es/video/' },
   { label: 'Sobre mí', href: '/es/sobre-mi/' },
   { label: 'Contacto', href: '/es/contacto/' },
 ] as const;

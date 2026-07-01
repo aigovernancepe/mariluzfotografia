@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Capsule from '../../components/Capsule.astro';
+import { SITE } from '../../consts';
+import { service } from '../../lib/schema';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/eventfotografie/` },
+  { lang: 'es', href: `${SITE.url}/es/fotografo-eventos/` },
+];
+---
+<BaseLayout lang="es"
+  title="Fotógrafo de eventos en Suiza — Foto y Video | Mariluz Fotografía"
+  description="Fotografía y video de eventos en Suiza — fiestas, aniversarios y celebraciones familiares. Con calidez latina y más de 20 años de experiencia."
+  path="/es/fotografo-eventos/" alternates={alternates}
+  schema={service({ name: 'Fotografía de eventos', description: 'Foto y video de eventos y fiestas en Suiza.', serviceType: 'Fotografía de eventos', areaServed: 'Suiza' })}
+>
+  <Hero eyebrow="Eventos" title="Fotógrafo de eventos en Suiza"
+    lead="Cumpleaños, aniversarios, fiestas familiares — capturo el ambiente de tu celebración, en foto y video."
+    ctaHref="/es/contacto/" ctaLabel="Consultar tu evento" />
+  <Capsule question="¿Qué tipo de eventos cubro?"
+    answer="Celebraciones familiares de todo tipo — cumpleaños, aniversarios, bautizos, fiestas y eventos culturales de la comunidad. Me muevo con discreción durante la fiesta y capturo reacciones reales en vez de posados. Si lo deseas, foto y video con una sola profesional." />
+  <!-- TODO: tipos de evento, ejemplos -->
+</BaseLayout>

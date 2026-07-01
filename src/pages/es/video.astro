@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Capsule from '../../components/Capsule.astro';
+import { SITE } from '../../consts';
+import { service } from '../../lib/schema';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/video/` },
+  { lang: 'es', href: `${SITE.url}/es/video/` },
+];
+---
+<BaseLayout lang="es"
+  title="Video en Suiza — Bodas, Quinceañeras y Eventos | Mariluz Fotografía"
+  description="Video de bodas, quinceañeras y eventos en Suiza. Foto y video con una sola profesional — un mismo estilo, un solo contacto."
+  path="/es/video/" alternates={alternates}
+  schema={service({ name: 'Videografía', description: 'Video de bodas, quinceañeras y eventos en Suiza.', serviceType: 'Videografía', areaServed: 'Suiza' })}
+>
+  <Hero eyebrow="Video" title="Recuerdos en movimiento — foto y video juntos"
+    lead="Una foto guarda la mirada; un video, la emoción. Ofrezco ambos — con el mismo estilo y sin que tengas que coordinar dos equipos."
+    ctaHref="/es/contacto/" ctaLabel="Consultar video" />
+  <Capsule question="¿Por qué foto y video con una sola persona?"
+    answer="Porque todo combina — la estética, los colores, el ambiente. Tienes una sola profesional en lugar de dos que deben coordinarse el gran día. El resultado: fotos para enmarcar y un film para revivir, con la misma mirada y sensibilidad." />
+  <!-- TODO: ejemplos/reel, paquetes -->
+</BaseLayout>
