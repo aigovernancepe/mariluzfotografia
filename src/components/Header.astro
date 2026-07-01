@@ -6,32 +6,54 @@ const { lang = 'de' } = Astro.props;
 
 const nav = lang === 'es' ? NAV_ES : NAV_DE;
 const home = lang === 'es' ? '/es/' : '/';
-const switchLang = lang === 'es' ? { href: '/', label: 'DE' } : { href: '/es/', label: 'ES' };
+// Sprachwechsel führt auf die Startseite der anderen Sprache.
+const switchLang = lang === 'es'
+  ? { href: '/', short: 'DE', full: 'Deutsch' }
+  : { href: '/es/', short: 'ES', full: 'Español' };
 ---
 
-<header class="border-b border-[var(--color-sand)] bg-[var(--color-ivory)]/95 sticky top-0 z-50 backdrop-blur">
+<header class="sticky top-0 z-50 border-b border-[var(--color-sand)] bg-[var(--color-ivory)]/95 backdrop-blur">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
     <a href={home} class="font-serif text-xl tracking-tight text-[var(--color-ink)]">
       Mariluz <span class="text-[var(--color-clay)]">Fotografía</span>
     </a>
 
+    <!-- Desktop-Navigation -->
     <nav class="hidden items-center gap-6 md:flex">
       {nav.map((item) => (
-        <a
-          href={item.href}
-          class="text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)]"
-        >{item.label}</a>
+        <a href={item.href} class="text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)]">{item.label}</a>
       ))}
       <a
         href={switchLang.href}
+        aria-label={`Sprache wechseln zu ${switchLang.full}`}
         class="rounded-full border border-[var(--color-sand)] px-3 py-1 text-xs font-medium text-[var(--color-muted)] transition-colors hover:border-[var(--color-clay)] hover:text-[var(--color-clay)]"
-      >{switchLang.label}</a>
+      >{switchLang.short}</a>
     </nav>
 
-    <a
-      href={lang === 'es' ? '/es/contacto/' : '/kontakt/'}
-      class="md:hidden rounded-full bg-[var(--color-clay)] px-4 py-2 text-xs font-medium text-white"
-    >{lang === 'es' ? 'Contacto' : 'Kontakt'}</a>
+    <!-- Mobile-Menü (CSS-only via <details>) -->
+    <details class="menu group relative md:hidden">
+      <summary
+        class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-md border border-[var(--color-sand)] [&::-webkit-details-marker]:hidden"
+        aria-label="Menü öffnen"
+      >
+        <svg class="block group-open:hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg class="hidden group-open:block" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+      </summary>
+
+      <nav class="absolute right-0 top-12 w-60 rounded-xl border border-[var(--color-sand)] bg-[var(--color-ivory)] p-2 shadow-lg">
+        {nav.map((item) => (
+          <a href={item.href} class="block rounded-lg px-4 py-2.5 text-sm text-[var(--color-ink)] transition-colors hover:bg-[var(--color-sand)]/60">{item.label}</a>
+        ))}
+        <div class="my-2 border-t border-[var(--color-sand)]"></div>
+        <a
+          href={switchLang.href}
+          class="flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-[var(--color-clay)] transition-colors hover:bg-[var(--color-sand)]/60"
+        >
+          <span>{switchLang.full}</span>
+          <span class="rounded-full border border-[var(--color-clay)]/40 px-2 py-0.5 text-xs">{switchLang.short}</span>
+        </a>
+      </nav>
+    </details>
   </div>
 </header>
 <span class="sr-only">{SITE.name}</span>
