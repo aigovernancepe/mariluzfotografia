@@ -14,6 +14,9 @@ const regions = [
   { label: 'Basel', href: '/hochzeitsfotograf-basel/' },
   { label: 'Aargau', href: '/hochzeitsfotograf-aargau/' },
 ];
+
+const linkClass = 'text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]';
+const h3Class = 'mt-6 text-xl';
 ---
 
 <BaseLayout
@@ -29,34 +32,44 @@ const regions = [
 >
   <Hero
     eyebrow="Hochzeit · Foto & Video"
-    title="Ihre Hochzeitsfotografin für den schönsten Tag"
-    lead="Von den ersten Vorbereitungen bis zum letzten Tanz begleite ich Ihre Hochzeit mit Foto und Video — unaufdringlich, mit dem Blick für echte Momente und über 20 Jahren Erfahrung. In der ganzen Deutschschweiz."
+    title="Hochzeitsfotograf für Ihren schönsten Tag — Foto & Video"
+    lead="Als Hochzeitsfotografin begleite ich Ihre Hochzeit von den ersten Vorbereitungen bis zum letzten Tanz — mit Foto und Video, unaufdringlich und mit über 20 Jahren Erfahrung. In der ganzen Deutschschweiz."
     ctaHref="/kontakt/"
     ctaLabel="Verfügbarkeit anfragen"
   />
 
   <Capsule
     question="Wie begleite ich Ihre Hochzeit?"
-    answer="Ich bin den ganzen Tag dabei, ohne im Weg zu stehen — für die stillen Blicke ebenso wie für die grossen Momente. So entstehen ehrliche, ungestellte Hochzeitsbilder statt steifer Posen. Foto und Video aus einer Hand; nach über 20 Jahren spüre ich, wann der richtige Augenblick kommt."
-  />
+    answer="Ich bin den ganzen Tag dabei, ohne im Weg zu stehen — für die stillen Blicke ebenso wie für die grossen Momente. So entstehen mit Feingefühl ehrliche, ungestellte Hochzeitsbilder statt steifer Posen. Foto und Video aus einer Hand; nach über 20 Jahren spüre ich, wann der richtige Augenblick kommt."
+  >
+    <a href="/ueber-mich/" class={linkClass}>Mehr über mich & meine 20 Jahre Erfahrung →</a>
+  </Capsule>
 
   <Capsule
-    question="Welchen Stil hat meine Hochzeitsfotografie?"
-    answer="Authentisch und zeitlos. Ich arbeite im Stil einer ruhigen Hochzeitsreportage: Ich halte fest, was wirklich passiert, statt es zu inszenieren. Echte Emotionen — das Lachen, die Freudentränen, der Blick zwischendurch — wirken auch in zehn Jahren noch, während Modetrends verblassen. Bilder, die sich echt anfühlen."
+    question="Welche Stile der Hochzeitsfotografie biete ich?"
+    answer="Mein Stil ist eine natürliche, zeitlose Hochzeitsreportage — ich halte fest, was wirklich passiert, statt es zu inszenieren. Echte Emotionen wie das Lachen oder die Freudentränen wirken auch in zehn Jahren noch. Klassische Bilder vom Brautpaar und den Gästen sowie Aufnahmen in Schwarz-Weiss gehören auf Wunsch dazu."
   />
 
   <Capsule
     question="Welche Leistungen biete ich als Hochzeitsfotografin an?"
-    answer="Ich begleite den ganzen Hochzeitstag — vom Getting-ready über die Trauung am Standesamt oder die freie Trauung bis zum Fest. Auf Wunsch ein Paarshooting vorab und ein Hochzeitsvideo dazu. Ihre fertigen Hochzeitsfotos erhalten Sie in einer privaten Online-Galerie zum Herunterladen."
+    answer="Ich begleite Ihren ganzen Hochzeitstag — von den Vorbereitungen über die Trauung bis zum Fest. Foto und Video kommen aus einer Hand, abgestimmt im gleichen Stil, damit Sie nur eine Ansprechpartnerin haben."
   >
-    <div class="flex flex-wrap gap-4">
-      <a href="/video/" class="text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]">Mehr zu Video →</a>
-      <a href="/portfolio/" class="text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]">Portfolio ansehen →</a>
+    <h3 class={h3Class}>Trauung am Standesamt & freie Trauung</h3>
+    <p class="mt-1">Ob standesamtliche oder freie Trauung — für den Moment des Ja-Worts bin ich bereit, ohne ihn zu stören.</p>
+    <h3 class={h3Class}>Paarshooting vor der Hochzeit</h3>
+    <p class="mt-1">Auf Wunsch ein entspanntes Paarshooting vorab — ideal, um euch als Brautpaar vor der Kamera kennenzulernen.</p>
+    <h3 class={h3Class}>Hochzeitsvideo dazu</h3>
+    <p class="mt-1">Neben den Fotos halte ich Ihre Hochzeit auf Wunsch als Hochzeitsvideo fest — Stimmen, Reden und Bewegung, die ein Standbild nicht zeigt.</p>
+    <h3 class={h3Class}>Online-Galerie mit Ihren Hochzeitsbildern</h3>
+    <p class="mt-1">Ihre fertigen Hochzeitsbilder erhalten Sie in einer privaten Online-Galerie zum Herunterladen und Teilen — in Farbe oder Schwarz-Weiss.</p>
+    <div class="mt-4 flex flex-wrap gap-4">
+      <a href="/video/" class={linkClass}>Mehr zu Video →</a>
+      <a href="/portfolio/" class={linkClass}>Portfolio ansehen →</a>
     </div>
   </Capsule>
 
   <Capsule
-    question="In welchen Regionen fotografiere ich Hochzeiten?"
+    question="In welchen Regionen der Schweiz fotografiere ich Hochzeiten?"
     answer="Ich fotografiere in der ganzen Deutschschweiz — mit Schwerpunkt Basel und meiner Heimatregion Aargau. Weitere Regionen wie Zürich, Bern, Luzern und die Zentralschweiz sowie Solothurn gerne auf Anfrage. Als reisende Hochzeitsfotografin gibt es keinen Studio-Zwang: ich komme an Ihren Ort in der ganzen Schweiz."
   >
     <div class="mt-4 flex flex-wrap gap-3">
@@ -69,38 +82,52 @@ const regions = [
   </Capsule>
 
   <Capsule
-    question="Gibt es auch ein Hochzeitsvideo?"
-    answer="Ja — Foto und Video kommen bei mir aus einer Hand, im gleichen Stil und ohne dass Sie zwei Teams koordinieren müssen. Das Hochzeitsvideo hält Stimmen, Reden und Bewegung fest, was ein Standbild nicht kann: die Fotos für die Wand, der Film zum Wiedererleben Ihres grossen Tages."
+    question="Kann ich auch ein Hochzeitsvideo oder eine Fotobox buchen?"
+    answer="Ein Hochzeitsvideo ja — Foto und Video kommen bei mir aus einer Hand, im gleichen Stil und ohne dass Sie zwei Teams koordinieren müssen. Der Film hält Stimmen, Reden und Bewegung fest: die Hochzeitsfotos für die Wand, das Video zum Wiedererleben Ihres grossen Tages."
   >
-    <!-- TODO: bietet Mariluz eine Fotobox an? Falls ja, hier als Zusatzleistung ergänzen (Term „Fotobox" gefragt) -->
-    <a href="/video/" class="text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]">Mehr zu Hochzeitsvideo →</a>
+    <!-- TODO: bietet Mariluz eine Fotobox an? Falls ja hier bestätigen, falls nein Fotobox-Satz streichen -->
+    <p>Ob zusätzlich eine Fotobox für Ihre Gäste möglich ist, besprechen wir gern im Vorgespräch.</p>
+    <a href="/video/" class={`${linkClass} mt-3 inline-block`}>Mehr zu Hochzeitsvideo →</a>
   </Capsule>
 
   <Capsule
-    question="Wie läuft die Zusammenarbeit ab?"
-    answer="Wir lernen uns vor der Hochzeit kennen — persönlich oder per Video —, damit ich Ihre Wünsche und den Ablauf des Hochzeitstags kenne. Am grossen Tag fügt sich alles ineinander: Sie geniessen, ich begleite im Hintergrund. Danach sichte und bearbeite ich die Aufnahmen sorgfältig von Hand."
-  />
-
-  <Capsule
-    question="Was ist enthalten, und wann bekomme ich die Bilder?"
-    answer="Nach Ihrem Tag bearbeite ich die Hochzeitsfotos sorgfältig und stelle Ihnen Ihre Hochzeit als hochauflösende Online-Galerie zum Herunterladen bereit — auf Wunsch dazu das Hochzeitsvideo. Ablauf und Wünsche klären wir schon vorab, damit am grossen Tag alles besprochen ist."
+    question="Wie läuft die Zusammenarbeit mit mir ab?"
+    answer="In drei ruhigen Schritten — vom ersten Kennenlernen bis zu Ihren fertigen Hochzeitsbildern. So wissen Sie vorab, was Sie erwartet, und können den grossen Tag geniessen."
   >
-    <!-- TODO: konkrete Lieferzeit + ungefähre Bildanzahl nach Mariluz-Input präzisieren -->
+    <h3 class={h3Class}>Vor der Hochzeit</h3>
+    <p class="mt-1">Wir lernen uns kennen — persönlich oder per Video — und gehen Wünsche, Stil und den Ablauf des Hochzeitstags gemeinsam durch.</p>
+    <h3 class={h3Class}>Am Hochzeitstag</h3>
+    <p class="mt-1">Sie geniessen, ich begleite im Hintergrund — vom Getting-ready über das Ja-Wort und den Apéro bis zum letzten Tanz.</p>
+    <h3 class={h3Class}>Nach der Hochzeit</h3>
+    <p class="mt-1">Ich sichte und bearbeite die Aufnahmen sorgfältig von Hand und stelle sie Ihnen in der Online-Galerie bereit.</p>
   </Capsule>
 
   <Capsule
-    question="Wie finde ich den passenden Hochzeitsfotografen?"
-    answer="Achten Sie weniger auf einzelne schöne Bilder als auf einen durchgehenden Stil, der Ihnen gefällt — und darauf, ob beim Kennenlernen die Chemie stimmt. Sie verbringen den ganzen Tag miteinander. Schauen Sie sich am besten eine komplette Hochzeit im Portfolio an, nicht nur die Höhepunkte."
+    question="Was ist enthalten, und wann bekomme ich meine Hochzeitsfotos?"
+    answer="Enthalten sind die Begleitung Ihres Hochzeitstags und die sorgfältig bearbeiteten Hochzeitsfotos in einer hochauflösenden Online-Galerie zum Herunterladen — auf Wunsch dazu das Hochzeitsvideo. Ablauf und Wünsche klären wir schon vorab, damit am grossen Tag alles besprochen ist."
   >
-    <a href="/portfolio/" class="text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]">Ganze Hochzeiten im Portfolio →</a>
+    <!-- TODO: konkrete Lieferzeit (z. B. „innert X Wochen") + ungefähre Bildanzahl nach Mariluz-Input — hebt Fact-Density -->
+  </Capsule>
+
+  <Capsule
+    question="Wie finde ich den passenden Hochzeitsfotografen? 4 Tipps"
+    answer="Achten Sie weniger auf einzelne schöne Bilder als auf das Gesamtbild — Sie verbringen den ganzen Tag miteinander. Diese vier Punkte helfen bei der Auswahl:"
+  >
+    <ol class="mt-2 list-decimal space-y-2 pl-5">
+      <li>Schauen Sie sich eine <strong>komplette Hochzeit</strong> im Portfolio an, nicht nur die Höhepunkte.</li>
+      <li>Prüfen Sie, ob der <strong>Stil</strong> durchgehend zu Ihnen passt — mit Liebe zum Detail statt Effekthascherei.</li>
+      <li>Fragen Sie nach <strong>Referenzen und Bewertungen</strong> früherer Brautpaare.</li>
+      <li>Lernen Sie sich vorab kennen — die <strong>Chemie</strong> muss stimmen.</li>
+    </ol>
+    <a href="/portfolio/" class={`${linkClass} mt-4 inline-block`}>Ganze Hochzeiten im Portfolio →</a>
   </Capsule>
 
   <Capsule
     question="Was kostet ein Hochzeitsfotograf in der Schweiz?"
     answer="Jede Hochzeit ist anders — Umfang, Dauer und ob Foto, Video oder beides gewünscht ist. Deshalb erstelle ich Ihnen ein individuelles Angebot in CHF statt Pauschalpreise von der Stange. Fragen Sie unverbindlich an, und wir besprechen, was zu Ihrem Tag passt."
   >
-    <!-- TODO: konkrete Pakete/Preise nach Preis-Research + Mariluz-Input -->
-    <a href="/kontakt/" class="text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]">Angebot anfragen →</a>
+    <!-- TODO: konkrete Pakete/Preise nach Preis-Research + Mariluz-Input — hebt Fact-Density -->
+    <a href="/kontakt/" class={linkClass}>Angebot anfragen →</a>
   </Capsule>
 
   <Capsule
