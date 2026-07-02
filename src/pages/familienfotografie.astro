@@ -9,40 +9,81 @@ const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/familienfotografie/` },
   { lang: 'es', href: `${SITE.url}/es/fotografo-familiar/` },
 ];
+
+const regions = [
+  { label: 'Aargau', href: '/hochzeitsfotograf-aargau/' },
+  { label: 'Basel', href: '/hochzeitsfotograf-basel/' },
+];
+
+const linkClass = 'text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]';
+const h3Class = 'mt-6 text-xl';
 ---
 <BaseLayout
   title="Fotoshooting Familie — natürliche Familienfotos | Mariluz Fotografía"
-  description="Fotoshooting für die Familie in der Deutschschweiz. Entspanntes Familienshooting, echte Momente statt steifer Posen — Foto und Video, bei Ihnen zuhause oder draussen."
+  description="Familien-Fotoshooting in der Deutschschweiz. Entspanntes, natürliches Familienshooting — echte Momente statt steifer Posen, bei Ihnen zuhause oder draussen. Über 20 Jahre Erfahrung."
   path="/familienfotografie/"
   alternates={alternates}
   schema={service({ name: 'Fotoshooting Familie', description: 'Familien- und Kinderfotografie in der Deutschschweiz.', serviceType: 'Familienfotografie' })}
 >
-  <Hero eyebrow="Familie & Kinder" title="Ein Fotoshooting, das sich wie Ihre Familie anfühlt"
-    lead="Kein steifes Posieren — ein entspanntes Familienshooting, das Sie zeigt, wie Sie sind. In der ganzen Deutschschweiz, drinnen wie draussen."
+  <Hero eyebrow="Familie & Kinder" title="Familien-Fotoshooting, das sich echt anfühlt"
+    lead="Ein entspanntes Fotoshooting mit Ihrer Familie — natürlich, ungezwungen und mit viel Spass. Ich möchte echte Momente und Kinderlachen festhalten, nicht steife Posen. Bei Ihnen zuhause, draussen in der Natur oder an Ihrem Lieblingsort, in der ganzen Deutschschweiz."
     ctaHref="/kontakt/" ctaLabel="Fotoshooting anfragen" />
 
   <Capsule question="Wie läuft ein Familienshooting ab?"
-    answer="Wir treffen uns an einem Ort, an dem sich Ihre Familie wohlfühlt — zuhause, in der Natur oder am Lieblingsplatz. Ich lasse Raum für echte Momente statt gestellter Posen, gerade bei Kindern. So entstehen Bilder, die in ein paar Jahren noch nach Ihnen aussehen." />
+    answer="Wir treffen uns an einem Ort, an dem sich Ihre Familie wohlfühlt — zuhause, draussen in der Natur oder am Lieblingsplatz. Ich lasse Raum für echte, ungestellte Momente statt gestellter Posen, gerade bei den Kindern. So entstehen natürliche Familienfotos, die in ein paar Jahren noch nach Ihnen aussehen.">
+    <a href="/ueber-mich/" class={linkClass}>Als professionelle Fotografin mit über 20 Jahren Erfahrung →</a>
+  </Capsule>
 
-  <Capsule question="Wo findet das Familienshooting statt?"
-    answer="Dort, wo Sie sich am wohlsten fühlen. Bei Ihnen zuhause, im vertrauten Wohnzimmer, sind Kinder oft am entspanntesten. Draussen in Wald, Feld oder am Wasser entsteht viel Bewegung und Licht. Ich bin in der ganzen Deutschschweiz unterwegs und komme zu Ihnen — Sie müssen kein Studio aufsuchen." />
+  <Capsule question="Wo findet das Familienshooting statt — Studio, Outdoor oder zuhause?"
+    answer="Dort, wo Sie sich am wohlsten fühlen. Bei Ihnen zuhause im vertrauten Licht sind Kinder oft am entspanntesten. Draussen (Outdoor) in Wald, Feld oder am Wasser entsteht viel Bewegung. Ein festes Fotostudio brauche ich nicht: Als reisende Fotografin komme ich zu Ihnen, statt Sie ins Studio zu bestellen." />
+
+  <Capsule question="In welchen Regionen fotografiere ich Familien?"
+    answer="In der ganzen Deutschschweiz — mit Schwerpunkt Aargau, wo ich zuhause bin, und Basel. Weitere Regionen wie Zürich, Bern, Luzern und Solothurn gerne auf Anfrage. Als reisende Familienfotografin komme ich an Ihren Ort, ob Garten, Wohnzimmer oder Lieblingsplatz in der Natur.">
+    <div class="mt-4 flex flex-wrap gap-3">
+      {regions.map((r) => (
+        <a href={r.href} class="rounded-full border border-[var(--color-sand)] px-4 py-2 text-sm transition-colors hover:border-[var(--color-clay)] hover:text-[var(--color-clay)]">
+          {r.label}
+        </a>
+      ))}
+    </div>
+  </Capsule>
 
   <Capsule question="Funktioniert das auch mit kleinen Kindern und Babys?"
-    answer="Gerade dann. Ich arbeite im Tempo Ihrer Kinder statt gegen es: Pausen, Spiel und ein bisschen Chaos gehören dazu. Aus dieser Leichtigkeit entstehen die schönsten Aufnahmen — ein Lachen, ein Blick, eine Umarmung. Nach über 20 Jahren weiss ich, dass Geduld mehr bringt als Anweisungen." />
-
-  <Capsule question="Wie lange dauert ein Shooting, und wann bekomme ich die Bilder?"
-    answer="Rechnen Sie mit rund ein bis zwei Stunden — genug Zeit, damit alle ankommen und sich lösen. Danach wähle und bearbeite ich die besten Aufnahmen sorgfältig von Hand. Die fertige Galerie erhalten Sie in der Regel innerhalb weniger Wochen digital zum Herunterladen.">
-    <!-- TODO: konkrete Lieferzeit + Anzahl Bilder nach Mariluz-Input präzisieren -->
+    answer="Gerade dann. Ich arbeite im Tempo Ihrer Kinder statt gegen es: Pausen, Spiel und ein bisschen Chaos gehören dazu. Aus dieser Leichtigkeit entstehen die schönsten Kinderfotos — ein Lachen, ein Blick, eine Umarmung. Ob mit einem Neugeborenen, Kleinkind oder Teenager, ich hole jedes Kind dort ab, wo es steht.">
+    <a href="/schwangerschaftsfotos/" class={linkClass}>Erwarten Sie Nachwuchs? → Schwangerschaftsfotos</a>
   </Capsule>
 
-  <Capsule question="Foto und Video — geht beides?"
-    answer="Ja, beides aus einer Hand. Neben den Fotos halte ich Ihre Familie auf Wunsch auch als kurzes Video fest — die Stimmen, die Bewegung, den Moment in echt. Ein Ansprechpartner, ein Stil, ein stimmiges Ergebnis für die Wand und zum Wiedererleben.">
-    <a href="/video/" class="text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]">Mehr zu Video →</a>
+  <Capsule question="Was ziehen wir zum Fotoshooting an? Outfit- & Stylingtipps"
+    answer="Am schönsten wirkt Kleidung, die zueinander passt, ohne uniform zu sein. Bringen Sie gern zwei, drei Outfits mit — ein paar einfache Tipps helfen bei der Auswahl:">
+    <h3 class={h3Class}>Aufeinander abgestimmte Kleidung</h3>
+    <p class="mt-1">Wählen Sie neutrale Farben und harmonische Töne statt grosser Logos — aufeinander abgestimmte Kleidung wirkt ruhig und zeitlos.</p>
+    <h3 class={h3Class}>Muster sparsam einsetzen</h3>
+    <p class="mt-1">Einfarbige oder nur dezent gemusterte Oberteile lenken nicht vom Wesentlichen ab — Ihren Gesichtern.</p>
+    <h3 class={h3Class}>Accessoires & Lieblingsspielzeug</h3>
+    <p class="mt-1">Bringen Sie gern Accessoires oder die Lieblingsspielzeuge der Kinder mit — das lockert auf und macht die Bilder persönlich.</p>
   </Capsule>
 
-  <Capsule question="Was kostet ein Familienshooting?"
-    answer="Das hängt von Dauer, Ort und davon ab, ob Sie nur Fotos oder auch Video möchten. Statt Pauschalpreisen von der Stange erstelle ich Ihnen ein individuelles Angebot, das zu Ihrer Familie passt. Fragen Sie unverbindlich an — wir besprechen in Ruhe, was Sie sich wünschen.">
-    <!-- TODO: konkrete Pakete/Preise nach Preis-Research + Mariluz-Input -->
-    <a href="/kontakt/" class="inline-block rounded-full bg-[var(--color-clay)] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--color-clay-dark)]">Shooting anfragen</a>
+  <Capsule question="Was passiert bei schlechtem Wetter?"
+    answer="Kein Grund zur Sorge. Bei einem Outdoor-Shooting behalten wir das Wetter im Blick und verschieben unkompliziert, wenn es nötig ist. Alternativ weichen wir nach drinnen aus — zu Ihnen nach Hause, wo weiches Tageslicht durch die Fenster fällt. So oder so bekommen Sie Ihre Familienfotos." />
+
+  <Capsule question="Wie lange dauert ein Shooting, und wie viele Bilder bekomme ich?"
+    answer="Rechnen Sie mit rund ein bis zwei Stunden — genug Zeit, damit alle ankommen und sich lösen. Danach wähle und bearbeite ich die schönsten Aufnahmen sorgfältig von Hand und stelle sie Ihnen als Familienfotos zum Herunterladen bereit — Erinnerungen für die Ewigkeit.">
+    <!-- TODO: konkrete Lieferzeit + ungefähre Bildanzahl nach Mariluz-Input — hebt Fact-Density -->
+  </Capsule>
+
+  <Capsule question="Kann ich ein Familienshooting verschenken?"
+    answer="Ein Familien-Fotoshooting ist ein Geschenk, das bleibt — zu Weihnachten, zum Geburtstag oder einfach so. Melden Sie sich mit Ihrem Wunsch, und die Familie löst das Shooting ein, wann es ihr am besten passt.">
+    <!-- TODO: bietet Mariluz feste Gutscheine an? Falls ja, hier als Gutschein-Angebot konkretisieren -->
+  </Capsule>
+
+  <Capsule question="Gibt es auch ein Video zum Fotoshooting?"
+    answer="Ja, auf Wunsch. Neben den Fotos halte ich Ihre Familie auch als kurzes Video fest — die Stimmen, die Bewegung, das Kinderlachen in echt. Ein Stil, eine Ansprechpartnerin: die Bilder für die Wand und ein Film zum Wiedererleben.">
+    <a href="/video/" class={linkClass}>Mehr zu Video →</a>
+  </Capsule>
+
+  <Capsule question="Was kostet ein Familien-Fotoshooting?"
+    answer="Das hängt von Dauer, Ort und davon ab, ob Sie nur Fotos oder auch Video möchten. Statt Pauschalpreisen von der Stange erstelle ich Ihnen ein individuelles Angebot in CHF, das zu Ihrer Familie passt. Fragen Sie unverbindlich an — wir besprechen in Ruhe, was Sie sich wünschen.">
+    <!-- TODO: konkrete Pakete/Preise nach Preis-Research + Mariluz-Input — hebt Fact-Density -->
+    <a href="/kontakt/" class="inline-block rounded-full bg-[var(--color-clay)] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--color-clay-dark)]">Fotoshooting anfragen</a>
   </Capsule>
 </BaseLayout>
