@@ -1,0 +1,59 @@
+---
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  /** Signature-Bild dieser Seite (lokaler Import aus src/assets). */
+  image: ImageMetadata;
+  alt: string;
+  eyebrow?: string;
+  title: string;
+  lead: string;
+  ctaHref?: string;
+  ctaLabel?: string;
+  /** Bild-Fokus als background-position, z. B. "center 82%" (zeigt unteren Teil). */
+  focus?: string;
+}
+const { image, alt, eyebrow, title, lead, ctaHref, ctaLabel, focus = 'center' } =
+  Astro.props;
+
+// Optimierte WebP-Varianten als Hintergrund. background-size:cover + min-height
+// sind wasserdicht — anders als ein ersetztes <img> mit Prozent-Höhe, das an der
+// bloßen min-height der Section überläuft und object-position ignoriert.
+const bgLarge = await getImage({ src: image, width: 1920, format: 'webp' });
+const bgSmall = await getImage({ src: image, width: 1280, format: 'webp' });
+const bgStyle = [
+  // Plain-url zuerst als Fallback, dann image-set (überschreibt bei Support).
+  `background-image:url(${bgLarge.src})`,
+  `background-image:image-set(url(${bgSmall.src}) 1x, url(${bgLarge.src}) 2x)`,
+  `background-position:${focus}`,
+].join(';');
+---
+<section
+  class="relative isolate flex min-h-[62vh] items-end overflow-hidden bg-[var(--color-ink)] bg-cover bg-no-repeat sm:min-h-[72vh]"
+  style={bgStyle}
+  role="img"
+  aria-label={alt}
+>
+  <!-- Navy-Scrim für Textlesbarkeit (echoes --color-ink) -->
+  <div
+    class="absolute inset-0 -z-10 bg-gradient-to-t from-[#1f2640]/85 via-[#1f2640]/45 to-[#1f2640]/15"
+    aria-hidden="true"
+  ></div>
+
+  <div class="mx-auto w-full max-w-4xl px-5 pb-14 pt-28 text-white sm:pb-20 sm:pt-32">
+    {eyebrow && (
+      <p class="mb-4 text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-gold-light)]">
+        {eyebrow}
+      </p>
+    )}
+    <h1 class="max-w-3xl text-4xl text-white sm:text-5xl md:text-6xl">{title}</h1>
+    <p class="prose-lead mt-6 max-w-2xl !text-white/90">{lead}</p>
+    {ctaHref && ctaLabel && (
+      <a
+        href={ctaHref}
+        class="mt-8 inline-block rounded-full bg-[var(--color-clay)] px-7 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--color-clay-dark)]"
+      >{ctaLabel}</a>
+    )}
+  </div>
+</section>

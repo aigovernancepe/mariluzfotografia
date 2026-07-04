@@ -1,9 +1,20 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import Gallery from '../components/Gallery.astro';
 import Capsule from '../components/Capsule.astro';
 import { SITE } from '../consts';
 import { service } from '../lib/schema';
+import { toGallery } from '../lib/gallery';
+
+const hochzeitBilder = toGallery(
+  import.meta.glob<{ default: ImageMetadata }>(
+    '../assets/hochzeit/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true },
+  ),
+  'Hochzeitsfotografie',
+);
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/hochzeitsfotograf/` },
@@ -30,6 +41,9 @@ const h3Class = 'mt-6 text-xl';
     serviceType: 'Hochzeitsfotografie',
   })}
 >
+  <!-- Interim: Text-Hero ohne Bild, bis hochauflösendes Deutschschweiz-Material
+       vorliegt (Mariluz-Originale / neue CH-Shootings). Wieder auf <HeroImage>
+       umstellen, sobald ein passendes Bild da ist. -->
   <Hero
     eyebrow="Hochzeit · Foto & Video"
     title="Hochzeitsfotograf für Ihren schönsten Tag — Foto & Video"
@@ -67,6 +81,13 @@ const h3Class = 'mt-6 text-xl';
       <a href="/portfolio/" class={linkClass}>Portfolio ansehen →</a>
     </div>
   </Capsule>
+
+  <section class="mx-auto max-w-3xl px-5 pt-8">
+    <h2 class="text-2xl sm:text-3xl">Hochzeitsbilder aus echten Feiern</h2>
+    {/* TODO Herkunft bestätigen: „Lateinamerika" ist Annahme — ggf. konkretes Land (z. B. Peru) einsetzen. */}
+    <p class="prose-lead mt-4">Eine Auswahl aus über 20 Jahren Hochzeitsfotografie — von meinen Anfängen in Lateinamerika bis heute in der Deutschschweiz. Zum Vergrössern auf ein Bild tippen.</p>
+  </section>
+  <Gallery images={hochzeitBilder} label="Hochzeitsfotografie von Mariluz Fotografía" />
 
   <Capsule
     question="In welchen Regionen der Schweiz fotografiere ich Hochzeiten?"

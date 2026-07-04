@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Hero from '../../components/Hero.astro';
+import HeroImage from '../../components/HeroImage.astro';
 import Capsule from '../../components/Capsule.astro';
 import { SITE } from '../../consts';
 import { service } from '../../lib/schema';
+import heroBoda from '../../assets/hochzeit/boda-06.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/hochzeitsfotograf/` },
@@ -16,7 +17,12 @@ const alternates = [
   path="/es/fotografo-bodas/" alternates={alternates}
   schema={service({ name: 'Fotografía y video de bodas', description: 'Fotografía y video de bodas en Suiza.', serviceType: 'Fotografía de bodas', areaServed: 'Suiza' })}
 >
-  <Hero eyebrow="Bodas · Foto & Video" title="Fotógrafo de bodas en Suiza"
+  <HeroImage
+    image={heroBoda}
+    alt="Novios besándose de noche frente a una iglesia iluminada, foto de Mariluz Fotografía"
+    focus="center 40%"
+    eyebrow="Bodas · Foto & Video"
+    title="Fotógrafo de bodas en Suiza"
     lead="Tu boda merece a alguien que capte cada emoción — con foto y video, de principio a fin, en toda la Suiza de habla alemana."
     ctaHref="/es/contacto/" ctaLabel="Consultar disponibilidad" />
   <Capsule question="¿Cómo acompaño una boda?"

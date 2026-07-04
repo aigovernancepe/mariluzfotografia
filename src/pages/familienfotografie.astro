@@ -1,14 +1,25 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import Gallery from '../components/Gallery.astro';
 import Capsule from '../components/Capsule.astro';
 import { SITE } from '../consts';
 import { service } from '../lib/schema';
+import { toGallery } from '../lib/gallery';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/familienfotografie/` },
   { lang: 'es', href: `${SITE.url}/es/fotografo-familiar/` },
 ];
+
+const familieBilder = toGallery(
+  import.meta.glob<{ default: ImageMetadata }>(
+    '../assets/familie/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true },
+  ),
+  'Familienfotografie',
+);
 
 const regions = [
   { label: 'Aargau', href: '/hochzeitsfotograf-aargau/' },
@@ -39,6 +50,13 @@ const h3Class = 'mt-6 text-xl';
     <p class="mt-1">Ich wähle und bearbeite die schönsten natürlichen Familienfotos sorgfältig von Hand.</p>
     <a href="/ueber-mich/" class={`${linkClass} mt-4 inline-block`}>Als professionelle Fotografin mit über 20 Jahren Erfahrung →</a>
   </Capsule>
+
+  <section class="mx-auto max-w-3xl px-5 pt-8">
+    <h2 class="text-2xl sm:text-3xl">Familienfotos aus echten Shootings</h2>
+    {/* TODO Herkunft bestätigen: „Lateinamerika" ist Annahme — ggf. konkretes Land (z. B. Peru) einsetzen. */}
+    <p class="prose-lead mt-4">Eine Auswahl aus über 20 Jahren — von meinen Anfängen in Lateinamerika bis heute in der Deutschschweiz. Zum Vergrössern auf ein Bild tippen.</p>
+  </section>
+  <Gallery images={familieBilder} label="Familienfotografie von Mariluz Fotografía" />
 
   <Capsule question="Wo findet das Familienshooting statt — Studio, Outdoor oder zuhause?"
     answer="Dort, wo Sie sich am wohlsten fühlen. Bei Ihnen zuhause im vertrauten Licht sind Kinder oft am entspanntesten. Draussen (Outdoor) in Wald, Feld oder am Wasser entsteht viel Bewegung. Ein festes Fotostudio brauche ich nicht: Als reisende Fotografin komme ich zu Ihnen, statt Sie ins Studio zu bestellen." />

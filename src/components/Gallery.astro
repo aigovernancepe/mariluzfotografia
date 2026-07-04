@@ -1,0 +1,204 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { GalleryImage } from '../lib/gallery';
+
+interface Props {
+  images: GalleryImage[];
+  /** Zugängliche Beschreibung der Galerie (für Screenreader). */
+  label?: string;
+}
+const { images, label = 'Bildergalerie' } = Astro.props;
+
+// Grosse WebP-Variante für die Lightbox vorab generieren (max. 1600px Breite).
+const full = await Promise.all(
+  images.map((img) => getImage({ src: img.src, width: 1600, format: 'webp' })),
+);
+---
+<section
+  class="mx-auto max-w-5xl px-5 py-8"
+  aria-label={label}
+  data-mlz-gallery
+>
+  <div class="gap-3 [column-fill:balance] columns-2 sm:columns-3 lg:columns-4">
+    {images.map((img, i) => (
+      <button
+        type="button"
+        class="mlz-thumb mb-3 block w-full break-inside-avoid overflow-hidden rounded-lg"
+        data-mlz-item
+        data-full={full[i].src}
+        aria-label={`Bild ${i + 1} von ${images.length} vergrössern`}
+      >
+        <Image
+          src={img.src}
+          alt={img.alt}
+          widths={[320, 640]}
+          sizes="(min-width:1024px) 22vw, (min-width:640px) 30vw, 45vw"
+          loading="lazy"
+          class="h-auto w-full transition-transform duration-300 hover:scale-[1.03]"
+        />
+      </button>
+    ))}
+  </div>
+</section>
+
+<style is:global>
+  /* Lightbox — einmal global, dynamisch per JS befüllt. */
+  .mlz-thumb { cursor: zoom-in; background: var(--color-sand); }
+  .mlz-thumb:focus-visible {
+    outline: 2px solid var(--color-clay);
+    outline-offset: 2px;
+  }
+
+  .mlz-lb {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(31, 38, 64, 0.94); /* --color-ink */
+    padding: clamp(0.75rem, 3vw, 2.5rem);
+  }
+  .mlz-lb[data-open] { display: flex; }
+
+  .mlz-lb__img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    animation: mlz-fade 0.2s ease;
+  }
+  @keyframes mlz-fade { from { opacity: 0; } to { opacity: 1; } }
+
+  .mlz-lb__btn {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(250, 247, 242, 0.12);
+    color: #fff;
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .mlz-lb__btn:hover { background: var(--color-clay); }
+  .mlz-lb__btn:focus-visible {
+    outline: 2px solid var(--color-gold-light);
+    outline-offset: 2px;
+  }
+  .mlz-lb__close { top: 1rem; right: 1rem; }
+  .mlz-lb__prev { left: 1rem; }
+  .mlz-lb__next { right: 1rem; }
+  .mlz-lb__prev, .mlz-lb__next { top: 50%; transform: translateY(-50%); }
+
+  .mlz-lb__count {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mlz-lb__img { animation: none; }
+    .mlz-thumb :where(img) { transition: none; }
+  }
+</style>
+
+<script>
+  function initMlzLightbox() {
+    const galleries = document.querySelectorAll<HTMLElement>('[data-mlz-gallery]');
+    if (!galleries.length) return;
+
+    // Overlay einmalig erzeugen.
+    let lb = document.getElementById('mlz-lb') as HTMLElement | null;
+    if (!lb) {
+      lb = document.createElement('div');
+      lb.id = 'mlz-lb';
+      lb.className = 'mlz-lb';
+      lb.setAttribute('role', 'dialog');
+      lb.setAttribute('aria-modal', 'true');
+      lb.setAttribute('aria-label', 'Bildansicht');
+      lb.innerHTML =
+        '<button class="mlz-lb__btn mlz-lb__close" aria-label="Schliessen">×</button>' +
+        '<button class="mlz-lb__btn mlz-lb__prev" aria-label="Vorheriges Bild">‹</button>' +
+        '<img class="mlz-lb__img" alt="">' +
+        '<button class="mlz-lb__btn mlz-lb__next" aria-label="Nächstes Bild">›</button>' +
+        '<p class="mlz-lb__count" aria-live="polite"></p>';
+      document.body.appendChild(lb);
+    }
+
+    const imgEl = lb.querySelector<HTMLImageElement>('.mlz-lb__img')!;
+    const countEl = lb.querySelector<HTMLElement>('.mlz-lb__count')!;
+    const closeBtn = lb.querySelector<HTMLElement>('.mlz-lb__close')!;
+    const prevBtn = lb.querySelector<HTMLElement>('.mlz-lb__prev')!;
+    const nextBtn = lb.querySelector<HTMLElement>('.mlz-lb__next')!;
+
+    let items: HTMLElement[] = [];
+    let index = 0;
+    let lastFocus: HTMLElement | null = null;
+
+    function show(i: number) {
+      index = (i + items.length) % items.length;
+      const el = items[index];
+      imgEl.src = el.dataset.full || '';
+      const img = el.querySelector('img');
+      imgEl.alt = img?.getAttribute('alt') || '';
+      countEl.textContent = `${index + 1} / ${items.length}`;
+      const solo = items.length < 2;
+      prevBtn.style.display = solo ? 'none' : '';
+      nextBtn.style.display = solo ? 'none' : '';
+    }
+
+    function open(groupItems: HTMLElement[], i: number, trigger: HTMLElement) {
+      items = groupItems;
+      lastFocus = trigger;
+      lb!.setAttribute('data-open', '');
+      document.body.style.overflow = 'hidden';
+      show(i);
+      closeBtn.focus();
+    }
+
+    function close() {
+      lb!.removeAttribute('data-open');
+      document.body.style.overflow = '';
+      imgEl.src = '';
+      lastFocus?.focus();
+    }
+
+    galleries.forEach((gallery) => {
+      const groupItems = Array.from(
+        gallery.querySelectorAll<HTMLElement>('[data-mlz-item]'),
+      );
+      groupItems.forEach((item, i) => {
+        item.addEventListener('click', () => open(groupItems, i, item));
+      });
+    });
+
+    closeBtn.addEventListener('click', close);
+    prevBtn.addEventListener('click', () => show(index - 1));
+    nextBtn.addEventListener('click', () => show(index + 1));
+    lb.addEventListener('click', (e) => {
+      if (e.target === lb) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!lb!.hasAttribute('data-open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(index - 1);
+      else if (e.key === 'ArrowRight') show(index + 1);
+    });
+  }
+
+  initMlzLightbox();
+  document.addEventListener('astro:page-load', initMlzLightbox);
+</script>

@@ -1,25 +1,76 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import Capsule from '../components/Capsule.astro';
+import HeroImage from '../components/HeroImage.astro';
+import Gallery from '../components/Gallery.astro';
 import { SITE } from '../consts';
+import { toGallery } from '../lib/gallery';
+import heroPortfolio from '../assets/hochzeit/boda-03.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/portfolio/` },
   { lang: 'es', href: `${SITE.url}/es/galeria/` },
 ];
+
+// Pro Anlass eine Galerie — Glob-Pfade müssen statische Literale sein.
+const anlaesse = [
+  {
+    titel: 'Hochzeiten',
+    bilder: toGallery(
+      import.meta.glob<{ default: ImageMetadata }>('../assets/hochzeit/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      'Hochzeitsfotografie',
+    ),
+  },
+  {
+    titel: 'Familien & Kinder',
+    bilder: toGallery(
+      import.meta.glob<{ default: ImageMetadata }>('../assets/familie/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      'Familienfotografie',
+    ),
+  },
+  {
+    titel: 'Schwangerschaft',
+    bilder: toGallery(
+      import.meta.glob<{ default: ImageMetadata }>('../assets/schwangerschaft/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      'Schwangerschaftsfotografie',
+    ),
+  },
+  {
+    titel: 'Quinceañera',
+    bilder: toGallery(
+      import.meta.glob<{ default: ImageMetadata }>('../assets/quinceanera/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      'Quinceañera-Fotografie',
+    ),
+  },
+].filter((a) => a.bilder.length > 0);
 ---
 <BaseLayout
   title="Portfolio — Foto & Video | Mariluz Fotografía"
-  description="Eine Auswahl aus Hochzeiten, Quinceañeras, Familien- und Eventaufnahmen von Mariluz Fotografía in der Deutschschweiz."
+  description="Eine Auswahl aus Hochzeiten, Quinceañeras, Familien- und Schwangerschaftsaufnahmen von Mariluz Fotografía in der Deutschschweiz."
   path="/portfolio/"
   alternates={alternates}
 >
-  <Hero eyebrow="Portfolio" title="Eine Auswahl meiner Arbeiten"
-    lead="Bilder sagen mehr als Worte. Hier eine Auswahl aus echten Feiern — bald mit mehr Aufnahmen aus der Deutschschweiz."
-    ctaHref="/kontakt/" ctaLabel="Termin anfragen" />
-  <Capsule question="Was zeigt dieses Portfolio?"
-    answer="Eine kuratierte Auswahl aus Hochzeiten, Quinceañeras, Familien- und Eventaufnahmen. Die Galerie wächst mit jeder Feier — Bilder werden nur nach Einwilligung der Abgebildeten veröffentlicht." >
-    <!-- TODO: Galerie-Grid mit optimierten Bildern (Astro <Image>), gefiltert nach Anlass; Foto-Release beachten -->
-  </Capsule>
+  <HeroImage
+    image={heroPortfolio}
+    alt="Ausschnitt aus dem Portfolio von Mariluz Fotografía"
+    eyebrow="Portfolio"
+    title="Eine Auswahl meiner Arbeiten"
+    lead="Bilder sagen mehr als Worte. Hier eine Auswahl aus echten Feiern — Hochzeiten, Familien, Schwangerschaft und Quinceañeras aus der Deutschschweiz."
+    ctaHref="/kontakt/"
+    ctaLabel="Termin anfragen"
+  />
+
+  <section class="mx-auto max-w-3xl px-5 pt-10">
+    {/* TODO Herkunft bestätigen: „Lateinamerika" ist Annahme — ggf. konkretes Land (z. B. Peru) einsetzen. */}
+    <p class="prose-lead">Eine Auswahl aus über 20 Jahren — von meinen Anfängen in Lateinamerika bis heute in der Deutschschweiz. Hochzeiten, Quinceañeras, Familien- und Schwangerschaftsaufnahmen. Die Galerie wächst mit jeder Feier — Bilder werden nur nach Einwilligung der Abgebildeten veröffentlicht. Zum Vergrössern auf ein Bild tippen.</p>
+  </section>
+
+  {anlaesse.map((a) => (
+    <>
+      <section class="mx-auto max-w-5xl px-5 pt-8">
+        <h2 class="text-2xl sm:text-3xl">{a.titel}</h2>
+      </section>
+      <Gallery images={a.bilder} label={`${a.titel} — Mariluz Fotografía`} />
+    </>
+  ))}
 </BaseLayout>
