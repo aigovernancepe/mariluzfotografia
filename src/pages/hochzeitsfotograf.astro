@@ -1,12 +1,13 @@
 ---
 import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
+import HeroImage from '../components/HeroImage.astro';
 import Gallery from '../components/Gallery.astro';
 import Capsule from '../components/Capsule.astro';
 import { SITE } from '../consts';
 import { service } from '../lib/schema';
 import { toGallery } from '../lib/gallery';
+import heroHochzeit from '../assets/hochzeit_ch/hochzeit_ch_1.jpg';
 
 const hochzeitBilder = toGallery(
   import.meta.glob<{ default: ImageMetadata }>(
@@ -41,10 +42,12 @@ const h3Class = 'mt-6 text-xl';
     serviceType: 'Hochzeitsfotografie',
   })}
 >
-  <!-- Interim: Text-Hero ohne Bild, bis hochauflösendes Deutschschweiz-Material
-       vorliegt (Mariluz-Originale / neue CH-Shootings). Wieder auf <HeroImage>
-       umstellen, sobald ein passendes Bild da ist. -->
-  <Hero
+  <!-- Interim-Hero für den CH-Markt (temporäres Material unter assets/hochzeit_ch).
+       Bei hochauflösenden Mariluz-Originalen / neuen CH-Shootings austauschen. -->
+  <HeroImage
+    image={heroHochzeit}
+    alt="Brautpaar vor einem verzierten Holzportal — die Braut im weissen Kleid mit Brautstrauss, der Bräutigam im blauen Anzug. Foto von Mariluz Fotografía."
+    focus="center 28%"
     eyebrow="Hochzeit · Foto & Video"
     title="Hochzeitsfotograf für Ihren schönsten Tag — Foto & Video"
     lead="Als Hochzeitsfotografin begleite ich Ihre Hochzeit von den ersten Vorbereitungen bis zum letzten Tanz — mit Foto und Video, unaufdringlich und mit über 20 Jahren Erfahrung. In der ganzen Deutschschweiz."
