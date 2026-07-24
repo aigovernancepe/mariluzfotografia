@@ -6,8 +6,8 @@ interface Props { lang?: 'de' | 'es'; }
 const { lang = 'de' } = Astro.props;
 
 const t = lang === 'es'
-  ? { area: 'Fotografía y video en toda la Suiza de habla alemana', legal: 'Aviso legal', privacy: 'Privacidad', contact: 'Contacto', instaLabel: `Mariluz Fotografía en Instagram (${SOCIAL.instagramHandle})` }
-  : { area: 'Foto & Video in der ganzen Deutschschweiz', legal: 'Impressum', privacy: 'Datenschutz', contact: 'Kontakt', instaLabel: `Mariluz Fotografía auf Instagram (${SOCIAL.instagramHandle})` };
+  ? { area: 'Fotografía y video en toda la Suiza de habla alemana', legal: 'Aviso legal', privacy: 'Privacidad', contact: 'Contacto', phone: 'Teléfono', email: 'Correo', instaLabel: `Mariluz Fotografía en Instagram (${SOCIAL.instagramHandle})` }
+  : { area: 'Foto & Video in der ganzen Deutschschweiz', legal: 'Impressum', privacy: 'Datenschutz', contact: 'Kontakt', phone: 'Telefon', email: 'E-Mail', instaLabel: `Mariluz Fotografía auf Instagram (${SOCIAL.instagramHandle})` };
 const year = 2026;
 ---
 
@@ -17,12 +17,12 @@ const year = 2026;
       <p class="font-serif text-lg">Mariluz <span class="text-[var(--color-clay)]">Fotografía</span></p>
       <p class="mt-2 text-sm text-[var(--color-muted)]">{t.area}</p>
     </div>
-    <div class="text-sm text-[var(--color-muted)]">
-      <p>{NAP.city}, {NAP.region}</p>
-      <p><a href={`tel:${NAP.phoneE164}`} class="hover:text-[var(--color-ink)]">{NAP.phoneDisplay}</a></p>
-      <p><a href={`mailto:${NAP.email}`} class="hover:text-[var(--color-ink)]">{NAP.email}</a></p>
-      <p class="mt-2">
-        <InstagramLink class="text-[var(--color-muted)] hover:text-[var(--color-ink)]" label={t.instaLabel} />
+    <div class="space-y-1 text-sm text-[var(--color-muted)]">
+      <p><strong>{t.phone}:</strong> <a href={`tel:${NAP.phoneE164}`} class="hover:text-[var(--color-ink)]">{NAP.phoneDisplay}</a></p>
+      <p><strong>{t.email}:</strong> <a href={`mailto:${NAP.email}`} class="hover:text-[var(--color-ink)]">{NAP.email}</a></p>
+      <p>
+        <strong>Instagram:</strong>
+        <InstagramLink class="ml-1 text-[var(--color-muted)] hover:text-[var(--color-ink)]" label={t.instaLabel} />
       </p>
     </div>
     <div class="text-sm text-[var(--color-muted)]">
