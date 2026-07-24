@@ -1,14 +1,25 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
+import Gallery from '../../components/Gallery.astro';
 import Capsule from '../../components/Capsule.astro';
 import { SITE } from '../../consts';
 import { service } from '../../lib/schema';
+import { toGallery } from '../../lib/gallery';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/familienfotografie/` },
   { lang: 'es', href: `${SITE.url}/es/fotografo-familiar/` },
 ];
+
+const familiaFotos = toGallery(
+  import.meta.glob<{ default: ImageMetadata }>(
+    '../../assets/familie/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true },
+  ),
+  'Fotografía familiar',
+);
 ---
 <BaseLayout lang="es"
   title="Fotógrafo familiar en Suiza — Foto y Video | Mariluz Fotografía"
@@ -21,5 +32,6 @@ const alternates = [
     ctaHref="/es/contacto/" ctaLabel="Reservar sesión" />
   <Capsule question="¿Cómo es una sesión familiar?"
     answer="Nos encontramos donde tu familia se sienta cómoda — en casa, en la naturaleza o en vuestro lugar favorito. Dejo espacio para momentos reales en vez de poses, sobre todo con los niños. Así quedan imágenes que dentro de unos años seguirán pareciéndose a vosotros." />
-  <!-- TODO: detalle, ejemplos -->
+  <Gallery images={familiaFotos} label="Fotografía familiar de Mariluz Fotografía" />
+  <!-- TODO: detalle -->
 </BaseLayout>

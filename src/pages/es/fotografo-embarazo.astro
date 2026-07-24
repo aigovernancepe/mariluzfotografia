@@ -1,14 +1,25 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
+import Gallery from '../../components/Gallery.astro';
 import Capsule from '../../components/Capsule.astro';
 import { SITE } from '../../consts';
 import { service } from '../../lib/schema';
+import { toGallery } from '../../lib/gallery';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/schwangerschaftsfotos/` },
   { lang: 'es', href: `${SITE.url}/es/fotografo-embarazo/` },
 ];
+
+const embarazoFotos = toGallery(
+  import.meta.glob<{ default: ImageMetadata }>(
+    '../../assets/schwangerschaft/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true },
+  ),
+  'Fotografía de embarazo',
+);
 ---
 <BaseLayout lang="es"
   title="Fotógrafo de embarazo en Suiza — Foto y Video | Mariluz Fotografía"
@@ -21,5 +32,6 @@ const alternates = [
     ctaHref="/es/contacto/" ctaLabel="Reservar sesión" />
   <Capsule question="¿Cuál es el mejor momento para la sesión de embarazo?"
     answer="Normalmente entre la semana 28 y 34: la pancita ya se ve bonita y redonda, y tú aún te mueves con comodidad. Planeamos la sesión con calma y tiempo para pausas. Sola, en pareja o con los hermanitos: la adaptamos a lo que más te guste." />
+  <Gallery images={embarazoFotos} label="Fotografía de embarazo de Mariluz Fotografía" />
   <!-- TODO: detalle, ubicaciones, opción foto+video -->
 </BaseLayout>

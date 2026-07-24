@@ -1,15 +1,26 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import HeroImage from '../../components/HeroImage.astro';
+import Gallery from '../../components/Gallery.astro';
 import Capsule from '../../components/Capsule.astro';
 import { SITE } from '../../consts';
 import { service } from '../../lib/schema';
+import { toGallery } from '../../lib/gallery';
 import heroBoda from '../../assets/hochzeit/boda-06.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/hochzeitsfotograf/` },
   { lang: 'es', href: `${SITE.url}/es/fotografo-bodas/` },
 ];
+
+const bodasFotos = toGallery(
+  import.meta.glob<{ default: ImageMetadata }>(
+    '../../assets/hochzeit/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true },
+  ),
+  'Fotografía de bodas',
+);
 ---
 <BaseLayout lang="es"
   title="Fotógrafo de bodas en Suiza — Foto y Video | Mariluz Fotografía"
@@ -27,5 +38,6 @@ const alternates = [
     ctaHref="/es/contacto/" ctaLabel="Consultar disponibilidad" />
   <Capsule question="¿Cómo acompaño una boda?"
     answer="Estoy presente durante todo el día sin interrumpir — para las miradas silenciosas y los grandes momentos. Foto y video con una sola profesional, para que tu día quede como imagen y como película. Con más de 20 años de experiencia, sé anticipar cada instante." />
-  <!-- TODO: detalle, paquetes, ejemplos -->
+  <Gallery images={bodasFotos} label="Fotografía de bodas de Mariluz Fotografía" />
+  <!-- TODO: detalle, paquetes -->
 </BaseLayout>
