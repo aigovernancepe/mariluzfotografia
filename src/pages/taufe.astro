@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Capsule from '../components/Capsule.astro';
+import { SITE } from '../consts';
+import { service } from '../lib/schema';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/taufe/` },
+  { lang: 'es', href: `${SITE.url}/es/fotografo-bautizo/` },
+];
+
+const linkClass = 'text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]';
+const h3Class = 'mt-6 text-xl';
+---
+<BaseLayout
+  title="Fotograf für Ihre Taufe — Foto & Video | Mariluz Fotografía"
+  description="Tauffotograf in der Deutschschweiz. Foto und Video für den Tauftag Ihres Kindes — feinfühlig und unaufdringlich, mit über 20 Jahren Erfahrung."
+  path="/taufe/"
+  alternates={alternates}
+  schema={service({ name: 'Tauffotografie', description: 'Foto und Video für Taufen in der Deutschschweiz.', serviceType: 'Tauffotografie' })}
+>
+  <Hero
+    eyebrow="Taufe · Foto & Video"
+    title="Fotograf für Ihre Taufe — Foto & Video"
+    lead="Der Tauftag Ihres Kindes vergeht in einem Augenblick. Als Tauffotografin halte ich ihn feinfühlig und unaufdringlich fest — Foto und Video, in der ganzen Deutschschweiz, mit über 20 Jahren Erfahrung."
+    ctaHref="/kontakt/"
+    ctaLabel="Termin anfragen"
+  />
+
+  <Capsule
+    question="Was halte ich bei einer Taufe fest?"
+    answer="Von der Zeremonie in der Kirche bis zum Fest im Familienkreis — die Gesten, die Blicke und die kleinen Momente, die den Tag ausmachen. Ich bewege mich diskret im Hintergrund, damit nichts gestört wird, und halte ehrliche, ungestellte Bilder fest statt steifer Gruppenaufnahmen. Auf Wunsch Foto und Video aus einer Hand."
+  />
+
+  <Capsule question="Wie läuft die Taufreportage ab?"
+    answer="Ganz nach Ihrem Tag, nicht nach Schema. Ich begleite die wichtigsten Stationen, ohne Sie zu dirigieren — und nehme mir Zeit für die ruhigen Bilder ebenso wie für die grossen Momente. So entsteht eine stimmige Erzählung des ganzen Tauftags.">
+    <h3 class={h3Class}>In der Kirche</h3>
+    <p class="mt-1">Den Moment am Taufbecken, den Segen und die Blicke der Familie halte ich leise fest — ohne Blitzgewitter, mit Respekt vor der Zeremonie.</p>
+    <h3 class={h3Class}>Beim Fest danach</h3>
+    <p class="mt-1">Das Zusammensein, das Anstossen und die gelösten Momente im Familienkreis — dort entstehen oft die herzlichsten Aufnahmen.</p>
+    <h3 class={h3Class}>Familienporträts</h3>
+    <p class="mt-1">Auf Wunsch ein paar ruhige Porträts mit Paten, Grosseltern und der ganzen Familie — schnell gemacht, ohne den Tag zu unterbrechen.</p>
+  </Capsule>
+
+  <Capsule question="Foto und Video aus einer Hand?"
+    answer="Ja, beides mit einer Ansprechpartnerin. Neben den Fotos halte ich die Taufe auf Wunsch als kurzes, stimmungsvolles Video fest — die Worte, die Musik, die Bewegung des Tages. Ein Stil, ein Ergebnis: die Bilder für die Wand, der Film als bewegte Erinnerung.">
+    <a href="/video/" class={linkClass}>Mehr zu Video →</a>
+  </Capsule>
+
+  <Capsule question="Worauf achte ich als Tauffotografin?"
+    answer="Eine Taufe hat ihren eigenen Rhythmus — besonders, wenn ein kleines Kind im Mittelpunkt steht. Nach über 20 Jahren weiss ich, wann ich nah rangehe und wann ich mich zurücknehme, damit der Tag ruhig bleibt und die Bilder echt wirken.">
+    <h3 class={h3Class}>Diskretion in der Kirche</h3>
+    <p class="mt-1">Ich kläre vorab, was in Ihrer Kirche erlaubt ist, und arbeite leise vom Rand aus — ohne die Zeremonie zu stören.</p>
+    <h3 class={h3Class}>Ruhe für das Kind</h3>
+    <p class="mt-1">Kein Drängen, kein Posieren auf Kommando. Ich lasse dem Kind seinen Lauf und fange den richtigen Augenblick ab, wenn er kommt.</p>
+    <h3 class={h3Class}>Teil einer grösseren Feier</h3>
+    <p class="mt-1">Oft gehört die Taufe zu einem Familienwochenende. Gern verbinde ich sie mit einem <a href="/familienfotografie/" class={linkClass}>Familienshooting</a> oder <a href="/schwangerschaftsfotos/" class={linkClass}>Schwangerschaftsbildern</a> davor.</p>
+  </Capsule>
+
+  <Capsule question="In welchen Regionen fotografiere ich Taufen?"
+    answer="In der ganzen Deutschschweiz — mit Schwerpunkt Aargau, wo ich zuhause bin, und Basel. Als reisende Tauffotografin komme ich an Ihren Ort, ob Kirche, Restaurant oder Garten. Weitere Regionen wie Zürich, Luzern und Solothurn gerne auf Anfrage." />
+
+  <Capsule question="Was kostet ein Fotograf für die Taufe?"
+    answer="Das hängt von der Dauer, dem Ablauf und davon ab, ob Sie Foto, Video oder beides möchten. Statt Pauschalen erstelle ich Ihnen ein individuelles Angebot, das zu Ihrem Tauftag passt. Melden Sie sich mit Datum und Ort — am besten frühzeitig, damit ich den Termin für Sie reservieren kann.">
+    <!-- TODO: konkrete Pakete/Preise nach Preis-Research + Mariluz-Input -->
+    <a href="/kontakt/" class="inline-block rounded-full bg-[var(--color-clay)] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-[var(--color-clay-dark)]">Termin anfragen</a>
+  </Capsule>
+</BaseLayout>

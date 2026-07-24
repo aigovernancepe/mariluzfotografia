@@ -2,12 +2,19 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import Capsule from '../../components/Capsule.astro';
+import { SITE } from '../../consts';
 import { service } from '../../lib/schema';
+
+const alternates = [
+  { lang: 'de-CH', href: `${SITE.url}/taufe/` },
+  { lang: 'es', href: `${SITE.url}/es/fotografo-bautizo/` },
+];
 ---
 <BaseLayout lang="es"
   title="Fotógrafo de bautizo en Suiza — Foto y Video | Mariluz Fotografía"
   description="Fotografía y video de bautizo en Suiza. Fotógrafa latina con más de 20 años de experiencia en celebraciones familiares."
   path="/es/fotografo-bautizo/"
+  alternates={alternates}
   schema={service({ name: 'Fotografía de bautizo', description: 'Fotografía y video de bautizos en Suiza.', serviceType: 'Fotografía de bautizo', areaServed: 'Suiza' })}
 >
   <Hero eyebrow="Bautizo" title="Fotógrafo de bautizo en Suiza"
