@@ -1,10 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
 import Hero from '../components/Hero.astro';
 import Capsule from '../components/Capsule.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { SITE, NAP } from '../consts';
 import InstagramLink from '../components/InstagramLink.astro';
+import portrait from '../assets/brand/sobre_mi_1.jpeg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/kontakt/` },
@@ -38,6 +40,17 @@ const alternates = [
       </p>
     </div>
   </Capsule>
+
+  <div class="mx-auto mt-4 max-w-sm px-5">
+    <Image
+      src={portrait}
+      alt="Mariluz lächelnd mit ihrer Spiegelreflexkamera in der Hand, vor einem goldenen Pailletten-Hintergrund"
+      widths={[400, 600, 1080]}
+      sizes="(max-width: 768px) 90vw, 384px"
+      class="w-full rounded-2xl object-cover shadow-lg ring-1 ring-[var(--color-sand)]"
+      loading="lazy"
+    />
+  </div>
 
   <ContactForm lang="de" />
 </BaseLayout>

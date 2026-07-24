@@ -6,7 +6,6 @@ import Capsule from '../components/Capsule.astro';
 import { SITE } from '../consts';
 import { person } from '../lib/schema';
 import portrait from '../assets/about/mariluz-kamera.jpg';
-import portraitZwei from '../assets/brand/sobre_mi_1.jpeg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/ueber-mich/` },
@@ -43,18 +42,7 @@ const alternates = [
   <Capsule
     question="Wer bin ich?"
     answer="Ich fotografiere und filme seit über 20 Jahren Feiern und Familien. Ursprünglich in Lima als Mariluz Producciones bekannt, lebe und arbeite ich heute in Menziken im Aargau. Diese zwei Welten — die lateinamerikanische Herzlichkeit und das Schweizer Zuhause — prägen meinen Blick."
-  >
-    <div class="mx-auto mt-4 max-w-sm">
-      <Image
-        src={portraitZwei}
-        alt="Mariluz lächelnd mit ihrer Spiegelreflexkamera in der Hand, vor einem goldenen Pailletten-Hintergrund"
-        widths={[400, 600, 1080]}
-        sizes="(max-width: 768px) 90vw, 384px"
-        class="w-full rounded-2xl object-cover shadow-lg ring-1 ring-[var(--color-sand)]"
-        loading="lazy"
-      />
-    </div>
-  </Capsule>
+  />
 
   <Capsule
     question="Was dürfen Sie von mir erwarten?"
