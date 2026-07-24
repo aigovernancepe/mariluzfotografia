@@ -29,6 +29,7 @@ src/assets/**/*.jpeg
 src/assets/**/*.png
 !src/assets/about/mariluz-kamera.jpg
 !src/assets/brand/sobre_mi_1.jpeg
+!src/assets/hochzeit_es/hochzeit_es_4.jpg
 
 # Auf der Site verwendete Bilder freigeben (direkte Heroes + Glob-Galerien).
 !src/assets/hochzeit_ch/**
