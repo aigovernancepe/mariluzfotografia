@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-/* cache-bust: 2026-07-24 — neuer CSS-Hash gegen vergiftete Edge-Cache-URL. */
+/* asset-rev: reale Deklaration (überlebt CSS-Minify) → erzwingt neuen CSS-Hash,
+   um eine am Cloudflare-Edge vergiftete /_astro/*.css-URL zu umgehen. */
+:root { --asset-rev: 20260724; }
 
 /*
   Mariluz Fotografía — Design-Tokens.
