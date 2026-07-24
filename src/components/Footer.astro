@@ -1,12 +1,13 @@
 ---
-import { SITE, NAP } from '../consts';
+import { SITE, NAP, SOCIAL } from '../consts';
+import InstagramLink from './InstagramLink.astro';
 
 interface Props { lang?: 'de' | 'es'; }
 const { lang = 'de' } = Astro.props;
 
 const t = lang === 'es'
-  ? { area: 'Fotografía y video en toda la Suiza de habla alemana', legal: 'Aviso legal', privacy: 'Privacidad', contact: 'Contacto' }
-  : { area: 'Foto & Video in der ganzen Deutschschweiz', legal: 'Impressum', privacy: 'Datenschutz', contact: 'Kontakt' };
+  ? { area: 'Fotografía y video en toda la Suiza de habla alemana', legal: 'Aviso legal', privacy: 'Privacidad', contact: 'Contacto', instaLabel: `Mariluz Fotografía en Instagram (${SOCIAL.instagramHandle})` }
+  : { area: 'Foto & Video in der ganzen Deutschschweiz', legal: 'Impressum', privacy: 'Datenschutz', contact: 'Kontakt', instaLabel: `Mariluz Fotografía auf Instagram (${SOCIAL.instagramHandle})` };
 const year = 2026;
 ---
 
@@ -20,6 +21,9 @@ const year = 2026;
       <p>{NAP.city}, {NAP.region}</p>
       <p><a href={`tel:${NAP.phoneE164}`} class="hover:text-[var(--color-ink)]">{NAP.phoneDisplay}</a></p>
       <p><a href={`mailto:${NAP.email}`} class="hover:text-[var(--color-ink)]">{NAP.email}</a></p>
+      <p class="mt-2">
+        <InstagramLink class="text-[var(--color-muted)] hover:text-[var(--color-ink)]" label={t.instaLabel} />
+      </p>
     </div>
     <div class="text-sm text-[var(--color-muted)]">
       <a href={lang === 'es' ? '/es/contacto/' : '/kontakt/'} class="block hover:text-[var(--color-ink)]">{t.contact}</a>
