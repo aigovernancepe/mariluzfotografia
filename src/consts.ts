@@ -28,10 +28,15 @@ export const NAP = {
   areaServed: 'Deutschschweiz',
 } as const;
 
-// sameAs — sobald live eintragen (Instagram, GBP, Facebook)
+// Social-Profile (kanonische, tracking-freie URLs).
+export const SOCIAL = {
+  instagram: 'https://www.instagram.com/mariluz_fotografia',
+  instagramHandle: '@mariluz_fotografia',
+} as const;
+
+// sameAs — speist schema.org sameAs (Person + LocalBusiness). GBP/Facebook sobald live ergänzen.
 export const SAME_AS: string[] = [
-  // 'https://www.instagram.com/...',
-  // 'https://g.page/...',
+  SOCIAL.instagram,
 ];
 
 export const NAV_DE = [
