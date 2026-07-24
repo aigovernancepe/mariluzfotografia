@@ -43,6 +43,7 @@ export const NAV_DE = [
   { label: 'Hochzeit', href: '/hochzeitsfotograf/' },
   { label: 'Familie', href: '/familienfotografie/' },
   { label: 'Schwangerschaft', href: '/schwangerschaftsfotos/' },
+  { label: 'Taufe', href: '/taufe/' },
   { label: 'Events', href: '/eventfotografie/' },
   { label: 'Video', href: '/video/' },
   { label: 'Portfolio', href: '/portfolio/' },

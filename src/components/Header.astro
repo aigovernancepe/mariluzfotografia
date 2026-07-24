@@ -23,7 +23,7 @@ const switchLang = lang === 'es'
     </a>
 
     <!-- Desktop-Navigation -->
-    <nav class="hidden items-center gap-6 md:flex">
+    <nav class="hidden items-center gap-5 md:flex lg:gap-6">
       {nav.map((item) => (
         <a href={item.href} class="text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)]">{item.label}</a>
       ))}
