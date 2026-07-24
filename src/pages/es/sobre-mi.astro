@@ -6,6 +6,7 @@ import Capsule from '../../components/Capsule.astro';
 import { SITE } from '../../consts';
 import { person } from '../../lib/schema';
 import portrait from '../../assets/about/mariluz-kamera.jpg';
+import portraitDos from '../../assets/brand/sobre_mi_1.jpeg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/ueber-mich/` },
@@ -35,6 +36,15 @@ const alternates = [
 
   <Capsule question="¿Quién soy?"
     answer="Fotografío y filmo celebraciones y familias desde hace más de 20 años. En Lima era conocida como «Mariluz Producciones»; hoy vivo y trabajo en Menziken, en el cantón de Argovia. Esas dos raíces — la calidez latina y mi hogar suizo — marcan mi mirada." >
-    <!-- TODO: historia personal + retrato real -->
+    <div class="mx-auto mt-4 max-w-sm">
+      <Image
+        src={portraitDos}
+        alt="Mariluz sonriendo con su cámara réflex en la mano, ante un fondo dorado de lentejuelas"
+        widths={[400, 600, 1080]}
+        sizes="(max-width: 768px) 90vw, 384px"
+        class="w-full rounded-2xl object-cover shadow-lg ring-1 ring-[var(--color-sand)]"
+        loading="lazy"
+      />
+    </div>
   </Capsule>
 </BaseLayout>
