@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+/* cache-bust: 2026-07-24 — neuer CSS-Hash gegen vergiftete Edge-Cache-URL. */
+
 /*
   Mariluz Fotografía — Design-Tokens.
   Abgeleitet aus ihren echten Brand-Assets (2026-07-01): Logo = goldener

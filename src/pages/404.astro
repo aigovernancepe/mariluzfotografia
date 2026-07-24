@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+
+// Astro emittiert dies als dist/404.html. Cloudflare Pages liefert die Seite für
+// nicht gefundene Pfade mit echtem 404-Status aus — statt einer cachebaren
+// 200-HTML-Antwort, die (mit dem /_astro/* immutable-Header) den Edge-Cache
+// vergiften und fehlende Assets „einfrieren" könnte.
+---
+<BaseLayout
+  title="Seite nicht gefunden — Mariluz Fotografía"
+  description="Diese Seite existiert nicht. Zurück zur Startseite von Mariluz Fotografía."
+  path="/404/"
+>
+  <Hero
+    eyebrow="404"
+    title="Diese Seite gibt es nicht"
+    lead="Der Link ist vielleicht veraltet oder falsch geschrieben. Kehren Sie zur Startseite zurück oder nehmen Sie Kontakt auf."
+    ctaHref="/"
+    ctaLabel="Zur Startseite"
+  />
+</BaseLayout>
