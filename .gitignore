@@ -29,6 +29,13 @@ src/assets/**/*.jpeg
 src/assets/**/*.png
 !src/assets/about/mariluz-kamera.jpg
 
+# Auf der Site verwendete Bilder freigeben (direkte Heroes + Glob-Galerien).
+!src/assets/hochzeit_ch/**
+!src/assets/hochzeit/**
+!src/assets/familie/**
+!src/assets/quinceanera/**
+!src/assets/schwangerschaft/**
+
 # macOS
 .DS_Store
 
