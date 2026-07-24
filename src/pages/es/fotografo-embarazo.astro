@@ -1,12 +1,13 @@
 ---
 import type { ImageMetadata } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Hero from '../../components/Hero.astro';
+import HeroImage from '../../components/HeroImage.astro';
 import Gallery from '../../components/Gallery.astro';
 import Capsule from '../../components/Capsule.astro';
 import { SITE } from '../../consts';
 import { service } from '../../lib/schema';
 import { toGallery } from '../../lib/gallery';
+import heroEmbarazo from '../../assets/schwangerschaft/schwangerschaft_01.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/schwangerschaftsfotos/` },
@@ -27,7 +28,12 @@ const embarazoFotos = toGallery(
   path="/es/fotografo-embarazo/" alternates={alternates}
   schema={service({ name: 'Fotografía de embarazo', description: 'Sesiones de fotografía de embarazo en Suiza.', serviceType: 'Fotografía de embarazo', areaServed: 'Suiza' })}
 >
-  <Hero eyebrow="Embarazo" title="Fotógrafo de embarazo en Suiza"
+  <HeroImage
+    image={heroEmbarazo}
+    alt="Primer plano de una pancita de embarazo, con las manos posadas suavemente sobre ella, en luz cálida. Foto de Mariluz Fotografía."
+    focus="center 45%"
+    eyebrow="Embarazo"
+    title="Fotógrafo de embarazo en Suiza"
     lead="Esa espera tan especial pasa rápido. La guardo con delicadeza y calma — para recuerdos que quedan."
     ctaHref="/es/contacto/" ctaLabel="Reservar sesión" />
   <Capsule question="¿Cuál es el mejor momento para la sesión de embarazo?"
