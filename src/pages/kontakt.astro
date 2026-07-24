@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import Hero from '../components/Hero.astro';
-import Capsule from '../components/Capsule.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { SITE, NAP } from '../consts';
 import InstagramLink from '../components/InstagramLink.astro';
@@ -26,31 +25,44 @@ const alternates = [
     lead="Erzählen Sie mir von Ihrer Feier — Datum, Ort und ob Sie Foto, Video oder beides möchten. Ich melde mich zeitnah mit einem individuellen Angebot."
   />
 
-  <Capsule
-    question="So erreichen Sie mich"
-    answer="Am schnellsten per E-Mail oder Telefon. Nennen Sie mir Datum und Ort Ihrer Feier sowie die gewünschte Leistung — dann bekommen Sie rasch eine Rückmeldung. Beliebte Hochzeits- und Feiertermine sind früh vergeben, fragen Sie also rechtzeitig an."
-  >
-    <div class="mt-4 space-y-1 text-[var(--color-ink)]">
-      <p><strong>Telefon:</strong> <a href={`tel:${NAP.phoneE164}`} class="text-[var(--color-clay)]">{NAP.phoneDisplay}</a></p>
-      <p><strong>E-Mail:</strong> <a href={`mailto:${NAP.email}`} class="text-[var(--color-clay)]">{NAP.email}</a></p>
-      <p><strong>Region:</strong> {NAP.city} ({NAP.region}) — Anfahrt in die ganze Deutschschweiz</p>
-      <p>
-        <strong>Instagram:</strong>
-        <InstagramLink class="ml-1 text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]" />
-      </p>
+  <!-- Abschnitt 1: Foto links, „So erreichen Sie mich"-Text rechts -->
+  <section class="mx-auto max-w-5xl px-5 py-8">
+    <div class="grid items-center gap-8 md:grid-cols-2">
+      <div>
+        <Image
+          src={portrait}
+          alt="Mariluz lächelnd mit ihrer Spiegelreflexkamera in der Hand, vor einem goldenen Pailletten-Hintergrund"
+          widths={[400, 600, 1080]}
+          sizes="(max-width: 768px) 90vw, 480px"
+          class="w-full rounded-2xl object-cover shadow-lg ring-1 ring-[var(--color-sand)]"
+          loading="lazy"
+        />
+      </div>
+      <div>
+        <h2 class="text-2xl sm:text-3xl">So erreichen Sie mich</h2>
+        <p class="prose-lead mt-4">Am schnellsten per E-Mail oder Telefon. Nennen Sie mir Datum und Ort Ihrer Feier sowie die gewünschte Leistung — dann bekommen Sie rasch eine Rückmeldung. Beliebte Hochzeits- und Feiertermine sind früh vergeben, fragen Sie also rechtzeitig an.</p>
+      </div>
     </div>
-  </Capsule>
+  </section>
 
-  <div class="mx-auto mt-4 max-w-sm px-5">
-    <Image
-      src={portrait}
-      alt="Mariluz lächelnd mit ihrer Spiegelreflexkamera in der Hand, vor einem goldenen Pailletten-Hintergrund"
-      widths={[400, 600, 1080]}
-      sizes="(max-width: 768px) 90vw, 384px"
-      class="w-full rounded-2xl object-cover shadow-lg ring-1 ring-[var(--color-sand)]"
-      loading="lazy"
-    />
-  </div>
-
-  <ContactForm lang="de" />
+  <!-- Abschnitt 2: Formular links, Kontaktinfos rechts -->
+  <section class="mx-auto max-w-5xl px-5 py-8">
+    <div class="grid gap-8 md:grid-cols-2">
+      <div>
+        <ContactForm lang="de" embedded />
+      </div>
+      <div>
+        <h2 class="text-2xl sm:text-3xl">Kontaktdaten</h2>
+        <div class="mt-4 space-y-1 text-[var(--color-ink)]">
+          <p><strong>Telefon:</strong> <a href={`tel:${NAP.phoneE164}`} class="text-[var(--color-clay)]">{NAP.phoneDisplay}</a></p>
+          <p><strong>E-Mail:</strong> <a href={`mailto:${NAP.email}`} class="text-[var(--color-clay)]">{NAP.email}</a></p>
+          <p><strong>Region:</strong> {NAP.city} ({NAP.region}) — Anfahrt in die ganze Deutschschweiz</p>
+          <p>
+            <strong>Instagram:</strong>
+            <InstagramLink class="ml-1 text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]" />
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

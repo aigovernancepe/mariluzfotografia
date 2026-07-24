@@ -3,8 +3,12 @@
 // Statisch, kein JS nötig: normaler POST mit hidden access_key + redirect.
 import { SITE, WEB3FORMS_KEY } from '../consts';
 
-interface Props { lang?: 'de' | 'es'; }
-const { lang = 'de' } = Astro.props;
+interface Props {
+  lang?: 'de' | 'es';
+  /** In einer schmalen Grid-Spalte: kein eigener max-w-Wrapper, Felder einspaltig. */
+  embedded?: boolean;
+}
+const { lang = 'de', embedded = false } = Astro.props;
 
 const t = lang === 'es'
   ? {
@@ -28,9 +32,16 @@ const t = lang === 'es'
 
 const field = 'mt-1 w-full rounded-lg border border-[var(--color-sand)] bg-white/70 px-4 py-2.5 text-[var(--color-ink)] outline-none focus:border-[var(--color-clay)] focus:ring-2 focus:ring-[var(--color-clay)]/30';
 const label = 'block text-sm font-medium text-[var(--color-ink)]';
+// Standalone: eigener zentrierter Wrapper + 2-spaltige Felder.
+// Embedded (in Grid-Spalte): volle Breite, Felder einspaltig.
+const formClass = embedded ? '' : 'mx-auto max-w-xl px-5';
+const fieldsClass = embedded ? 'grid gap-4' : 'grid gap-4 sm:grid-cols-2';
+const submitClass = embedded
+  ? 'mt-8 block w-full rounded-full bg-[var(--color-clay)] px-10 py-3.5 text-sm font-semibold tracking-wide text-white shadow-sm transition-colors hover:bg-[var(--color-clay-dark)]'
+  : 'mx-auto mt-8 block w-full rounded-full bg-[var(--color-clay)] px-10 py-3.5 text-sm font-semibold tracking-wide text-white shadow-sm transition-colors hover:bg-[var(--color-clay-dark)] sm:w-auto';
 ---
 
-<form action="https://api.web3forms.com/submit" method="POST" class="mx-auto max-w-xl px-5">
+<form action="https://api.web3forms.com/submit" method="POST" class={formClass}>
   <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
   <input type="hidden" name="subject" value={t.subject} />
   <input type="hidden" name="from_name" value="Mariluz Fotografía Website" />
@@ -38,7 +49,7 @@ const label = 'block text-sm font-medium text-[var(--color-ink)]';
   <!-- Honeypot gegen Bots -->
   <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
 
-  <div class="grid gap-4 sm:grid-cols-2">
+  <div class={fieldsClass}>
     <div>
       <label class={label} for="name">{t.name} <span class="text-[var(--color-clay)]">*</span></label>
       <input class={field} id="name" name="name" type="text" required autocomplete="name" />
@@ -68,8 +79,5 @@ const label = 'block text-sm font-medium text-[var(--color-ink)]';
     </div>
   </div>
 
-  <button
-    type="submit"
-    class="mx-auto mt-8 block w-full rounded-full bg-[var(--color-clay)] px-10 py-3.5 text-sm font-semibold tracking-wide text-white shadow-sm transition-colors hover:bg-[var(--color-clay-dark)] sm:w-auto"
-  >{t.submit}</button>
+  <button type="submit" class={submitClass}>{t.submit}</button>
 </form>

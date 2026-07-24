@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import Hero from '../../components/Hero.astro';
-import Capsule from '../../components/Capsule.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import { SITE, NAP, SOCIAL } from '../../consts';
 import InstagramLink from '../../components/InstagramLink.astro';
@@ -20,29 +19,44 @@ const alternates = [
 >
   <Hero eyebrow="Contacto" title="Hablemos de tu evento"
     lead="Cuéntame la fecha, el lugar y si quieres foto, video o ambos. Te respondo pronto con una propuesta a tu medida." />
-  <Capsule question="¿Cómo contactarme?"
-    answer="Lo más rápido es por correo o teléfono. Indícame la fecha y el lugar de tu celebración y el servicio que deseas, y recibirás una respuesta ágil. Las fechas más solicitadas se reservan pronto, así que escríbeme con tiempo." >
-    <div class="mt-4 space-y-1 text-[var(--color-ink)]">
-      <p><strong>Teléfono:</strong> <a href={`tel:${NAP.phoneE164}`} class="text-[var(--color-clay)]">{NAP.phoneDisplay}</a></p>
-      <p><strong>Correo:</strong> <a href={`mailto:${NAP.email}`} class="text-[var(--color-clay)]">{NAP.email}</a></p>
-      <p><strong>Región:</strong> {NAP.city} ({NAP.region}) — cobertura en toda la Suiza de habla alemana</p>
-      <p>
-        <strong>Instagram:</strong>
-        <InstagramLink class="ml-1 text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]" label={`Mariluz Fotografía en Instagram (${SOCIAL.instagramHandle})`} />
-      </p>
+  <!-- Sección 1: foto a la izquierda, texto „¿Cómo contactarme?" a la derecha -->
+  <section class="mx-auto max-w-5xl px-5 py-8">
+    <div class="grid items-center gap-8 md:grid-cols-2">
+      <div>
+        <Image
+          src={portrait}
+          alt="Mariluz sonriendo con su cámara réflex en la mano, ante un fondo dorado de lentejuelas"
+          widths={[400, 600, 1080]}
+          sizes="(max-width: 768px) 90vw, 480px"
+          class="w-full rounded-2xl object-cover shadow-lg ring-1 ring-[var(--color-sand)]"
+          loading="lazy"
+        />
+      </div>
+      <div>
+        <h2 class="text-2xl sm:text-3xl">¿Cómo contactarme?</h2>
+        <p class="prose-lead mt-4">Lo más rápido es por correo o teléfono. Indícame la fecha y el lugar de tu celebración y el servicio que deseas, y recibirás una respuesta ágil. Las fechas más solicitadas se reservan pronto, así que escríbeme con tiempo.</p>
+      </div>
     </div>
-  </Capsule>
+  </section>
 
-  <div class="mx-auto mt-4 max-w-sm px-5">
-    <Image
-      src={portrait}
-      alt="Mariluz sonriendo con su cámara réflex en la mano, ante un fondo dorado de lentejuelas"
-      widths={[400, 600, 1080]}
-      sizes="(max-width: 768px) 90vw, 384px"
-      class="w-full rounded-2xl object-cover shadow-lg ring-1 ring-[var(--color-sand)]"
-      loading="lazy"
-    />
-  </div>
-
-  <ContactForm lang="es" />
+  <!-- Sección 2: formulario a la izquierda, datos de contacto a la derecha -->
+  <section class="mx-auto max-w-5xl px-5 py-8">
+    <div class="grid gap-8 md:grid-cols-2">
+      <div>
+        <ContactForm lang="es" embedded />
+      </div>
+      <div>
+        <h2 class="text-2xl sm:text-3xl">Datos de contacto</h2>
+        <div class="mt-4 space-y-1 text-[var(--color-ink)]">
+          <p><strong>Teléfono:</strong> <a href={`tel:${NAP.phoneE164}`} class="text-[var(--color-clay)]">{NAP.phoneDisplay}</a></p>
+          <p><strong>Correo:</strong> <a href={`mailto:${NAP.email}`} class="text-[var(--color-clay)]">{NAP.email}</a></p>
+          <p><strong>Región:</strong> {NAP.city} ({NAP.region}) — cobertura en toda la Suiza de habla alemana</p>
+          <p>
+            <strong>Instagram:</strong>
+            <InstagramLink class="ml-1 text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]" label={`Mariluz Fotografía en Instagram (${SOCIAL.instagramHandle})`} />
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
