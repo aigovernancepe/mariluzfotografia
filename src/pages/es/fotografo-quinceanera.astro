@@ -1,11 +1,22 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
+import Gallery from '../../components/Gallery.astro';
 import Capsule from '../../components/Capsule.astro';
 import { SITE } from '../../consts';
 import { service } from '../../lib/schema';
+import { toGallery } from '../../lib/gallery';
 
 // USP-Hero: Quinceañera ist ES-only (kein DE-Pendant) → self-referencing hreflang.
+
+const quinceaneraFotos = toGallery(
+  import.meta.glob<{ default: ImageMetadata }>(
+    '../../assets/quinceanera/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true },
+  ),
+  'Fotografía de quinceañera',
+);
 ---
 
 <BaseLayout
@@ -32,6 +43,8 @@ import { service } from '../../lib/schema';
     question="¿Por qué una fotógrafa especializada en quinceañeras?"
     answer="Una quinceañera no es una sesión cualquiera: el vals, el cambio de zapatilla, la entrada, la emoción de la familia. Hay que conocer estos momentos para no perderlos. Con dos décadas fotografiando XV años, sé anticiparlos y capturarlos — en foto y en video."
   />
+
+  <Gallery images={quinceaneraFotos} label="Fotografía de quinceañera de Mariluz Fotografía" />
 
   <Capsule
     question="¿Qué incluye la foto y video de XV años?"
