@@ -1,12 +1,13 @@
 ---
 import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
+import HeroImage from '../components/HeroImage.astro';
 import Gallery from '../components/Gallery.astro';
 import Capsule from '../components/Capsule.astro';
 import { SITE } from '../consts';
 import { service } from '../lib/schema';
 import { toGallery } from '../lib/gallery';
+import heroSchwangerschaft from '../assets/schwangerschaft/schwangerschaft_01.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/schwangerschaftsfotos/` },
@@ -28,7 +29,12 @@ const schwangerschaftBilder = toGallery(
   alternates={alternates}
   schema={service({ name: 'Schwangerschaftsfotografie', description: 'Babybauch- und Schwangerschaftsfotos in der Deutschschweiz.', serviceType: 'Schwangerschaftsfotografie' })}
 >
-  <Hero eyebrow="Schwangerschaft" title="Schwangerschaftsfotos voller Vorfreude"
+  <HeroImage
+    image={heroSchwangerschaft}
+    alt="Nahaufnahme eines Babybauchs, die Hände sanft um den Bauch gelegt, in warmem Licht. Foto von Mariluz Fotografía."
+    focus="center 45%"
+    eyebrow="Schwangerschaft"
+    title="Schwangerschaftsfotos voller Vorfreude"
     lead="Diese besondere Zeit vergeht schnell. Ich halte sie feinfühlig und in Ruhe fest — für Erinnerungen, die bleiben."
     ctaHref="/kontakt/" ctaLabel="Termin anfragen" />
 
