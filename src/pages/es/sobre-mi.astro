@@ -13,19 +13,19 @@ const alternates = [
 ];
 ---
 <BaseLayout lang="es"
-  title="Sobre mí — Mariluz | Mariluz Fotografía"
-  description="Mariluz — fotógrafa y videógrafa con más de 20 años de experiencia, de Lima a Suiza. Foto y video para tus momentos más especiales."
+  title="Sobre mí | Mariluz Fotografía"
+  description="Mariluz es fotógrafa y videógrafa con más de 20 años de experiencia, de Lima a Suiza. Foto y video para tus momentos más especiales."
   path="/es/sobre-mi/" alternates={alternates}
   schema={person()}
 >
   <Hero eyebrow="Sobre mí" title="Más de 20 años detrás de la cámara"
-    lead="Soy Mariluz — fotógrafa y videógrafa. Lo que empezó en Lima, hoy lo continúo en Suiza: momentos reales, guardados con cariño."
+    lead="Soy Mariluz, fotógrafa y videógrafa. Lo que empezó en Lima, hoy lo continúo en Suiza: momentos reales, guardados con cariño."
     ctaHref="/es/contacto/" ctaLabel="Conóceme" />
 
   <div class="mx-auto max-w-2xl px-5">
     <Image
       src={portrait}
-      alt="Mariluz con su cámara — fotógrafa y videógrafa con más de 20 años de experiencia"
+      alt="Mariluz con su cámara, fotógrafa y videógrafa con más de 20 años de experiencia"
       widths={[600, 900, 1200]}
       sizes="(max-width: 768px) 90vw, 672px"
       class="w-full rounded-2xl object-cover shadow-lg ring-1 ring-[var(--color-sand)]"
@@ -34,5 +34,5 @@ const alternates = [
   </div>
 
   <Capsule question="¿Quién soy?"
-    answer="Fotografío y filmo celebraciones y familias desde hace más de 20 años. En Lima era conocida como «Mariluz Producciones»; hoy vivo y trabajo en Menziken, en el cantón de Argovia. Esas dos raíces — la calidez latina y mi hogar suizo — marcan mi mirada." />
+    answer="Fotografío y filmo celebraciones y familias desde hace más de 20 años. En Lima era conocida como «Mariluz Producciones»; hoy vivo y trabajo en Menziken, en el cantón de Argovia. Esas dos raíces marcan mi mirada: la calidez latina y mi hogar suizo." />
 </BaseLayout>

@@ -40,7 +40,7 @@ export function person() {
     worksFor: { '@id': businessId },
     knowsAbout: ['Hochzeitsfotografie', 'Quinceañera', 'Eventfotografie', 'Familienfotografie', 'Videografie'],
     description:
-      'Fotografin und Videografin mit über 20 Jahren Erfahrung — begonnen als „Mariluz Producciones" in Lima, heute in der Deutschschweiz.',
+      'Fotografin und Videografin mit über 20 Jahren Erfahrung, begonnen als „Mariluz Producciones" in Lima, heute in der Deutschschweiz.',
     ...(SAME_AS.length ? { sameAs: SAME_AS } : {}),
   };
 }
