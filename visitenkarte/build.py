@@ -52,21 +52,23 @@ HAIRLINE = "#c2a24e"
 # Der Build hängt dort eine gespiegelte Zugabe an, statt Motiv zu opfern — im
 # Endformat bleibt damit genau der hier definierte Ausschnitt stehen.
 TILES = [
-    {"name": "foto-1-trauringe.jpg",        "quelle": "pool/hochzeit_ch/hochzeit_ch_2.jpg",
-     "crop": (487, 0, 1151, 1535),  "rand": "links",
-     "alt": "Trauringe auf dem Brautstrauss"},
-    {"name": "foto-2-taufe.jpg",            "quelle": "quellen/taufe.jpeg",
-     "crop": (1585, 0, 1950, 2600), "rand": None,
-     "alt": "Junge im weissen Taufgewand"},
-    {"name": "foto-3-kindergeburtstag.jpg", "quelle": "quellen/kindergeburtstag.jpeg",
-     "crop": (903, 850, 1740, 2320), "rand": None,
-     "alt": "Kindergeburtstag mit Luftballons"},
-    {"name": "foto-4-quinceanera.jpg",      "quelle": "pool/quinceanera/quinceanera_08.jpg",
-     "crop": (6, 0, 1200, 1600),    "rand": None,
-     "alt": "Quinceañera im pinken Kleid"},
-    {"name": "foto-5-schwangerschaft.jpg",  "quelle": "pool/schwangerschaft/schwangerschaft_01.jpg",
-     "crop": (0, 25, 694, 925),     "rand": "rechts",
-     "alt": "Schwangerschaftsfotografie"},
+    {"name": "foto-1-schwangerschaft.jpg",  "quelle": "pool/schwangerschaft/schwangerschaft-02.jpg",
+     "crop": (0, 140, 578, 770),    "rand": "links",
+     "alt": "Schwangere Frau in Weiss am Meer"},
+    {"name": "foto-2-hochzeit.jpg",         "quelle": "quellen/hochzeit-strand.jpeg",
+     "crop": (512, 0, 1024, 1365),  "rand": None,
+     "alt": "Brautpaar küsst sich am Strand"},
+    {"name": "foto-3-baby.jpg",             "quelle": "quellen/baby-haarband.jpeg",
+     "crop": (96, 0, 576, 768),     "rand": None,
+     "alt": "Lachendes Baby mit rosa Haarband"},
+    {"name": "foto-4-kindergeburtstag.jpg", "quelle": "quellen/kindergeburtstag-luciana.jpeg",
+     "crop": (0, 30, 1170, 1560),   "rand": None,
+     "alt": "Kindergeburtstag mit Luftballonbogen"},
+    # Ausschnitt auf die Quinceañera, der Hauseingang (Holztür, blau-weisse
+    # Fensterläden, Steintreppe) bleibt als Schweizer Kontext im Bild.
+    {"name": "foto-5-quinceanera.jpg",      "quelle": "quellen/quinceanera-hauseingang.jpg",
+     "crop": (380, 430, 420, 560),  "rand": "rechts",
+     "alt": "Quinceañera im pinken Kleid vor einem Schweizer Hauseingang"},
 ]
 
 TILE_VIS = (520, 694)   # sichtbarer Teil einer Kachel in px (≈ 16.5 × 22 mm)
