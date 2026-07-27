@@ -23,7 +23,7 @@ export const NAP = {
   region: 'Aargau',
   country: 'CH',
   phoneE164: '+41762227304',
-  phoneDisplay: '076 222 27 04',
+  phoneDisplay: '076 222 73 04',
   email: 'info@mariluzfotografia.ch',
   areaServed: 'Deutschschweiz',
 } as const;
