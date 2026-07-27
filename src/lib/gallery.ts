@@ -30,6 +30,6 @@ export function toGallery(
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([, mod]) => ({
       src: mod.default,
-      alt: `${label} — Mariluz Fotografía`,
+      alt: `${label} von Mariluz Fotografía`,
     }));
 }

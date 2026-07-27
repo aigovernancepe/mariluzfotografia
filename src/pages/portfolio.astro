@@ -45,7 +45,7 @@ const anlaesse = [
 ].filter((a) => a.bilder.length > 0);
 ---
 <BaseLayout
-  title="Portfolio — Foto & Video | Mariluz Fotografía"
+  title="Portfolio für Foto & Video | Mariluz Fotografía"
   description="Eine Auswahl aus Hochzeiten, Quinceañeras, Familien- und Schwangerschaftsaufnahmen von Mariluz Fotografía aus der Deutschschweiz und Peru."
   path="/portfolio/"
   alternates={alternates}
@@ -55,14 +55,14 @@ const anlaesse = [
     alt="Ausschnitt aus dem Portfolio von Mariluz Fotografía"
     eyebrow="Portfolio"
     title="Eine Auswahl meiner Arbeiten"
-    lead="Bilder sagen mehr als Worte. Hier eine Auswahl aus echten Feiern — Hochzeiten, Familien, Schwangerschaft und Quinceañeras aus der Deutschschweiz und Peru."
+    lead="Bilder sagen mehr als Worte. Hier eine Auswahl aus echten Feiern: Hochzeiten, Familien, Schwangerschaft und Quinceañeras aus der Deutschschweiz und Peru."
     ctaHref="/kontakt/"
     ctaLabel="Termin anfragen"
   />
 
   <section class="mx-auto max-w-3xl px-5 pt-10">
     {/* TODO Herkunft bestätigen: „Lateinamerika" ist Annahme — ggf. konkretes Land (z. B. Peru) einsetzen. */}
-    <p class="prose-lead">Eine Auswahl aus über 20 Jahren — von meinen Anfängen in Lateinamerika bis heute in der Deutschschweiz. Hochzeiten, Quinceañeras, Familien- und Schwangerschaftsaufnahmen. Die Galerie wächst mit jeder Feier — Bilder werden nur nach Einwilligung der Abgebildeten veröffentlicht. Zum Vergrössern auf ein Bild tippen.</p>
+    <p class="prose-lead">Eine Auswahl aus über 20 Jahren, von meinen Anfängen in Lateinamerika bis heute in der Deutschschweiz. Hochzeiten, Quinceañeras, Familien- und Schwangerschaftsaufnahmen. Die Galerie wächst mit jeder Feier. Bilder werden nur nach Einwilligung der Abgebildeten veröffentlicht. Zum Vergrössern auf ein Bild tippen.</p>
   </section>
 
   {anlaesse.map((a) => (
@@ -70,7 +70,7 @@ const anlaesse = [
       <section class="mx-auto max-w-5xl px-5 pt-8">
         <h2 class="text-2xl sm:text-3xl">{a.titel}</h2>
       </section>
-      <Gallery images={a.bilder} label={`${a.titel} — Mariluz Fotografía`} />
+      <Gallery images={a.bilder} label={`${a.titel} | Mariluz Fotografía`} />
     </>
   ))}
 </BaseLayout>
