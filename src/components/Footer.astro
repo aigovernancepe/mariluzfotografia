@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import { SITE, NAP, SOCIAL } from '../consts';
 import InstagramLink from './InstagramLink.astro';
+import logoFull from '../assets/brand/logo-mariluz.png';
 
 interface Props { lang?: 'de' | 'es'; }
 const { lang = 'de' } = Astro.props;
@@ -14,8 +16,17 @@ const year = 2026;
 <footer class="mt-24 border-t border-[var(--color-sand)] bg-[var(--color-sand)]/40">
   <div class="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-3">
     <div>
-      <p class="font-serif text-lg">Mariluz <span class="text-[var(--color-clay)]">Fotografía</span></p>
-      <p class="mt-2 text-sm text-[var(--color-muted)]">{t.area}</p>
+      {/* Volles Lockup, aber zurückhaltend: auf Höhe des Kontaktblocks daneben,
+          nicht als zweiter Aufmacher. In der Kopfleiste steht nur das Medaillon. */}
+      <Image
+        src={logoFull}
+        alt={`${SITE.name} — Logo`}
+        widths={[120, 240]}
+        sizes="120px"
+        loading="lazy"
+        class="h-auto w-[120px]"
+      />
+      <p class="mt-3 text-sm text-[var(--color-muted)]">{t.area}</p>
     </div>
     <div class="space-y-1 text-sm text-[var(--color-muted)]">
       <p><strong>{t.phone}:</strong> <a href={`tel:${NAP.phoneE164}`} class="hover:text-[var(--color-ink)]">{NAP.phoneDisplay}</a></p>

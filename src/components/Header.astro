@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import { SITE, NAV_DE, NAV_ES } from '../consts';
+import logoMark from '../assets/brand/logo-mark.png';
 
 interface Props {
   lang?: 'de' | 'es';
@@ -18,8 +20,19 @@ const switchLang = lang === 'es'
 
 <header class="sticky top-0 z-50 border-b border-[var(--color-sand)] bg-[var(--color-ivory)]/95 backdrop-blur">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-    <a href={home} class="font-serif text-xl tracking-tight text-[var(--color-ink)]">
-      Mariluz <span class="text-[var(--color-clay)]">Fotografía</span>
+    <!-- Medaillon als Bild, Name als Text: bleibt scharf, markierbar und lesbar
+         für Suchmaschinen. Das volle Lockup wäre in der 56-px-Leiste zu klein. -->
+    <a href={home} class="flex items-center gap-2.5 font-serif text-xl tracking-tight text-[var(--color-ink)]">
+      <Image
+        src={logoMark}
+        alt=""
+        aria-hidden="true"
+        widths={[40, 80]}
+        sizes="40px"
+        loading="eager"
+        class="h-10 w-10 shrink-0"
+      />
+      <span>Mariluz <span class="text-[var(--color-clay)]">Fotografía</span></span>
     </a>
 
     <!-- Desktop-Navigation -->
