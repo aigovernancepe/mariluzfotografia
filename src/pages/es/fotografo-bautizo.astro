@@ -1,14 +1,27 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
+import Gallery from '../../components/Gallery.astro';
 import Capsule from '../../components/Capsule.astro';
 import { SITE } from '../../consts';
 import { service } from '../../lib/schema';
+import { toGallery } from '../../lib/gallery';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/taufe/` },
   { lang: 'es', href: `${SITE.url}/es/fotografo-bautizo/` },
 ];
+
+// TODO Hero: taufe_es_001 es vertical (1479x2048) y no sirve para la banda
+// ~2,5:1 de HeroImage. Cambiar a HeroImage cuando haya una toma apaisada.
+const bautizoFotos = toGallery(
+  import.meta.glob<{ default: ImageMetadata }>(
+    '../../assets/taufe_es/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true },
+  ),
+  'Fotografía de bautizo',
+);
 ---
 <BaseLayout lang="es"
   title="Fotógrafo de bautizo en Suiza: Foto y Video | Mariluz Fotografía"
@@ -22,5 +35,15 @@ const alternates = [
     ctaHref="/es/contacto/" ctaLabel="Solicitar fecha" />
   <Capsule question="¿Qué capturo en un bautizo?"
     answer="Desde la ceremonia hasta la celebración en familia: los gestos, las miradas y los detalles que hacen único el día. Me muevo con discreción para no interrumpir el momento, y te entrego imágenes cálidas y, si lo deseas, también video." />
+
+  {bautizoFotos.length > 0 && (
+    <>
+      <section class="mx-auto max-w-3xl px-5 pt-8">
+        <h2 class="text-2xl sm:text-3xl">Imágenes de bautizos reales</h2>
+        <p class="prose-lead mt-4">La galería crece con cada bautizo. Toca una imagen para ampliarla.</p>
+      </section>
+      <Gallery images={bautizoFotos} label="Fotografía de bautizo de Mariluz Fotografía" />
+    </>
+  )}
   <!-- TODO: detalle, paquetes -->
 </BaseLayout>

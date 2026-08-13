@@ -43,6 +43,7 @@ src/assets/**/*.png
 !src/assets/event_ch/**
 !src/assets/event_es/**
 !src/assets/baby_es/**
+!src/assets/taufe_es/**
 !src/assets/quinceanera_es/**
 !src/assets/schwangerschaft_es/**
 
