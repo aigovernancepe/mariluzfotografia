@@ -7,27 +7,21 @@ import Capsule from '../../components/Capsule.astro';
 import { SITE } from '../../consts';
 import { service } from '../../lib/schema';
 import { toGallery } from '../../lib/gallery';
-import heroBoda from '../../assets/hochzeit/boda-06.jpg';
+import heroBoda from '../../assets/hochzeit_es/hochzeit_es_028.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/hochzeitsfotograf/` },
   { lang: 'es', href: `${SITE.url}/es/fotografo-bodas/` },
 ];
 
-// Se nutre de hochzeit_es/ (imágenes para las páginas en español) más el fondo
-// común en hochzeit/. Las rutas de glob deben ser literales estáticos.
+// Todo el archivo de bodas del Perú vive ahora en hochzeit_es/.
 const bodasFotos = toGallery(
-  {
-    ...import.meta.glob<{ default: ImageMetadata }>(
-      '../../assets/hochzeit_es/*.{jpg,jpeg,png,webp,avif}',
-      { eager: true },
-    ),
-    ...import.meta.glob<{ default: ImageMetadata }>(
-      '../../assets/hochzeit/*.{jpg,jpeg,png,webp,avif}',
-      { eager: true },
-    ),
-  },
+  import.meta.glob<{ default: ImageMetadata }>(
+    '../../assets/hochzeit_es/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true },
+  ),
   'Fotografía de bodas',
+  ['hochzeit_es_028'], // sirve de hero → no repetir en la galería
 );
 ---
 <BaseLayout lang="es"

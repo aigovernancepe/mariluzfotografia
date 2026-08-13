@@ -12,7 +12,7 @@ import { toGallery } from '../../lib/gallery';
 
 const quinceaneraFotos = toGallery(
   import.meta.glob<{ default: ImageMetadata }>(
-    '../../assets/quinceanera/*.{jpg,jpeg,png,webp,avif}',
+    '../../assets/quinceanera_es/*.{jpg,jpeg,png,webp,avif}',
     { eager: true },
   ),
   'Fotografía de quinceañera',

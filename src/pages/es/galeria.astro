@@ -6,7 +6,7 @@ import Gallery from '../../components/Gallery.astro';
 import Capsule from '../../components/Capsule.astro';
 import { SITE } from '../../consts';
 import { toGallery } from '../../lib/gallery';
-import heroGaleria from '../../assets/hochzeit_es/hochzeit_es_4.jpg';
+import heroGaleria from '../../assets/hochzeit_es/hochzeit_es_004.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/portfolio/` },
@@ -23,16 +23,15 @@ const celebraciones = [
       {
         ...import.meta.glob<{ default: ImageMetadata }>('../../assets/hochzeit_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
         ...import.meta.glob<{ default: ImageMetadata }>('../../assets/hochzeit_ch/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
-        ...import.meta.glob<{ default: ImageMetadata }>('../../assets/hochzeit/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
       },
       'Fotografía de bodas',
-      ['hochzeit_es_4'], // sirve de hero → no repetir en la galería
+      ['hochzeit_es_004'], // sirve de hero → no repetir en la galería
     ),
   },
   {
     titulo: 'Quinceañeras',
     fotos: toGallery(
-      import.meta.glob<{ default: ImageMetadata }>('../../assets/quinceanera/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      import.meta.glob<{ default: ImageMetadata }>('../../assets/quinceanera_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
       'Fotografía de quinceañera',
     ),
   },
@@ -42,7 +41,6 @@ const celebraciones = [
       {
         ...import.meta.glob<{ default: ImageMetadata }>('../../assets/familie_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
         ...import.meta.glob<{ default: ImageMetadata }>('../../assets/familie_ch/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
-        ...import.meta.glob<{ default: ImageMetadata }>('../../assets/familie/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
       },
       'Fotografía familiar',
     ),
@@ -50,7 +48,7 @@ const celebraciones = [
   {
     titulo: 'Embarazo',
     fotos: toGallery(
-      import.meta.glob<{ default: ImageMetadata }>('../../assets/schwangerschaft/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      import.meta.glob<{ default: ImageMetadata }>('../../assets/schwangerschaft_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
       'Fotografía de embarazo',
     ),
   },

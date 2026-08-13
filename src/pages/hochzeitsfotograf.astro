@@ -7,24 +7,17 @@ import Capsule from '../components/Capsule.astro';
 import { SITE } from '../consts';
 import { service } from '../lib/schema';
 import { toGallery } from '../lib/gallery';
-import heroHochzeit from '../assets/hochzeit_ch/hochzeit_ch_3.jpg';
+import heroHochzeit from '../assets/hochzeit_ch/hochzeit_ch_003.jpg';
 
-// Speist sich aus hochzeit_ch/ (Bilder für die deutschen Seiten) plus dem
-// gemeinsamen Altbestand in hochzeit/. Glob-Pfade müssen statische Literale sein;
-// toGallery sortiert das zusammengeführte Ergebnis nach Pfad.
+// Nur hochzeit_ch/: der frühere gemeinsame Ordner hochzeit/ war vollständig in
+// Peru aufgenommen und liegt jetzt unter hochzeit_es/.
 const hochzeitBilder = toGallery(
-  {
-    ...import.meta.glob<{ default: ImageMetadata }>(
-      '../assets/hochzeit_ch/*.{jpg,jpeg,png,webp,avif}',
-      { eager: true },
-    ),
-    ...import.meta.glob<{ default: ImageMetadata }>(
-      '../assets/hochzeit/*.{jpg,jpeg,png,webp,avif}',
-      { eager: true },
-    ),
-  },
+  import.meta.glob<{ default: ImageMetadata }>(
+    '../assets/hochzeit_ch/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true },
+  ),
   'Hochzeitsfotografie',
-  ['hochzeit_ch_3'], // dient als Hero → nicht doppelt in der Galerie
+  ['hochzeit_ch_003'], // dient als Hero → nicht doppelt in der Galerie
 );
 
 const alternates = [
@@ -95,8 +88,11 @@ const h3Class = 'mt-6 text-xl';
 
   <section class="mx-auto max-w-3xl px-5 pt-8">
     <h2 class="text-2xl sm:text-3xl">Hochzeitsbilder aus echten Feiern</h2>
-    {/* TODO Herkunft bestätigen: „Lateinamerika" ist Annahme — ggf. konkretes Land (z. B. Peru) einsetzen. */}
-    <p class="prose-lead mt-4">Eine Auswahl aus über 20 Jahren Hochzeitsfotografie, von meinen Anfängen in Lateinamerika bis heute in der Deutschschweiz. Zum Vergrössern auf ein Bild tippen.</p>
+    {/* Die Galerie zeigt nur die Schweizer Aufnahmen. Der Peru-Bestand liegt
+        unter hochzeit_es/ und läuft auf /es/fotografo-bodas/ sowie in beiden
+        Portfolio-Übersichten. */}
+    <p class="prose-lead mt-4">Aufnahmen aus echten Hochzeiten in der Deutschschweiz. Zum Vergrössern auf ein Bild tippen.</p>
+    <p class="mt-3"><a href="/portfolio/" class={linkClass}>Alle Hochzeiten aus über 20 Jahren im Portfolio →</a></p>
   </section>
   <Gallery images={hochzeitBilder} label="Hochzeitsfotografie von Mariluz Fotografía" />
 

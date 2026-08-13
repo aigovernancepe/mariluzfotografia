@@ -7,7 +7,7 @@ import Capsule from '../../components/Capsule.astro';
 import { SITE } from '../../consts';
 import { service } from '../../lib/schema';
 import { toGallery } from '../../lib/gallery';
-import heroEmbarazo from '../../assets/schwangerschaft/schwangerschaft_01.jpg';
+import heroEmbarazo from '../../assets/schwangerschaft_es/schwangerschaft_es_013.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/schwangerschaftsfotos/` },
@@ -16,11 +16,11 @@ const alternates = [
 
 const embarazoFotos = toGallery(
   import.meta.glob<{ default: ImageMetadata }>(
-    '../../assets/schwangerschaft/*.{jpg,jpeg,png,webp,avif}',
+    '../../assets/schwangerschaft_es/*.{jpg,jpeg,png,webp,avif}',
     { eager: true },
   ),
   'Fotografía de embarazo',
-  ['schwangerschaft_01'], // se usa como hero → no repetir en la galería
+  ['schwangerschaft_es_013'], // se usa como hero → no repetir en la galería
 );
 ---
 <BaseLayout lang="es"

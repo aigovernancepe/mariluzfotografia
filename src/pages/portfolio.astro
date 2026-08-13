@@ -5,7 +5,7 @@ import HeroImage from '../components/HeroImage.astro';
 import Gallery from '../components/Gallery.astro';
 import { SITE } from '../consts';
 import { toGallery } from '../lib/gallery';
-import heroPortfolio from '../assets/hochzeit_es/hochzeit_es_4.jpg';
+import heroPortfolio from '../assets/hochzeit_es/hochzeit_es_004.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/portfolio/` },
@@ -22,10 +22,9 @@ const anlaesse = [
       {
         ...import.meta.glob<{ default: ImageMetadata }>('../assets/hochzeit_ch/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
         ...import.meta.glob<{ default: ImageMetadata }>('../assets/hochzeit_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
-        ...import.meta.glob<{ default: ImageMetadata }>('../assets/hochzeit/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
       },
       'Hochzeitsfotografie',
-      ['hochzeit_es_4'], // dient als Hero → nicht doppelt in der Galerie
+      ['hochzeit_es_004'], // dient als Hero → nicht doppelt in der Galerie
     ),
   },
   {
@@ -34,7 +33,6 @@ const anlaesse = [
       {
         ...import.meta.glob<{ default: ImageMetadata }>('../assets/familie_ch/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
         ...import.meta.glob<{ default: ImageMetadata }>('../assets/familie_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
-        ...import.meta.glob<{ default: ImageMetadata }>('../assets/familie/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
       },
       'Familienfotografie',
     ),
@@ -42,7 +40,7 @@ const anlaesse = [
   {
     titel: 'Schwangerschaft',
     bilder: toGallery(
-      import.meta.glob<{ default: ImageMetadata }>('../assets/schwangerschaft/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      import.meta.glob<{ default: ImageMetadata }>('../assets/schwangerschaft_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
       'Schwangerschaftsfotografie',
     ),
   },
@@ -56,7 +54,7 @@ const anlaesse = [
   {
     titel: 'Quinceañera',
     bilder: toGallery(
-      import.meta.glob<{ default: ImageMetadata }>('../assets/quinceanera/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      import.meta.glob<{ default: ImageMetadata }>('../assets/quinceanera_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
       'Quinceañera-Fotografie',
     ),
   },

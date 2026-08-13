@@ -31,20 +31,20 @@ src/assets/**/*.png
 !src/assets/brand/sobre_mi_1.jpeg
 
 # Auf der Site verwendete Bilder freigeben (direkte Heroes + Glob-Galerien).
-# Konvention: *_ch speist die deutschen Seiten, *_es die spanischen; Ordner ohne
-# Suffix sind der gemeinsame Altbestand, der auf beiden Sprachen läuft. Die
-# Portfolio-Seiten (/portfolio/ und /es/galeria/) führen alles zusammen.
+# Konvention: <anlass>_<sprache>/<anlass>_<sprache>_NNN.jpg. Das Suffix sagt,
+# welche Sprachfassung die Bilder nutzt, und folgt der Herkunft: _ch für die
+# Schweizer Aufnahmen, _es für die aus Peru. Suffixlose Ordner gibt es nicht
+# mehr. Die Portfolio-Seiten (/portfolio/ und /es/galeria/) führen alles zusammen.
+# Dreistellig nummerieren, sonst sortieren die Galerien falsch (Pfad-Sortierung).
 !src/assets/hochzeit_ch/**
 !src/assets/hochzeit_es/**
-!src/assets/hochzeit/**
 !src/assets/familie_ch/**
 !src/assets/familie_es/**
-!src/assets/familie/**
 !src/assets/event_ch/**
 !src/assets/event_es/**
 !src/assets/baby_es/**
-!src/assets/quinceanera/**
-!src/assets/schwangerschaft/**
+!src/assets/quinceanera_es/**
+!src/assets/schwangerschaft_es/**
 
 # macOS
 .DS_Store

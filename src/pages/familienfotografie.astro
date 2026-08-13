@@ -13,20 +13,14 @@ const alternates = [
   { lang: 'es', href: `${SITE.url}/es/fotografo-familiar/` },
 ];
 
-// Speist sich aus familie_ch/ (Bilder für die deutschen Seiten) plus dem
-// gemeinsamen Altbestand in familie/. Glob-Pfade müssen statische Literale sein;
-// toGallery sortiert das zusammengeführte Ergebnis nach Pfad.
+// Nur familie_ch/: der frühere gemeinsame Ordner familie/ bestand fast
+// ausschliesslich aus Kindergeburtstagen aus Peru (jetzt event_es/), die zwei
+// verbleibenden Porträts liegen unter familie_es/.
 const familieBilder = toGallery(
-  {
-    ...import.meta.glob<{ default: ImageMetadata }>(
-      '../assets/familie_ch/*.{jpg,jpeg,png,webp,avif}',
-      { eager: true },
-    ),
-    ...import.meta.glob<{ default: ImageMetadata }>(
-      '../assets/familie/*.{jpg,jpeg,png,webp,avif}',
-      { eager: true },
-    ),
-  },
+  import.meta.glob<{ default: ImageMetadata }>(
+    '../assets/familie_ch/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true },
+  ),
   'Familienfotografie',
 );
 // TODO Hero: /familienfotografie/ hat noch keinen Bild-Hero. familie_ch_001 ist
@@ -70,6 +64,7 @@ const h3Class = 'mt-6 text-xl';
         Kindergeburtstage und liegt jetzt unter Events. Sie wächst mit jedem
         neuen Familienshooting in assets/familie_ch/. */}
     <p class="prose-lead mt-4">Ein paar Aufnahmen aus echten Familienshootings. Zum Vergrössern auf ein Bild tippen.</p>
+    <p class="mt-3"><a href="/portfolio/" class={linkClass}>Alle Familienbilder aus über 20 Jahren im Portfolio →</a></p>
   </section>
   <Gallery images={familieBilder} label="Familienfotografie von Mariluz Fotografía" />
 
