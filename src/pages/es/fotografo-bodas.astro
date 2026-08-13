@@ -7,7 +7,7 @@ import Capsule from '../../components/Capsule.astro';
 import { SITE } from '../../consts';
 import { service } from '../../lib/schema';
 import { toGallery } from '../../lib/gallery';
-import heroBoda from '../../assets/hochzeit_es/hochzeit_es_027.jpg';
+import heroBoda from '../../assets/hochzeit_es/hochzeit_es_026.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/hochzeitsfotograf/` },
@@ -21,7 +21,7 @@ const bodasFotos = toGallery(
     { eager: true },
   ),
   'Fotografía de bodas',
-  ['hochzeit_es_027'], // sirve de hero → no repetir en la galería
+  ['hochzeit_es_026'], // sirve de hero → no repetir en la galería
 );
 ---
 <BaseLayout lang="es"
