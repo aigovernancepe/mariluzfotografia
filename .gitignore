@@ -32,9 +32,13 @@ src/assets/**/*.png
 !src/assets/hochzeit_es/hochzeit_es_4.jpg
 
 # Auf der Site verwendete Bilder freigeben (direkte Heroes + Glob-Galerien).
+# Konvention: *_ch speist die deutschen Seiten, *_es die spanischen; Ordner ohne
+# Suffix sind der gemeinsame Altbestand, der noch auf beiden Sprachen läuft.
 !src/assets/hochzeit_ch/**
 !src/assets/hochzeit/**
+!src/assets/familie_ch/**
 !src/assets/familie/**
+!src/assets/event_ch/**
 !src/assets/quinceanera/**
 !src/assets/schwangerschaft/**
 

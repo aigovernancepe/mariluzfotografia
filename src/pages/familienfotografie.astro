@@ -13,13 +13,26 @@ const alternates = [
   { lang: 'es', href: `${SITE.url}/es/fotografo-familiar/` },
 ];
 
+// Speist sich aus familie_ch/ (Bilder für die deutschen Seiten) plus dem
+// gemeinsamen Altbestand in familie/. Glob-Pfade müssen statische Literale sein;
+// toGallery sortiert das zusammengeführte Ergebnis nach Pfad.
 const familieBilder = toGallery(
-  import.meta.glob<{ default: ImageMetadata }>(
-    '../assets/familie/*.{jpg,jpeg,png,webp,avif}',
-    { eager: true },
-  ),
+  {
+    ...import.meta.glob<{ default: ImageMetadata }>(
+      '../assets/familie_ch/*.{jpg,jpeg,png,webp,avif}',
+      { eager: true },
+    ),
+    ...import.meta.glob<{ default: ImageMetadata }>(
+      '../assets/familie/*.{jpg,jpeg,png,webp,avif}',
+      { eager: true },
+    ),
+  },
   'Familienfotografie',
 );
+// TODO Hero: /familienfotografie/ hat noch keinen Bild-Hero. familie_ch_001 ist
+// dafür zu eng gefasst — im 2,5:1-Band des HeroImage wird immer ein Kopf
+// angeschnitten. Sobald ein breit fotografiertes Familienbild da ist, hier
+// analog zu /hochzeitsfotograf/ auf HeroImage umstellen.
 
 const regions = [
   { label: 'Aargau', href: '/hochzeitsfotograf-aargau/' },

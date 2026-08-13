@@ -1,14 +1,29 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
+import HeroImage from '../components/HeroImage.astro';
+import Gallery from '../components/Gallery.astro';
 import Capsule from '../components/Capsule.astro';
 import { SITE } from '../consts';
 import { service } from '../lib/schema';
+import { toGallery } from '../lib/gallery';
+import heroEvent from '../assets/event_ch/event_ch_002.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/eventfotografie/` },
   { lang: 'es', href: `${SITE.url}/es/fotografo-eventos/` },
 ];
+
+// Galerie wächst mit jedem neuen Bild in assets/event_ch/ — bis dahin bleibt der
+// Abschnitt weg, statt mit einer fast leeren Reihe zu erscheinen.
+const eventBilder = toGallery(
+  import.meta.glob<{ default: ImageMetadata }>(
+    '../assets/event_ch/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true },
+  ),
+  'Eventfotografie',
+  ['event_ch_002'], // dient als Hero → nicht doppelt in der Galerie
+);
 ---
 <BaseLayout
   title="Eventfotograf für Feste & Anlässe | Mariluz Fotografía"
@@ -17,7 +32,12 @@ const alternates = [
   alternates={alternates}
   schema={service({ name: 'Eventfotografie', description: 'Foto und Video für Feste und Anlässe in der Deutschschweiz.', serviceType: 'Eventfotografie' })}
 >
-  <Hero eyebrow="Events & Feste" title="Eventfotografie mit Gespür für den Moment"
+  <HeroImage
+    image={heroEvent}
+    alt="Kindergeburtstag im Garten: Mutter und zwei Mädchen hinter einer Geburtstagstorte, daneben Ballons und Dekoration. Foto von Mariluz Fotografía."
+    focus="center 40%"
+    eyebrow="Events & Feste"
+    title="Eventfotografie mit Gespür für den Moment"
     lead="Ob Geburtstag, Jubiläum oder Familienfest: ich halte die Stimmung Ihres Anlasses fest, in Foto und Video."
     ctaHref="/kontakt/" ctaLabel="Event anfragen" />
 
@@ -28,6 +48,16 @@ const alternates = [
 
   <Capsule question="Wie arbeite ich an einem Event?"
     answer="Zurückhaltend und aufmerksam. Ich dränge mich nicht ins Geschehen, sondern lese den Abend mit: das Lachen, den Anstoss, den stillen Moment am Rand. So bleibt die Feier eine Feier, und die Bilder erzählen später, wie es wirklich war. Nach über 20 Jahren spüre ich, wann der Auslöser kommt." />
+
+  {eventBilder.length > 0 && (
+    <>
+      <section class="mx-auto max-w-3xl px-5 pt-8">
+        <h2 class="text-2xl sm:text-3xl">Bilder von echten Festen</h2>
+        <p class="prose-lead mt-4">Eine Auswahl aus über 20 Jahren Feiern, von Kindergeburtstagen bis zu grossen Familienfesten. Die Galerie wächst mit jedem Anlass. Zum Vergrössern auf ein Bild tippen.</p>
+      </section>
+      <Gallery images={eventBilder} label="Eventfotografie von Mariluz Fotografía" />
+    </>
+  )}
 
   <Capsule question="Foto und Video für Ihren Anlass?"
     answer="Beides aus einer Hand. Neben den Fotos halte ich Ihr Event auf Wunsch als Video fest, mit der Musik, den Reden und der Bewegung des Abends. Sie müssen keine zwei Dienstleister koordinieren, sondern haben eine Ansprechpartnerin und einen Stil.">
