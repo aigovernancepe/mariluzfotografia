@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { SITE, NAP, SOCIAL } from '../consts';
+import { SITE, NAP, SOCIAL, NAV_DE, NAV_ES } from '../consts';
 import InstagramLink from './InstagramLink.astro';
 import logoFull from '../assets/brand/logo-mariluz.png';
 
@@ -8,16 +8,28 @@ interface Props { lang?: 'de' | 'es'; }
 const { lang = 'de' } = Astro.props;
 
 const t = lang === 'es'
-  ? { area: 'Fotografía y video en toda la Suiza de habla alemana', legal: 'Aviso legal', privacy: 'Privacidad', contact: 'Contacto', phone: 'Teléfono', email: 'Correo', instaLabel: `Mariluz Fotografía en Instagram (${SOCIAL.instagramHandle})` }
-  : { area: 'Foto & Video in der ganzen Deutschschweiz', legal: 'Impressum', privacy: 'Datenschutz', contact: 'Kontakt', phone: 'Telefon', email: 'E-Mail', instaLabel: `Mariluz Fotografía auf Instagram (${SOCIAL.instagramHandle})` };
+  ? { area: 'Fotografía y video en toda la Suiza de habla alemana', legal: 'Aviso legal', privacy: 'Privacidad', contact: 'Contacto', phone: 'Teléfono', email: 'Correo', instaLabel: `Mariluz Fotografía en Instagram (${SOCIAL.instagramHandle})`, services: 'Servicios', legalCol: 'Legal', contactCta: 'Solicitar fecha' }
+  : { area: 'Foto & Video in der ganzen Deutschschweiz', legal: 'Impressum', privacy: 'Datenschutz', contact: 'Kontakt', phone: 'Telefon', email: 'E-Mail', instaLabel: `Mariluz Fotografía auf Instagram (${SOCIAL.instagramHandle})`, services: 'Leistungen', legalCol: 'Rechtliches', contactCta: 'Termin anfragen' };
 const year = 2026;
+
+// Leistungsspalte aus der Hauptnavigation, ohne die Seiten, die keine Leistung
+// sind — Kontakt steht als eigene Spalte da, Portfolio und Über mich gehören
+// nicht in die Leistungsliste.
+const keineLeistung: string[] = lang === 'es'
+  ? ['/es/galeria/', '/es/sobre-mi/', '/es/contacto/']
+  : ['/portfolio/', '/ueber-mich/', '/kontakt/'];
+const leistungen = (lang === 'es' ? NAV_ES : NAV_DE).filter((i) => !keineLeistung.includes(i.href));
+
+const kontaktHref = lang === 'es' ? '/es/contacto/' : '/kontakt/';
+const spaltenTitel = 'mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[var(--color-ink)]';
+const linkClass = 'block hover:text-[var(--color-ink)]';
 ---
 
 <footer class="mt-24 border-t border-[var(--color-sand)] bg-[var(--color-sand)]/40">
-  <div class="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-3">
+  <div class="mx-auto grid max-w-6xl gap-10 px-5 py-12 sm:grid-cols-2 lg:grid-cols-4">
     <div>
-      {/* Volles Lockup, aber zurückhaltend: auf Höhe des Kontaktblocks daneben,
-          nicht als zweiter Aufmacher. In der Kopfleiste steht nur das Medaillon. */}
+      {/* Volles Lockup, aber zurückhaltend: es steht neben drei Textspalten,
+          nicht als zweiter Aufmacher. In der Kopfleiste nur das Medaillon. */}
       <Image
         src={logoFull}
         alt={`${SITE.name} — Logo`}
@@ -26,20 +38,34 @@ const year = 2026;
         loading="lazy"
         class="h-auto w-[120px]"
       />
-      <p class="mt-3 text-sm text-[var(--color-muted)]">{t.area}</p>
+      <p class="mt-4 text-sm text-[var(--color-muted)]">{t.area}</p>
     </div>
-    <div class="space-y-1 text-sm text-[var(--color-muted)]">
-      <p><strong>{t.phone}:</strong> <a href={`tel:${NAP.phoneE164}`} class="hover:text-[var(--color-ink)]">{NAP.phoneDisplay}</a></p>
-      <p><strong>{t.email}:</strong> <a href={`mailto:${NAP.email}`} class="hover:text-[var(--color-ink)]">{NAP.email}</a></p>
-      <p>
-        <strong>Instagram:</strong>
-        <InstagramLink class="ml-1 text-[var(--color-muted)] hover:text-[var(--color-ink)]" label={t.instaLabel} />
-      </p>
-    </div>
+
     <div class="text-sm text-[var(--color-muted)]">
-      <a href={lang === 'es' ? '/es/contacto/' : '/kontakt/'} class="block hover:text-[var(--color-ink)]">{t.contact}</a>
-      <a href="/impressum/" class="block hover:text-[var(--color-ink)]">{t.legal}</a>
-      <a href="/datenschutz/" class="block hover:text-[var(--color-ink)]">{t.privacy}</a>
+      <p class={spaltenTitel}>{t.contact}</p>
+      <div class="space-y-1">
+        <a href={`tel:${NAP.phoneE164}`} class={linkClass}>{NAP.phoneDisplay}</a>
+        <a href={`mailto:${NAP.email}`} class={linkClass}>{NAP.email}</a>
+        <InstagramLink class="text-[var(--color-muted)] hover:text-[var(--color-ink)]" label={t.instaLabel} />
+      </div>
+      <a href={kontaktHref} class="mt-3 inline-block font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]">{t.contactCta} →</a>
+    </div>
+
+    <div class="text-sm text-[var(--color-muted)]">
+      <p class={spaltenTitel}>{t.services}</p>
+      <div class="space-y-1">
+        {leistungen.map((i) => (
+          <a href={i.href} class={linkClass}>{i.label}</a>
+        ))}
+      </div>
+    </div>
+
+    <div class="text-sm text-[var(--color-muted)]">
+      <p class={spaltenTitel}>{t.legalCol}</p>
+      <div class="space-y-1">
+        <a href="/impressum/" class={linkClass}>{t.legal}</a>
+        <a href="/datenschutz/" class={linkClass}>{t.privacy}</a>
+      </div>
     </div>
   </div>
   <div class="border-t border-[var(--color-sand)] px-5 py-4 text-center text-xs text-[var(--color-muted)]">
