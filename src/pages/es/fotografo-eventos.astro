@@ -1,14 +1,28 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Hero from '../../components/Hero.astro';
+import HeroImage from '../../components/HeroImage.astro';
+import Gallery from '../../components/Gallery.astro';
 import Capsule from '../../components/Capsule.astro';
 import { SITE } from '../../consts';
 import { service } from '../../lib/schema';
+import { toGallery } from '../../lib/gallery';
+import heroEvento from '../../assets/event_es/event_es_007.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/eventfotografie/` },
   { lang: 'es', href: `${SITE.url}/es/fotografo-eventos/` },
 ];
+
+// Los cumpleaños infantiles cuentan como eventos, no como sesiones familiares.
+const eventoFotos = toGallery(
+  import.meta.glob<{ default: ImageMetadata }>(
+    '../../assets/event_es/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true },
+  ),
+  'Fotografía de eventos',
+  ['event_es_007'], // sirve de hero → no repetir en la galería
+);
 ---
 <BaseLayout lang="es"
   title="Fotógrafo de eventos en Suiza: Foto y Video | Mariluz Fotografía"
@@ -16,10 +30,25 @@ const alternates = [
   path="/es/fotografo-eventos/" alternates={alternates}
   schema={service({ name: 'Fotografía de eventos', description: 'Foto y video de eventos y fiestas en Suiza.', serviceType: 'Fotografía de eventos', areaServed: 'Suiza' })}
 >
-  <Hero eyebrow="Eventos" title="Fotógrafo de eventos en Suiza"
+  <HeroImage
+    image={heroEvento}
+    alt="Fiesta de cumpleaños infantil: una niña con vestido azul junto a su tarta, en una mesa llena de dulces. Foto de Mariluz Fotografía."
+    focus="center 45%"
+    eyebrow="Eventos"
+    title="Fotógrafo de eventos en Suiza"
     lead="Cumpleaños, aniversarios, fiestas familiares: capturo el ambiente de tu celebración, en foto y video."
     ctaHref="/es/contacto/" ctaLabel="Consultar tu evento" />
   <Capsule question="¿Qué tipo de eventos cubro?"
     answer="Celebraciones familiares de todo tipo: cumpleaños, aniversarios, bautizos, fiestas y eventos culturales de la comunidad. Me muevo con discreción durante la fiesta y capturo reacciones reales en vez de posados. Si lo deseas, foto y video con una sola profesional." />
+
+  {eventoFotos.length > 0 && (
+    <>
+      <section class="mx-auto max-w-3xl px-5 pt-8">
+        <h2 class="text-2xl sm:text-3xl">Imágenes de fiestas reales</h2>
+        <p class="prose-lead mt-4">Una selección de más de 20 años de celebraciones, desde cumpleaños infantiles hasta grandes fiestas familiares. La galería crece con cada evento. Toca una imagen para ampliarla.</p>
+      </section>
+      <Gallery images={eventoFotos} label="Fotografía de eventos de Mariluz Fotografía" />
+    </>
+  )}
   <!-- TODO: tipos de evento, ejemplos -->
 </BaseLayout>

@@ -13,11 +13,19 @@ const alternates = [
   { lang: 'es', href: `${SITE.url}/es/fotografo-familiar/` },
 ];
 
+// Se nutre de familie_es/ (imágenes para las páginas en español) más el fondo
+// común en familie/. Las rutas de glob deben ser literales estáticos.
 const familiaFotos = toGallery(
-  import.meta.glob<{ default: ImageMetadata }>(
-    '../../assets/familie/*.{jpg,jpeg,png,webp,avif}',
-    { eager: true },
-  ),
+  {
+    ...import.meta.glob<{ default: ImageMetadata }>(
+      '../../assets/familie_es/*.{jpg,jpeg,png,webp,avif}',
+      { eager: true },
+    ),
+    ...import.meta.glob<{ default: ImageMetadata }>(
+      '../../assets/familie/*.{jpg,jpeg,png,webp,avif}',
+      { eager: true },
+    ),
+  },
   'Fotografía familiar',
 );
 ---

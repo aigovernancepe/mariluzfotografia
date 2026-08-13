@@ -12,18 +12,20 @@ const alternates = [
   { lang: 'es', href: `${SITE.url}/es/galeria/` },
 ];
 
-// Pro Anlass eine Galerie — Glob-Pfade müssen statische Literale sein. Wo ein
-// *_ch-Ordner existiert, speist er die deutschen Seiten zusammen mit dem
-// gemeinsamen Altbestand aus dem Ordner ohne Suffix.
+// Das Portfolio führt alles zusammen: pro Anlass die _ch- und _es-Ordner plus
+// den gemeinsamen Altbestand. Die Service-Seiten zeigen nur ihre Sprachfassung,
+// hier ist das Gesamtwerk zu sehen. Glob-Pfade müssen statische Literale sein.
 const anlaesse = [
   {
     titel: 'Hochzeiten',
     bilder: toGallery(
       {
         ...import.meta.glob<{ default: ImageMetadata }>('../assets/hochzeit_ch/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+        ...import.meta.glob<{ default: ImageMetadata }>('../assets/hochzeit_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
         ...import.meta.glob<{ default: ImageMetadata }>('../assets/hochzeit/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
       },
       'Hochzeitsfotografie',
+      ['hochzeit_es_4'], // dient als Hero → nicht doppelt in der Galerie
     ),
   },
   {
@@ -31,6 +33,7 @@ const anlaesse = [
     bilder: toGallery(
       {
         ...import.meta.glob<{ default: ImageMetadata }>('../assets/familie_ch/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+        ...import.meta.glob<{ default: ImageMetadata }>('../assets/familie_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
         ...import.meta.glob<{ default: ImageMetadata }>('../assets/familie/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
       },
       'Familienfotografie',
@@ -44,6 +47,13 @@ const anlaesse = [
     ),
   },
   {
+    titel: 'Babys',
+    bilder: toGallery(
+      import.meta.glob<{ default: ImageMetadata }>('../assets/baby_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      'Babyfotografie',
+    ),
+  },
+  {
     titel: 'Quinceañera',
     bilder: toGallery(
       import.meta.glob<{ default: ImageMetadata }>('../assets/quinceanera/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
@@ -53,7 +63,10 @@ const anlaesse = [
   {
     titel: 'Events & Feste',
     bilder: toGallery(
-      import.meta.glob<{ default: ImageMetadata }>('../assets/event_ch/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      {
+        ...import.meta.glob<{ default: ImageMetadata }>('../assets/event_ch/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+        ...import.meta.glob<{ default: ImageMetadata }>('../assets/event_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      },
       'Eventfotografie',
     ),
   },
@@ -67,7 +80,7 @@ const anlaesse = [
 >
   <HeroImage
     image={heroPortfolio}
-    alt="Ausschnitt aus dem Portfolio von Mariluz Fotografía"
+    alt="Brautpaar springt vor Freude an einem Strand, im Hintergrund Klippen und Meer; sie im weissen Kleid mit Blumenkranz. Foto von Mariluz Fotografía."
     eyebrow="Portfolio"
     title="Eine Auswahl meiner Arbeiten"
     lead="Bilder sagen mehr als Worte. Hier eine Auswahl aus echten Feiern: Hochzeiten, Familien, Schwangerschaft, Quinceañeras und Feste aus der Deutschschweiz und Peru."

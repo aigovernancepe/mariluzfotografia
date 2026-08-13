@@ -1,24 +1,105 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Hero from '../../components/Hero.astro';
+import HeroImage from '../../components/HeroImage.astro';
+import Gallery from '../../components/Gallery.astro';
 import Capsule from '../../components/Capsule.astro';
 import { SITE } from '../../consts';
+import { toGallery } from '../../lib/gallery';
+import heroGaleria from '../../assets/hochzeit_es/hochzeit_es_4.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/portfolio/` },
   { lang: 'es', href: `${SITE.url}/es/galeria/` },
 ];
+
+// La galería reúne todo: las carpetas _ch y _es de cada tipo de celebración más
+// el fondo común. Las páginas de servicio muestran solo su idioma, aquí se ve la
+// obra completa. Las rutas de glob deben ser literales estáticos.
+const celebraciones = [
+  {
+    titulo: 'Bodas',
+    fotos: toGallery(
+      {
+        ...import.meta.glob<{ default: ImageMetadata }>('../../assets/hochzeit_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+        ...import.meta.glob<{ default: ImageMetadata }>('../../assets/hochzeit_ch/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+        ...import.meta.glob<{ default: ImageMetadata }>('../../assets/hochzeit/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      },
+      'Fotografía de bodas',
+      ['hochzeit_es_4'], // sirve de hero → no repetir en la galería
+    ),
+  },
+  {
+    titulo: 'Quinceañeras',
+    fotos: toGallery(
+      import.meta.glob<{ default: ImageMetadata }>('../../assets/quinceanera/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      'Fotografía de quinceañera',
+    ),
+  },
+  {
+    titulo: 'Familias y niños',
+    fotos: toGallery(
+      {
+        ...import.meta.glob<{ default: ImageMetadata }>('../../assets/familie_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+        ...import.meta.glob<{ default: ImageMetadata }>('../../assets/familie_ch/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+        ...import.meta.glob<{ default: ImageMetadata }>('../../assets/familie/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      },
+      'Fotografía familiar',
+    ),
+  },
+  {
+    titulo: 'Embarazo',
+    fotos: toGallery(
+      import.meta.glob<{ default: ImageMetadata }>('../../assets/schwangerschaft/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      'Fotografía de embarazo',
+    ),
+  },
+  {
+    titulo: 'Bebés',
+    fotos: toGallery(
+      import.meta.glob<{ default: ImageMetadata }>('../../assets/baby_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      'Fotografía de bebés',
+    ),
+  },
+  {
+    titulo: 'Eventos y fiestas',
+    fotos: toGallery(
+      {
+        ...import.meta.glob<{ default: ImageMetadata }>('../../assets/event_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+        ...import.meta.glob<{ default: ImageMetadata }>('../../assets/event_ch/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      },
+      'Fotografía de eventos',
+    ),
+  },
+].filter((c) => c.fotos.length > 0);
 ---
 <BaseLayout lang="es"
   title="Galería: Foto y Video | Mariluz Fotografía"
-  description="Una selección de bodas, quinceañeras, bautizos y sesiones familiares de Mariluz Fotografía desde la Suiza alemana y el Perú."
+  description="Una selección de bodas, quinceañeras, bautizos, eventos y sesiones familiares de Mariluz Fotografía desde la Suiza alemana y el Perú."
   path="/es/galeria/" alternates={alternates}
 >
-  <Hero eyebrow="Galería" title="Una selección de mi trabajo"
-    lead="Las imágenes dicen más que las palabras. Aquí una selección de celebraciones reales: bodas, familias, embarazo y quinceañeras desde la Suiza alemana y el Perú."
+  <HeroImage
+    image={heroGaleria}
+    alt="Novios saltando de alegría en una playa, con acantilados y el mar al fondo; ella con vestido blanco y corona de flores. Foto de Mariluz Fotografía."
+    focus="center 45%"
+    eyebrow="Galería"
+    title="Una selección de mi trabajo"
+    lead="Las imágenes dicen más que las palabras. Aquí una selección de celebraciones reales: bodas, familias, embarazo, quinceañeras y fiestas desde la Suiza alemana y el Perú."
     ctaHref="/es/contacto/" ctaLabel="Solicitar fecha" />
+
+  <section class="mx-auto max-w-3xl px-5 pt-10">
+    <p class="prose-lead">Una selección de más de 20 años, desde mis comienzos en Latinoamérica hasta hoy en la Suiza de habla alemana. Bodas, quinceañeras, familias, embarazo y fiestas. La galería crece con cada celebración. Las imágenes se publican solo con el consentimiento de las personas retratadas. Toca una imagen para ampliarla.</p>
+  </section>
+
+  {celebraciones.map((c) => (
+    <>
+      <section class="mx-auto max-w-5xl px-5 pt-8">
+        <h2 class="text-2xl sm:text-3xl">{c.titulo}</h2>
+      </section>
+      <Gallery images={c.fotos} label={`${c.titulo} | Mariluz Fotografía`} />
+    </>
+  ))}
+
   <Capsule question="¿Qué muestra esta galería?"
-    answer="Una selección cuidada de bodas, quinceañeras, bautizos y sesiones familiares. La galería crece con cada celebración. Las imágenes se publican solo con el consentimiento de las personas retratadas." >
-    <!-- TODO: grid de galería con imágenes optimizadas (Astro <Image>), filtrado por tipo; respetar consentimiento de imagen -->
-  </Capsule>
+    answer="Una selección cuidada de bodas, quinceañeras, bautizos, eventos y sesiones familiares. La galería crece con cada celebración. Las imágenes se publican solo con el consentimiento de las personas retratadas." />
 </BaseLayout>

@@ -29,16 +29,20 @@ src/assets/**/*.jpeg
 src/assets/**/*.png
 !src/assets/about/mariluz-kamera.jpg
 !src/assets/brand/sobre_mi_1.jpeg
-!src/assets/hochzeit_es/hochzeit_es_4.jpg
 
 # Auf der Site verwendete Bilder freigeben (direkte Heroes + Glob-Galerien).
 # Konvention: *_ch speist die deutschen Seiten, *_es die spanischen; Ordner ohne
-# Suffix sind der gemeinsame Altbestand, der noch auf beiden Sprachen läuft.
+# Suffix sind der gemeinsame Altbestand, der auf beiden Sprachen läuft. Die
+# Portfolio-Seiten (/portfolio/ und /es/galeria/) führen alles zusammen.
 !src/assets/hochzeit_ch/**
+!src/assets/hochzeit_es/**
 !src/assets/hochzeit/**
 !src/assets/familie_ch/**
+!src/assets/familie_es/**
 !src/assets/familie/**
 !src/assets/event_ch/**
+!src/assets/event_es/**
+!src/assets/baby_es/**
 !src/assets/quinceanera/**
 !src/assets/schwangerschaft/**
 

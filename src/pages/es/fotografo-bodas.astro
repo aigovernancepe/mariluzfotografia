@@ -14,11 +14,19 @@ const alternates = [
   { lang: 'es', href: `${SITE.url}/es/fotografo-bodas/` },
 ];
 
+// Se nutre de hochzeit_es/ (imágenes para las páginas en español) más el fondo
+// común en hochzeit/. Las rutas de glob deben ser literales estáticos.
 const bodasFotos = toGallery(
-  import.meta.glob<{ default: ImageMetadata }>(
-    '../../assets/hochzeit/*.{jpg,jpeg,png,webp,avif}',
-    { eager: true },
-  ),
+  {
+    ...import.meta.glob<{ default: ImageMetadata }>(
+      '../../assets/hochzeit_es/*.{jpg,jpeg,png,webp,avif}',
+      { eager: true },
+    ),
+    ...import.meta.glob<{ default: ImageMetadata }>(
+      '../../assets/hochzeit/*.{jpg,jpeg,png,webp,avif}',
+      { eager: true },
+    ),
+  },
   'Fotografía de bodas',
 );
 ---
