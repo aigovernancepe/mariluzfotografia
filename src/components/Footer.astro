@@ -1,8 +1,6 @@
 ---
-import { Image } from 'astro:assets';
 import { SITE, NAP, SOCIAL, NAV_DE, NAV_ES } from '../consts';
 import InstagramLink from './InstagramLink.astro';
-import logoFull from '../assets/brand/logo-mariluz.png';
 
 interface Props { lang?: 'de' | 'es'; }
 const { lang = 'de' } = Astro.props;
@@ -28,17 +26,8 @@ const linkClass = 'block hover:text-[var(--color-ink)]';
 <footer class="mt-24 border-t border-[var(--color-sand)] bg-[var(--color-sand)]/40">
   <div class="mx-auto grid max-w-6xl gap-10 px-5 py-12 sm:grid-cols-2 lg:grid-cols-4">
     <div>
-      {/* Volles Lockup, aber zurückhaltend: es steht neben drei Textspalten,
-          nicht als zweiter Aufmacher. In der Kopfleiste nur das Medaillon. */}
-      <Image
-        src={logoFull}
-        alt={`${SITE.name} — Logo`}
-        widths={[120, 240]}
-        sizes="120px"
-        loading="lazy"
-        class="h-auto w-[120px]"
-      />
-      <p class="mt-4 text-sm text-[var(--color-muted)]">{t.area}</p>
+      <p class="font-serif text-lg">Mariluz <span class="text-[var(--color-clay)]">Fotografía</span></p>
+      <p class="mt-2 text-sm text-[var(--color-muted)]">{t.area}</p>
     </div>
 
     <div class="text-sm text-[var(--color-muted)]">

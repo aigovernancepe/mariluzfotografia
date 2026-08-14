@@ -29,10 +29,6 @@ src/assets/**/*.jpeg
 src/assets/**/*.png
 !src/assets/about/mariluz-kamera.jpg
 !src/assets/brand/sobre_mi_1.jpeg
-# Markenlogo: logo-mariluz = volles Lockup (Footer), logo-mark = Medaillon
-# (Kopfleiste + Favicon-Quelle). Beide aus der Originaldatei ohne URL-Zeile.
-!src/assets/brand/logo-mariluz.png
-!src/assets/brand/logo-mark.png
 
 # Auf der Site verwendete Bilder freigeben (direkte Heroes + Glob-Galerien).
 # Konvention: <anlass>_<sprache>/<anlass>_<sprache>_NNN.jpg. Das Suffix sagt,
