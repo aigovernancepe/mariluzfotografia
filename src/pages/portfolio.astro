@@ -54,7 +54,10 @@ const anlaesse = [
   {
     titel: 'Taufe',
     bilder: toGallery(
-      import.meta.glob<{ default: ImageMetadata }>('../assets/taufe_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      {
+        ...import.meta.glob<{ default: ImageMetadata }>('../assets/taufe_ch/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+        ...import.meta.glob<{ default: ImageMetadata }>('../assets/taufe_es/*.{jpg,jpeg,png,webp,avif}', { eager: true }),
+      },
       'Taufreportage',
     ),
   },

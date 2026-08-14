@@ -1,14 +1,29 @@
 ---
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
+import HeroImage from '../components/HeroImage.astro';
+import Gallery from '../components/Gallery.astro';
 import Capsule from '../components/Capsule.astro';
 import { SITE } from '../consts';
 import { service } from '../lib/schema';
+import { toGallery } from '../lib/gallery';
+import heroTaufe from '../assets/taufe_ch/taufe_ch_001.jpg';
 
 const alternates = [
   { lang: 'de-CH', href: `${SITE.url}/taufe/` },
   { lang: 'es', href: `${SITE.url}/es/fotografo-bautizo/` },
 ];
+
+// Galerie wächst mit jeder neuen Schweizer Taufe in assets/taufe_ch/ — bis dahin
+// bleibt der Abschnitt weg, statt mit einer fast leeren Reihe zu erscheinen.
+const taufeBilder = toGallery(
+  import.meta.glob<{ default: ImageMetadata }>(
+    '../assets/taufe_ch/*.{jpg,jpeg,png,webp,avif}',
+    { eager: true },
+  ),
+  'Taufreportage',
+  ['taufe_ch_001'], // dient als Hero → nicht doppelt in der Galerie
+);
 
 const linkClass = 'text-sm font-medium text-[var(--color-clay)] hover:text-[var(--color-clay-dark)]';
 const h3Class = 'mt-6 text-xl';
@@ -20,7 +35,10 @@ const h3Class = 'mt-6 text-xl';
   alternates={alternates}
   schema={service({ name: 'Tauffotografie', description: 'Foto und Video für Taufen in der Deutschschweiz.', serviceType: 'Tauffotografie' })}
 >
-  <Hero
+  <HeroImage
+    image={heroTaufe}
+    alt="Familie mit Täufling im weissen Taufkleid auf einer Terrasse über dem Rhein in Basel, im Hintergrund die Altstadt und die Roche-Türme. Foto von Mariluz Fotografía."
+    focus="center 45%"
     eyebrow="Taufe · Foto & Video"
     title="Fotograf für Ihre Taufe, mit Foto & Video"
     lead="Der Tauftag Ihres Kindes vergeht in einem Augenblick. Als Tauffotografin halte ich ihn feinfühlig und unaufdringlich fest, in Foto und Video, in der ganzen Deutschschweiz und mit über 20 Jahren Erfahrung."
@@ -47,6 +65,16 @@ const h3Class = 'mt-6 text-xl';
     <h3 class={h3Class}>Familienporträts</h3>
     <p class="mt-1">Auf Wunsch ein paar ruhige Porträts mit Paten, Grosseltern und der ganzen Familie, schnell gemacht und ohne den Tag zu unterbrechen.</p>
   </Capsule>
+
+  {taufeBilder.length > 0 && (
+    <>
+      <section class="mx-auto max-w-3xl px-5 pt-8">
+        <h2 class="text-2xl sm:text-3xl">Bilder von echten Taufen</h2>
+        <p class="prose-lead mt-4">Eine Auswahl aus begleiteten Tauftagen in der Deutschschweiz, von der Zeremonie bis zum Fest im Familienkreis. Zum Vergrössern auf ein Bild tippen.</p>
+      </section>
+      <Gallery images={taufeBilder} label="Taufreportagen von Mariluz Fotografía" />
+    </>
+  )}
 
   <Capsule
     question="Darf man in der Kirche fotografieren?"
