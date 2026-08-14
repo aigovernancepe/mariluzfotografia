@@ -7,7 +7,7 @@ import Capsule from '../components/Capsule.astro';
 import { SITE } from '../consts';
 import { service } from '../lib/schema';
 import { toGallery } from '../lib/gallery';
-import heroHochzeit from '../assets/hochzeit_ch/hochzeit_ch_003.jpg';
+import heroHochzeit from '../assets/hochzeit_ch/hochzeit_ch_002.jpg';
 
 // Nur hochzeit_ch/: der frühere gemeinsame Ordner hochzeit/ war vollständig in
 // Peru aufgenommen und liegt jetzt unter hochzeit_es/.
@@ -17,7 +17,7 @@ const hochzeitBilder = toGallery(
     { eager: true },
   ),
   'Hochzeitsfotografie',
-  ['hochzeit_ch_003'], // dient als Hero → nicht doppelt in der Galerie
+  ['hochzeit_ch_002'], // dient als Hero → nicht doppelt in der Galerie
 );
 
 const alternates = [
@@ -47,8 +47,8 @@ const h3Class = 'mt-6 text-xl';
 >
   <HeroImage
     image={heroHochzeit}
-    alt="Brautpaar inmitten der Hochzeitsgesellschaft im Garten, die Braut in weissem Reifrockkleid mit einem Strauss cremeweisser Rosen. Foto von Mariluz Fotografía."
-    focus="center 62%"
+    alt="Die Hände von Braut und Bräutigam mit ihren Eheringen, übereinandergelegt auf einem Brautstrauss aus cremeweissen Rosen. Foto von Mariluz Fotografía."
+    focus="center 40%"
     eyebrow="Hochzeit · Foto & Video"
     title="Hochzeitsfotograf für Ihren schönsten Tag, mit Foto & Video"
     lead="Als Hochzeitsfotografin begleite ich Ihre Hochzeit von den ersten Vorbereitungen bis zum letzten Tanz. Mit Foto und Video, unaufdringlich und mit über 20 Jahren Erfahrung. In der ganzen Deutschschweiz."
